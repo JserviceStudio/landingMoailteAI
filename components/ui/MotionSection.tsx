@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import { useRef } from "react";
 
 interface MotionSectionProps {
@@ -21,19 +21,16 @@ export function MotionSection({
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true, margin: "-10%" });
 
-    const getVariants = () => {
+    const getVariants = (): Variants => {
         const directions = {
-            up: { y: 40 },
-            down: { y: -40 },
-            left: { x: 40 },
-            right: { x: -40 }
+            up: { y: 40, opacity: 0 },
+            down: { y: -40, opacity: 0 },
+            left: { x: 40, opacity: 0 },
+            right: { x: -40, opacity: 0 }
         };
 
         return {
-            hidden: {
-                opacity: 0,
-                ...directions[direction]
-            },
+            hidden: directions[direction],
             visible: {
                 opacity: 1,
                 x: 0,
@@ -41,7 +38,7 @@ export function MotionSection({
                 transition: {
                     duration: 0.8,
                     delay,
-                    ease: "easeOut"
+                    ease: [0.22, 1, 0.36, 1] // Custom quintic ease-out for better precision
                 }
             }
         };
