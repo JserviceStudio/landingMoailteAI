@@ -34,11 +34,11 @@ export default function Home() {
             className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-primary/10 border border-primary/20 text-primary dark:text-primary text-[12px] font-black uppercase tracking-[0.3em] shadow-sm backdrop-blur-md"
           >
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-            MikhmonAI — V6 & V7.x • 2026
+            MikhmonPro — AI V6 & V7.x • 2026
           </motion.div>
 
           <div className="space-y-8">
-            <h1 className="text-7xl lg:text-[11.5rem] font-black tracking-tighter leading-[0.75] lg:leading-[0.75] text-foreground">
+            <h1 className="text-7xl lg:text-[11.5rem] font-black tracking-tighter leading-[0.75] lg:leading-[0.75] text-foreground font-heading uppercase italic">
               Hotspot <br />
               <span className="text-gradient">Sans Limites.</span>
             </h1>
@@ -53,7 +53,8 @@ export default function Home() {
             <a
               href="/Mikhmoai3.4.0.apk"
               download="MikhmonPro-3.4.0.apk"
-              className="mobile-touch group relative flex items-center gap-4 px-14 py-7 bg-foreground text-background rounded-[2.5rem] font-black text-2xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] transition-all w-full sm:w-auto text-center justify-center hover:opacity-90"
+              className="mobile-touch group relative flex items-center gap-4 px-14 py-7 bg-foreground text-background rounded-[2.5rem] font-black text-2xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] transition-all w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20"
+              aria-label="Télécharger directement l'application MikhmonPro au format APK"
             >
               <Download className="w-7 h-7 group-hover:translate-y-1 transition-transform" />
               Télécharger l'APK
@@ -61,6 +62,7 @@ export default function Home() {
             <Link
               href="#features"
               className="mobile-touch flex items-center gap-4 px-14 py-7 glass text-foreground rounded-[2.5rem] font-black text-2xl hover:bg-foreground/5 transition-all w-full sm:w-auto text-center justify-center border-border/60"
+              aria-label="En savoir plus sur les fonctionnalités de gestion Hotspot"
             >
               Voir les fonctionnalités
               <ArrowRight className="w-7 h-7 group-hover:translate-x-2 transition-transform" />
@@ -145,11 +147,11 @@ export default function Home() {
                 <BrainCircuit className="w-5 h-5" />
                 Intelligence Artificielle Embarquée
               </div>
-              <h2 className="text-6xl lg:text-9xl font-black text-foreground leading-[0.85] tracking-tighter uppercase italic">
+              <h2 className="text-6xl lg:text-9xl font-black text-foreground leading-[0.85] tracking-tighter uppercase italic font-heading">
                 Votre assistant, <br /> <span className="text-accent underline decoration-8 underline-offset-[12px] decoration-accent/20">toujours</span> actif.
               </h2>
               <p className="text-muted-foreground text-2xl lg:text-4xl max-w-5xl leading-tight font-medium tracking-tight">
-                Moailte génère vos tickets d'une simple phrase, surveille vos stocks et <span className="text-foreground font-black">renouvelle automatiquement les profils épuisés.</span> Elle nettoie les tickets expirés de façon périodique et maintient votre serveur toujours propre et réactif — sans votre intervention.
+                Moailte génère vos tickets d&apos;une simple phrase, surveille vos stocks et <span className="text-foreground font-black">renouvelle automatiquement les profils épuisés.</span> Elle nettoie les tickets expirés périodiquement pour maintenir votre serveur toujours propre et réactif — sans votre intervention.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
@@ -191,7 +193,7 @@ export default function Home() {
       {/* --- ELITE SPECIFICATIONS BENTO GRID --- */}
       <MotionSection id="features" className="py-24 space-y-24">
         <div className="text-center space-y-8">
-          <h2 className="text-7xl lg:text-[14rem] font-black tracking-tighter leading-[0.7] lg:leading-[0.7] uppercase">
+          <h2 className="text-7xl lg:text-[14rem] font-black tracking-tighter leading-[0.7] lg:leading-[0.7] uppercase font-heading italic">
             Conçu pour <br /> <span className="text-gradient underline decoration-8 underline-offset-[20px] decoration-primary/20">tous.</span>
           </h2>
           <p className="text-2xl lg:text-4xl text-muted-foreground max-w-4xl mx-auto font-medium tracking-tight leading-tight">
@@ -202,7 +204,14 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 min-h-[1000px]">
           {/* Bento Item 1: Large Content */}
           <div className="md:col-span-12 lg:col-span-8 glass rounded-[5rem] p-14 lg:p-24 border-border/60 relative overflow-hidden group min-h-[600px] flex flex-col justify-end">
-            <Terminal className="absolute -right-20 -top-20 w-[35rem] h-[35rem] opacity-[0.02] text-foreground rotate-12 group-hover:rotate-0 transition-transform duration-[2s]" />
+            <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity">
+              <Image
+                src="/performance_securite.png"
+                alt="Interface Performance et Sécurité"
+                fill
+                className="object-contain object-right"
+              />
+            </div>
             <div className="relative z-10 space-y-10">
               <div className="p-7 bg-primary/10 rounded-3xl w-fit">
                 <Terminal className="w-14 h-14 text-primary" />
@@ -216,10 +225,13 @@ export default function Home() {
 
           {/* Bento Item 2 & 3: Compact stack */}
           <div className="md:col-span-12 lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-10">
-            <div className="glass rounded-[5rem] p-16 border-border group hover:bg-accent/5 transition-all">
-              <QrCode className="w-16 h-16 text-accent mb-10 group-hover:rotate-12 transition-transform" />
-              <h3 className="text-5xl font-black mb-6 tracking-tighter leading-none">Générateur <br /> de vouchers.</h3>
-              <p className="text-xl text-muted-foreground font-medium leading-tight">Créez des centaines de tickets en quelques secondes. Export PDF, impression directe, QR codes prêts à l'emploi.</p>
+            <div className="glass rounded-[5rem] p-16 border-border group hover:bg-accent/5 transition-all overflow-hidden relative">
+              <div className="absolute -right-4 -bottom-4 w-40 h-40 opacity-0 group-hover:opacity-20 transition-opacity">
+                <Image src="/gestion_vouchers_simplifiee.png" alt="Voucher UI" fill className="object-contain" />
+              </div>
+              <QrCode className="w-16 h-16 text-accent mb-10 group-hover:rotate-12 transition-transform relative z-10" />
+              <h3 className="text-5xl font-black mb-6 tracking-tighter leading-none relative z-10">Générateur <br /> de vouchers.</h3>
+              <p className="text-xl text-muted-foreground font-medium leading-tight relative z-10">Créez des centaines de tickets en quelques secondes. Export PDF, impression directe, QR codes prêts à l'emploi.</p>
             </div>
             <div className="glass rounded-[5rem] p-16 border-border group hover:bg-primary/5 transition-all">
               <Layers className="w-16 h-16 text-primary mb-10 group-hover:scale-110 transition-transform" />
@@ -239,7 +251,7 @@ export default function Home() {
             <Globe className="w-4 h-4" />
             Écosystème Partenaires
           </div>
-          <h2 className="text-7xl lg:text-[11rem] font-black tracking-tighter leading-[0.75] uppercase">
+          <h2 className="text-7xl lg:text-[11rem] font-black tracking-tighter leading-[0.75] uppercase font-heading italic">
             Votre business,<br />
             <span className="text-gradient">propulsé.</span>
           </h2>
@@ -253,6 +265,9 @@ export default function Home() {
 
           {/* Card 1 — Boutique Web SaaS */}
           <div className="glass rounded-[5rem] p-14 lg:p-20 border-border relative overflow-hidden group hover:bg-primary/5 transition-all duration-700 min-h-[500px] flex flex-col justify-between">
+            <div className="absolute -right-24 -top-24 w-150 h-150 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-1000 rotate-[-10deg]">
+              <Image src="/web_store_cloud_revenue.png" alt="Revenue Stats" width={600} height={600} className="object-contain" />
+            </div>
             <div className="absolute -right-16 -top-16 w-80 h-80 bg-primary/5 rounded-full blur-[80px] group-hover:bg-primary/10 transition-all duration-1000" />
             <div className="relative z-10 space-y-8">
               <div className="p-6 bg-primary/10 rounded-3xl w-fit">
@@ -323,10 +338,15 @@ export default function Home() {
                 <p className="text-lg text-muted-foreground font-medium leading-relaxed">
                   Intégrez MikhmonPro dans votre stack. Notre API REST permet à votre SaaS ou app web de <span className="text-foreground font-black">recevoir des commandes, stocker et déclencher des générations de vouchers</span>, et de gérer les profils de ventes à distance via mobile. Vos services VPN et tickets web deviennent plus <span className="text-foreground font-black">indispensables que jamais</span>.
                 </p>
-                <div className="p-5 bg-muted/20 rounded-2xl border border-border/60 font-mono text-sm text-muted-foreground">
-                  <span className="text-green-500 font-bold">POST</span>&nbsp; /api/vouchers/generate<br />
-                  <span className="text-green-500 font-bold">GET</span>&nbsp;&nbsp; /api/stock/&#123;profile&#125;<br />
-                  <span className="text-blue-500 font-bold">WS</span>&nbsp;&nbsp;&nbsp; /sync/realtime
+                <div className="p-7 bg-black/60 dark:bg-black/40 rounded-[2rem] border border-white/10 font-mono text-sm shadow-2xl overflow-hidden relative group/code">
+                  <div className="absolute top-0 right-0 p-3 opacity-20 group-hover/code:opacity-40 transition-opacity">
+                    <Terminal className="w-4 h-4 text-white" />
+                  </div>
+                  <div className="space-y-1">
+                    <p><span className="text-emerald-400 font-bold tracking-widest">POST</span> <span className="text-white/80">/api/vouchers/generate</span></p>
+                    <p><span className="text-emerald-400 font-bold tracking-widest">GET</span>&nbsp; <span className="text-white/80">/api/stock/&#123;profile&#125;</span></p>
+                    <p><span className="text-blue-400 font-bold tracking-widest">WS</span>&nbsp;&nbsp; <span className="text-white/80">/sync/realtime</span></p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -363,6 +383,15 @@ export default function Home() {
               WhatsApp Pro
             </a>
           </div>
+          <div className="pt-6">
+            <Link
+              href="/support"
+              className="text-muted-foreground hover:text-foreground font-bold text-sm underline underline-offset-4 transition-colors"
+              aria-label="Voir la documentation technique et FAQ"
+            >
+              Consulter la documentation technique & FAQ
+            </Link>
+          </div>
         </div>
 
       </MotionSection>
@@ -373,7 +402,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay" />
 
           <div className="space-y-8 relative z-10">
-            <h2 className="text-7xl lg:text-[14rem] font-black text-white tracking-tighter italic leading-[0.75] lg:leading-[0.75]">
+            <h2 className="text-7xl lg:text-[14rem] font-black text-white tracking-tighter italic leading-[0.75] lg:leading-[0.75] font-heading">
               GÉREZ. <br /> SIMPLEMENT.
             </h2>
             <p className="text-white/60 text-2xl lg:text-4xl font-medium tracking-tight max-w-5xl mx-auto uppercase">

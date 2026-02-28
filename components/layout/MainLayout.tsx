@@ -40,7 +40,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             { name: "Fonctionnalités", href: "#features" },
                             { name: "IA Moailte", href: "#ai" },
                             { name: "Business", href: "#business" },
-                            { name: "Docs", href: "#docs" }
+                            { name: "Support", href: "/support" }
                         ].map((link) => (
                             <Link
                                 key={link.name}
@@ -94,14 +94,19 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             className="absolute left-4 right-4 top-24 z-40 glass rounded-[2.5rem] p-8 border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] lg:hidden"
                         >
                             <div className="flex flex-col gap-8">
-                                {["Fonctionnalités", "AI Moailte", "Business", "Docs"].map((item) => (
+                                {[
+                                    { name: "Fonctionnalités", id: "features", isPage: false },
+                                    { name: "AI Moailte", id: "ai", isPage: false },
+                                    { name: "Business", id: "business", isPage: false },
+                                    { name: "Support", id: "support", isPage: true }
+                                ].map((item) => (
                                     <Link
-                                        key={item}
-                                        href={`#${item.toLowerCase().replace(" ", "")}`}
+                                        key={item.name}
+                                        href={item.isPage ? `/${item.id}` : `#${item.id}`}
                                         onClick={() => setIsMenuOpen(false)}
                                         className="text-4xl font-black text-foreground border-b border-border/40 pb-6 tracking-tighter"
                                     >
-                                        {item}
+                                        {item.name}
                                     </Link>
                                 ))}
                                 <Link
@@ -136,7 +141,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             Mikhmon<span className="text-primary italic">Pro</span>
                         </p>
                         <p className="text-muted-foreground text-sm font-medium max-w-sm">
-                            Gestion de zones Wifi simplifiée, basée sur Mikhmon. Compatible et optimisé pour MikroTik <strong>V6 & V7</strong>.
+                            L&apos;excellence de la gestion Hotspot MikroTik sur Android. Optimisé pour les versions <strong>V6 & V7</strong>.
                         </p>
                     </div>
 
