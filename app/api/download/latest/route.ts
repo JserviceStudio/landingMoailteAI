@@ -24,9 +24,22 @@ export async function GET(request: NextRequest) {
       }))
       .sort((a, b) => b.time - a.time)[0];
 
-    // Construire une URL absolue dynamique basée sur l'URL d'origine
-    const downloadUrl = request.nextUrl.clone();
-    downloadUrl.pathname = `/${latestApk.name}`;
+    // Récupérer le véritable host depuis les headers (très commun derrière un Nginx, Docker ou Vercel)
+    const forwardedHost = request.headers.get('x-forwarded-host');
+    const directHost = request.headers.get('host');
+    const protocol = request.headers.get('x-forwarded-proto') || 'https';
+    
+    let realHost = forwardedHost || directHost || 'localhost:3000';
+    
+    // Le reverse proxy interne (ex: Docker) peut forcer le host à 0.0.0.0
+    // Dans ce cas, on se rabat sur la variable d'environnement
+    if (realHost.includes('0.0.0.0')) {
+      const envUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+      realHost = envUrl.replace(/^https?:\/\//, ''); // Enlever le protocole pour garder juste le host
+    }
+
+    // Construire l'URL absolue fiable
+    const downloadUrl = new URL(`/${latestApk.name}`, `${protocol}://${realHost}`);
 
     // Rediriger vers le fichier statique (Next.js sert le dossier public à la racine)
     return NextResponse.redirect(downloadUrl);
