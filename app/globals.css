@@ -12,6 +12,8 @@
   --color-border: hsl(var(--border));
   --font-sans: var(--font-inter), ui-sans-serif, system-ui;
   --font-heading: var(--font-outfit), var(--font-inter);
+
+
 }
 
 @layer base {
@@ -26,6 +28,12 @@
     --border: 214.3 31.8% 91.4%;
     --card: 0 0% 100%;
     --card-opacity: 0.8;
+
+    /* Fluid Typography Variables */
+    --text-fluid-hero: clamp(3rem, 9vw, 8.5rem);
+    --text-fluid-h2: clamp(2.5rem, 7vw, 6.5rem);
+    --text-fluid-h3: clamp(2rem, 6vw, 5rem);
+    --text-fluid-p: clamp(1rem, 1.8vw, 1.35rem);
   }
 
   .dark {
@@ -44,6 +52,9 @@
   * {
     border-color: hsl(var(--border));
     -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    word-break: keep-all;
+    hyphens: none !important;
   }
 
   body {
@@ -63,6 +74,11 @@
   h6 {
     font-family: var(--font-outfit), sans-serif;
     letter-spacing: -0.05em;
+  }
+
+  p {
+    font-size: var(--text-fluid-p);
+    line-height: 1.6;
   }
 
   ::selection {
@@ -119,6 +135,24 @@
   .no-scrollbar {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  .scroll-mt-header {
+    scroll-margin-top: 6rem;
+  }
+
+  /* Utility classes explicitly defining the line-height for the fluid typography */
+  .text-fluid-hero {
+    font-size: var(--text-fluid-hero);
+    line-height: 0.8;
+  }
+  .text-fluid-h2 {
+    font-size: var(--text-fluid-h2);
+    line-height: 0.9;
+  }
+  .text-fluid-h3 {
+    font-size: var(--text-fluid-h3);
+    line-height: 1.1;
   }
 }
 

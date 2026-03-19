@@ -26,21 +26,21 @@ export default function Home() {
   return (
     <MainLayout>
       {/* --- ELITE HERO SECTION --- */}
-      <MotionSection className="flex flex-col lg:flex-row items-center gap-20 py-16 lg:py-40 min-h-[95vh] relative px-2">
+      <MotionSection className="flex flex-col lg:flex-row items-center gap-20 pt-48 pb-16 lg:pt-64 lg:pb-40 min-h-[95vh] relative px-2">
         <div className="flex-1 space-y-12 text-center lg:text-left z-10">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-primary/10 border border-primary/20 text-primary dark:text-primary text-[12px] font-black uppercase tracking-[0.3em] shadow-sm backdrop-blur-md"
+            className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-primary/10 border border-primary/20 text-primary dark:text-primary text-fluid-p font-black uppercase tracking-[0.3em] shadow-sm backdrop-blur-md"
           >
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
             MikhmonPro — AI V6 & V7.x • 2026
           </motion.div>
 
           <div className="space-y-8">
-            <h1 className="text-7xl lg:text-[11.5rem] font-black tracking-tighter leading-[0.75] lg:leading-[0.75] text-foreground font-heading uppercase italic">
-              Hotspot <br />
-              <span className="text-gradient">Sans Limites.</span>
+            <h1 className="text-[clamp(3rem,9vw,8.5rem)] font-black tracking-tighter leading-[0.75] lg:leading-[0.75] text-foreground font-heading uppercase italic">
+              MIKHMON <br />
+              <span className="text-gradient">PRO.</span>
             </h1>
             <p className="text-xl lg:text-4xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 leading-tight font-medium tracking-tight">
               Gérez votre Hotspot MikroTik comme un expert — <span className="text-foreground font-black">même sans compétences réseau.</span> <br className="hidden lg:block" />
@@ -51,10 +51,9 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-10">
             {/* Bouton APK direct download */}
             <a
-              href="/Mikhmoai3.4.0.apk"
-              download="MikhmonPro-3.4.0.apk"
+              href="/api/download/latest"
               className="mobile-touch group relative flex items-center gap-4 px-14 py-7 bg-foreground text-background rounded-[2.5rem] font-black text-2xl overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.4)] transition-all w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20"
-              aria-label="Télécharger directement l'application MikhmonPro au format APK"
+              aria-label="Télécharger la dernière version de MikhmonPro"
             >
               <Download className="w-7 h-7 group-hover:translate-y-1 transition-transform" />
               Télécharger l'APK
@@ -147,7 +146,7 @@ export default function Home() {
                 <BrainCircuit className="w-5 h-5" />
                 Intelligence Artificielle Embarquée
               </div>
-              <h2 className="text-6xl lg:text-9xl font-black text-foreground leading-[0.85] tracking-tighter uppercase italic font-heading">
+              <h2 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black text-foreground leading-[0.85] tracking-tighter uppercase italic font-heading">
                 Votre assistant, <br /> <span className="text-accent underline decoration-8 underline-offset-[12px] decoration-accent/20">toujours</span> actif.
               </h2>
               <p className="text-muted-foreground text-2xl lg:text-4xl max-w-5xl leading-tight font-medium tracking-tight">
@@ -172,14 +171,14 @@ export default function Home() {
 
       {/* --- PERFORMANCE STATS HORIZONTAL SLIDE --- */}
       <MotionSection className="py-32">
-        <div className="flex flex-nowrap overflow-x-auto lg:grid lg:grid-cols-4 gap-8 pb-16 lg:pb-0 no-scrollbar snap-x snap-mandatory lg:px-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:px-2">
           {[
             { label: "Polling Hotspot", value: "Temps réel", icon: Activity, color: "text-blue-500", bg: "bg-blue-500/10" },
             { label: "Génération tickets IA", value: "Instantané", icon: Zap, color: "text-orange-500", bg: "bg-orange-500/10" },
             { label: "Interface fluide", value: "60 FPS", icon: Smartphone, color: "text-red-500", bg: "bg-red-500/10" },
             { label: "Connexion sécurisée", value: "SSH + VPN", icon: Shield, color: "text-green-500", bg: "bg-green-500/10" },
           ].map((stat, i) => (
-            <div key={i} className="min-w-[340px] lg:min-w-0 snap-center p-14 glass rounded-[4rem] border-border/80 hover:translate-y-[-10px] transition-all duration-700 group cursor-default">
+            <div key={i} className="p-14 glass rounded-[4rem] border-border/80 hover:translate-y-[-10px] transition-all duration-700 group cursor-default">
               <div className={`p-6 ${stat.bg} rounded-[2rem] w-fit ${stat.color} mb-8 group-hover:scale-110 transition-transform`}>
                 <stat.icon className="w-9 h-9" />
               </div>
@@ -193,7 +192,7 @@ export default function Home() {
       {/* --- ELITE SPECIFICATIONS BENTO GRID --- */}
       <MotionSection id="features" className="py-24 space-y-24">
         <div className="text-center space-y-8">
-          <h2 className="text-7xl lg:text-[14rem] font-black tracking-tighter leading-[0.7] lg:leading-[0.7] uppercase font-heading italic">
+          <h2 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black tracking-tighter leading-[0.7] lg:leading-[0.7] uppercase font-heading italic">
             Conçu pour <br /> <span className="text-gradient underline decoration-8 underline-offset-[20px] decoration-primary/20">tous.</span>
           </h2>
           <p className="text-2xl lg:text-4xl text-muted-foreground max-w-4xl mx-auto font-medium tracking-tight leading-tight">
@@ -251,7 +250,7 @@ export default function Home() {
             <Globe className="w-4 h-4" />
             Écosystème Partenaires
           </div>
-          <h2 className="text-7xl lg:text-[11rem] font-black tracking-tighter leading-[0.75] uppercase font-heading italic">
+          <h2 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black tracking-tighter leading-[0.75] uppercase font-heading italic">
             Votre business,<br />
             <span className="text-gradient">propulsé.</span>
           </h2>
@@ -402,7 +401,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay" />
 
           <div className="space-y-8 relative z-10">
-            <h2 className="text-7xl lg:text-[14rem] font-black text-white tracking-tighter italic leading-[0.75] lg:leading-[0.75] font-heading">
+            <h2 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black text-white tracking-tighter italic leading-[0.75] lg:leading-[0.75] font-heading">
               GÉREZ. <br /> SIMPLEMENT.
             </h2>
             <p className="text-white/60 text-2xl lg:text-4xl font-medium tracking-tight max-w-5xl mx-auto uppercase">
@@ -413,8 +412,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row justify-center gap-10 relative z-10 items-center">
             {/* Téléchargement direct APK */}
             <motion.a
-              href="/Mikhmoai3.4.0.apk"
-              download="MikhmonPro-3.4.0.apk"
+              href="/api/download/latest"
               whileHover={{ scale: 1.05, y: -10 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-20 py-10 bg-white text-black rounded-[3.5rem] font-black flex flex-col items-center gap-3 cursor-pointer shadow-[0_45px_100px_-20px_rgba(255,255,255,0.4)] transition-all w-full sm:w-auto"
