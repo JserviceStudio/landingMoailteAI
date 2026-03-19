@@ -1,8 +1,8 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
     const publicDir = path.join(process.cwd(), 'public');
     
@@ -24,8 +24,12 @@ export async function GET() {
       }))
       .sort((a, b) => b.time - a.time)[0];
 
+    // Construire une URL absolue dynamique basée sur l'URL d'origine
+    const downloadUrl = request.nextUrl.clone();
+    downloadUrl.pathname = `/${latestApk.name}`;
+
     // Rediriger vers le fichier statique (Next.js sert le dossier public à la racine)
-    return NextResponse.redirect(new URL(`/${latestApk.name}`, process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'));
+    return NextResponse.redirect(downloadUrl);
   } catch (error) {
     console.error('Error finding latest APK:', error);
     return new NextResponse('Internal Server Error', { status: 500 });
