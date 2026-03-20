@@ -169,16 +169,16 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                     </div>
 
                     <div className="flex flex-col items-center lg:items-end gap-4">
-                        <div className="relative h-10 w-40">
+                        <div className="relative h-10 w-48">
                             <Image
-                                src="/jservice_logo.png"
-                                alt="J+Services"
+                                src="/MOAILTE STUDIO+.svg"
+                                alt="Moailte Studio"
                                 fill
-                                className="object-contain grayscale contrast-200 dark:brightness-[10] dark:contrast-100 opacity-60 dark:opacity-80"
+                                className="object-contain opacity-80 dark:opacity-90 hover:opacity-100 transition-opacity"
                             />
                         </div>
                         <div className="text-muted-foreground/60 text-[10px] font-bold uppercase tracking-widest">
-                            © 2026 J+Services. Tous droits réservés.
+                            © 2026 Moailte Studio. Tous droits réservés.
                         </div>
                     </div>
                 </div>
