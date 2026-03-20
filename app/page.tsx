@@ -9,7 +9,6 @@ import {
   Smartphone,
   ArrowRight,
   Database,
-  Cpu,
   Terminal,
   BrainCircuit,
   Layers,
@@ -59,7 +58,7 @@ export default function Home() {
               role="button"
             >
               <Download className="w-7 h-7 group-hover:translate-y-1 transition-transform" />
-              Télécharger l'APK
+              Télécharger l&apos;APK
             </a>
             <Link
               href="#features"
@@ -125,7 +124,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="text-[11px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">Stockage Flash</p>
-                  <p className="text-xl font-black text-foreground tracking-tighter">Rapide & Fluide</p>
+                  <p className="text-xl font-black text-foreground tracking-tighter">Rapide &amp; Fluide</p>
                 </div>
               </motion.div>
             </div>
@@ -139,7 +138,7 @@ export default function Home() {
           <BrainCircuit className="absolute -right-20 -bottom-20 w-[30rem] h-[30rem] opacity-[0.03] text-primary rotate-12" aria-hidden="true" />
 
           <div className="flex flex-col lg:flex-row items-center gap-24 relative z-10" role="group" aria-label="Contenu IA Moailte">
-            <div className="relative group shrink-0" role="figure" aria-label="Illustration de l'assistant IA Moailte">
+            <div className="relative group shrink-0" role="figure" aria-label="Illustration de l&apos;assistant IA Moailte">
               <div className="absolute inset-0 bg-accent/20 blur-[100px] rounded-full group-hover:bg-accent/40 transition-all duration-1000" aria-hidden="true" />
               <motion.div className="animate-float">
                 <Image
@@ -162,10 +161,10 @@ export default function Home() {
                 Votre assistant, <br /> <span className="text-accent underline decoration-8 underline-offset-[12px] decoration-accent/20">toujours</span> actif.
               </h2>
               <p className="text-muted-foreground text-2xl lg:text-4xl max-w-5xl leading-tight font-medium tracking-tight" aria-describedby="ai-subtitle">
-                Moailte génère vos tickets d'une simple phrase, surveille vos stocks et <span className="text-foreground font-black">renouvelle automatiquement les profils épuisés.</span> Elle nettoie les tickets expirés périodiquement pour maintenir votre serveur toujours propre et réactif — sans votre intervention.
+                Moailte génère vos tickets d&apos;une simple phrase, surveille vos stocks et <span className="text-foreground font-black">renouvelle automatiquement les profils épuisés.</span> Elle nettoie les tickets expirés périodiquement pour maintenir votre serveur toujours propre et réactif — sans votre intervention.
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8" role="list" aria-label="Fonctionnalités de l'IA Moailte">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8" role="list" aria-label="Fonctionnalités de l&apos;IA Moailte">
                 {[
                   { title: "Génération de tickets par IA", desc: "Décrivez votre besoin en une phrase. Moailte crée, configure et imprime vos tickets automatiquement." },
                   { title: "Maintenance automatique", desc: "Nettoyage des sessions expirées, alertes de stock bas et renouvellement de profils sans intervention manuelle." }
@@ -208,7 +207,7 @@ export default function Home() {
             Conçu pour <br /> <span className="text-gradient underline decoration-8 underline-offset-[20px] decoration-primary/20">tous.</span>
           </h2>
           <p className="text-2xl lg:text-4xl text-muted-foreground max-w-4xl mx-auto font-medium tracking-tight leading-tight" aria-describedby="features-title">
-            Débutant ou professionnel réseau — MikhmonPro s'adapte à votre niveau.
+            Débutant ou professionnel réseau — MikhmonPro s&apos;adapte à votre niveau.
           </p>
         </div>
 
@@ -248,7 +247,7 @@ export default function Home() {
             <div className="glass rounded-[5rem] p-16 border-border group hover:bg-primary/5 transition-all" role="article" aria-label="Interface simple et intuitive">
               <Layers className="w-16 h-16 text-primary mb-10 group-hover:scale-110 transition-transform" aria-hidden="true" />
               <h3 className="text-5xl font-black mb-6 tracking-tighter leading-none">Simple. <br /> Intuitif.</h3>
-              <p className="text-xl text-muted-foreground font-medium leading-tight">Aucune formation requise. L'interface guide naturellement le débutant, sans sacrifier la puissance attendue par le pro.</p>
+              <p className="text-xl text-muted-foreground font-medium leading-tight">Aucune formation requise. L&apos;interface guide naturellement le débutant, sans sacrifier la puissance attendue par le pro.</p>
             </div>
           </div>
         </div>
@@ -268,7 +267,7 @@ export default function Home() {
             <span className="text-gradient">propulsé.</span>
           </h2>
           <p className="text-2xl lg:text-4xl text-muted-foreground max-w-4xl mx-auto font-medium tracking-tight leading-tight" aria-describedby="business-subtitle">
-            MikhmonPro n'est pas qu'une app de gestion locale. C'est une <span className="text-foreground font-black">plateforme conçue pour fonctionner 24h/24</span> — suivez et gérez vos ventes en temps réel. En tant que fournisseur de services liés à l'écosystème MikroTik, offrez à vos clients un accès direct à vos services via notre app mobile et <span className="text-foreground font-black">pénétrez un marché plus large</span> avec des services plus pratiques et plus accessibles.
+            MikhmonPro n&apos;est pas qu&apos;une app de gestion locale. C&apos;est une <span className="text-foreground font-black">plateforme conçue pour fonctionner 24h/24</span> — suivez et gérez vos ventes en temps réel. En tant que fournisseur de services liés à l&apos;écosystème MikroTik, offrez à vos clients un accès direct à vos services via notre app mobile et <span className="text-foreground font-black">pénétrez un marché plus large</span> avec des services plus pratiques et plus accessibles.
           </p>
         </div>
 
@@ -293,7 +292,7 @@ export default function Home() {
                   Boutique Web<br /><span className="text-primary">intégrée.</span>
                 </h3>
                 <p className="text-xl text-muted-foreground font-medium leading-relaxed">
-                  Connectez MikhmonPro à votre boutique web ou app. Générez des tickets, définissez les prix et synchronisez votre stock MikroTik en temps réel — directement depuis l'app.
+                  Connectez MikhmonPro à votre boutique web ou app. Générez des tickets, définissez les prix et synchronisez votre stock MikroTik en temps réel — directement depuis l&apos;app.
                 </p>
               </div>
             </div>
@@ -417,6 +416,16 @@ export default function Home() {
         <div className="relative p-16 lg:p-40 rounded-[6rem] overflow-hidden text-center space-y-20 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.6)]" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #000000 100%)' }} role="region" aria-label="Section téléchargement">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay" aria-hidden="true" />
 
+          <div className="flex justify-center mb-12 relative z-10">
+            <Image
+              src="/50kMOAILTE STUDIO.png"
+              alt="Logo MOAILTE STUDIO"
+              width={160}
+              height={160}
+              className="object-contain hover:scale-110 transition-transform duration-700"
+            />
+          </div>
+
           <div className="space-y-8 relative z-10" role="group" aria-label="Contenu téléchargement">
             <h2 className="text-[clamp(2.5rem,7vw,6.5rem)] font-black text-white tracking-tighter italic leading-[0.75] lg:leading-[0.75] font-heading" id="download-title">
               GÉREZ. <br /> SIMPLEMENT.
@@ -434,7 +443,7 @@ export default function Home() {
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-20 py-10 bg-white text-black rounded-[3.5rem] font-black flex flex-col items-center gap-3 cursor-pointer shadow-[0_45px_100px_-20px_rgba(255,255,255,0.4)] transition-all w-full sm:w-auto"
               role="button"
-              aria-label="Télécharger l'application MikhmonPro pour Android"
+              aria-label="Télécharger l&apos;application MikhmonPro pour Android"
             >
               <span className="text-[14px] uppercase opacity-40 font-black tracking-[0.4em] leading-none">Android — APK Direct</span>
               <span className="flex items-center gap-3 text-4xl tracking-tighter">
@@ -463,14 +472,14 @@ export default function Home() {
           <div className="relative z-10 pt-16 flex flex-col items-center gap-10" role="group" aria-label="Informations complémentaires">
             <div className="h-[1px] w-32 bg-white/20" aria-hidden="true" />
             <Image
-              src="/jservice_logo.png"
-              alt="J+Services Excellence - Logo de l'éditeur"
+              src="/MOAILTE STUDIO+.svg"
+              alt="Moailte Studio"
               width={240}
               height={60}
-              className="grayscale brightness-0 dark:brightness-[10] opacity-70 dark:opacity-80"
+              className="opacity-70 dark:opacity-80 hover:opacity-100 transition-opacity duration-300"
               loading="lazy"
             />
-            <p className="text-white/40 text-[12px] uppercase font-black tracking-[0.5em] mt-2 select-none">PRECISION ENGINEERING BY MOAILTE</p>
+            <p className="text-white/40 text-[12px] uppercase font-black tracking-[0.5em] mt-6 select-none">PRECISION ENGINEERING BY MOAILTE</p>
           </div>
         </div>
       </MotionSection>
