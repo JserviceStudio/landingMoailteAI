@@ -15,7 +15,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mikhmoai.com"),
   title: "MikhmonPro — Gestion Hotspot MikroTik V6 & V7",
-  description: "L'excellence de la gestion Hotspot MikroTik sur Android. Gagnez en productivité avec Moailte AI et la Boutique Web SaaS intégrée.",
+  description: "L'excellence de la gestion Hotspot MikroTik sur Android. Gagnez en productivité avec MoailteStudio et la Boutique Web SaaS intégrée.",
   keywords: ["MikroTik", "Mikhmon", "Hotspot", "Voucher", "SaaS", "VPN", "Android", "Gestion Réseau"],
   authors: [{ name: "J+Services" }],
   openGraph: {

@@ -53,12 +53,14 @@ export default function SupportPage() {
 
             {/* Contact rapide */}
             <Section title="Contactez-nous directement">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" role="list" aria-label="Méthodes de contact">
                     <a
                         href="mailto:justemoailtepro@gmail.com"
                         className="block p-8 rounded-3xl bg-muted/20 border border-border/60 hover:bg-muted/40 transition-all group"
+                        role="listitem"
+                        aria-label="Contacter par e-mail - Support technique et commercial"
                     >
-                        <div className="text-3xl mb-3">📧</div>
+                        <div className="text-3xl mb-3" aria-hidden="true">📧</div>
                         <h3 className="text-xl font-black text-foreground mb-2">E-mail</h3>
                         <p className="text-muted-foreground font-medium text-sm mb-3">Pour les demandes techniques et commerciales</p>
                         <p className="text-primary font-bold text-sm group-hover:underline">justemoailtepro@gmail.com</p>
@@ -69,8 +71,10 @@ export default function SupportPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block p-8 rounded-3xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all group"
+                        role="listitem"
+                        aria-label="Contacter par WhatsApp - Support rapide en temps réel"
                     >
-                        <div className="text-3xl mb-3">💬</div>
+                        <div className="text-3xl mb-3" aria-hidden="true">💬</div>
                         <h3 className="text-xl font-black text-foreground mb-2">WhatsApp Pro</h3>
                         <p className="text-muted-foreground font-medium text-sm mb-3">Support rapide en temps réel</p>
                         <p className="text-green-500 font-bold text-sm group-hover:underline">+229 41 43 84 05</p>
@@ -81,9 +85,9 @@ export default function SupportPage() {
 
             {/* FAQ */}
             <Section title="Questions fréquentes (FAQ)">
-                <div className="space-y-6">
+                <div className="space-y-6" role="list" aria-label="Questions fréquentes">
                     {faqItems.map((item, i) => (
-                        <div key={i} className="p-8 rounded-3xl bg-muted/10 border border-border/60 hover:bg-muted/20 transition-all">
+                        <div key={i} className="p-8 rounded-3xl bg-muted/10 border border-border/60 hover:bg-muted/20 transition-all" role="listitem" aria-label={`Question ${i + 1}: ${item.q}`}>
                             <h3 className="text-lg font-black text-foreground mb-3 leading-tight">
                                 Q{i + 1}. {item.q}
                             </h3>
@@ -95,14 +99,14 @@ export default function SupportPage() {
 
             {/* Informations applicaiton */}
             <Section title="Informations sur l'application">
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4" role="list" aria-label="Informations techniques">
                     {[
                         { label: "Version actuelle", value: "3.4.0" },
                         { label: "Compatibilité", value: "Android 8.0+" },
                         { label: "MikroTik", value: "V6 & V7" },
                         { label: "Taille APK", value: "~45 MB" },
                     ].map((info, i) => (
-                        <div key={i} className="p-6 rounded-2xl bg-muted/20 border border-border/60 text-center">
+                        <div key={i} className="p-6 rounded-2xl bg-muted/20 border border-border/60 text-center" role="listitem" aria-label={`${info.label}: ${info.value}`}>
                             <p className="text-2xl font-black text-foreground">{info.value}</p>
                             <p className="text-xs text-muted-foreground font-medium mt-1">{info.label}</p>
                         </div>
@@ -113,7 +117,7 @@ export default function SupportPage() {
             <Section title="Signaler un bug ou suggérer une fonctionnalité">
                 <SubSection title="Comment signaler un bug">
                     <p>Pour nous aider à corriger rapidement un problème, incluez dans votre message :</p>
-                    <ol className="space-y-2 list-none">
+                    <ol className="space-y-2 list-none" role="list" aria-label="Étapes pour signaler un bug">
                         {[
                             "La version de MikhmonPro (visible dans Paramètres → À propos)",
                             "La version Android de votre appareil",
@@ -121,8 +125,8 @@ export default function SupportPage() {
                             "Description précise de l'erreur et étapes pour la reproduire",
                             "Si possible, une capture d'écran de l'erreur",
                         ].map((step, i) => (
-                            <li key={i} className="flex items-start gap-3">
-                                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-black flex items-center justify-center mt-0.5">
+                            <li key={i} className="flex items-start gap-3" role="listitem">
+                                <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 text-primary text-xs font-black flex items-center justify-center mt-0.5" aria-hidden="true">
                                     {i + 1}
                                 </span>
                                 <span className="text-muted-foreground font-medium">{step}</span>

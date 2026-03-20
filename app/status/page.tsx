@@ -85,11 +85,11 @@ export default function StatusPage() {
             {/* Status global */}
             <Section title="État global">
                 <div className={`p-8 rounded-3xl border flex items-center gap-6 ${allOperational
-                        ? "bg-green-500/5 border-green-500/20"
-                        : "bg-yellow-500/5 border-yellow-500/20"
-                    }`}>
+                    ? "bg-green-500/5 border-green-500/20"
+                    : "bg-yellow-500/5 border-yellow-500/20"
+                    }`} role="status" aria-live="polite">
                     <div className={`w-4 h-4 rounded-full animate-pulse flex-shrink-0 ${allOperational ? "bg-green-500" : "bg-yellow-500"
-                        }`} />
+                        }`} aria-hidden="true" />
                     <div>
                         <p className={`text-2xl font-black ${allOperational ? "text-green-500" : "text-yellow-500"}`}>
                             {allOperational ? "Tous les systèmes sont opérationnels" : "Dégradation partielle en cours"}
@@ -103,13 +103,13 @@ export default function StatusPage() {
 
             {/* Services */}
             <Section title="État des services">
-                <div className="space-y-4">
+                <div className="space-y-4" role="list" aria-label="Services surveillés">
                     {services.map((service, i) => {
                         const cfg = statusConfig[service.status as keyof typeof statusConfig];
                         return (
-                            <div key={i} className="flex items-center justify-between p-6 rounded-2xl bg-muted/10 border border-border/60 hover:bg-muted/20 transition-all">
+                            <div key={i} className="flex items-center justify-between p-6 rounded-2xl bg-muted/10 border border-border/60 hover:bg-muted/20 transition-all" role="listitem" aria-label={`${service.name}: ${cfg.label}`}>
                                 <div className="flex items-center gap-5 flex-1 min-w-0">
-                                    <div className={`w-3 h-3 rounded-full flex-shrink-0 ${cfg.color}`} />
+                                    <div className={`w-3 h-3 rounded-full flex-shrink-0 ${cfg.color}`} aria-hidden="true" />
                                     <div className="min-w-0">
                                         <p className="font-black text-foreground text-base truncate">{service.name}</p>
                                         <p className="text-sm text-muted-foreground font-medium truncate">{service.description}</p>
@@ -132,8 +132,8 @@ export default function StatusPage() {
 
             {/* Maintenance planifié */}
             <Section title="Maintenances planifiées">
-                <div className="p-8 rounded-3xl bg-muted/10 border border-border/60 text-center">
-                    <p className="text-5xl mb-4">✓</p>
+                <div className="p-8 rounded-3xl bg-muted/10 border border-border/60 text-center" role="status" aria-live="polite">
+                    <p className="text-5xl mb-4" aria-hidden="true">✓</p>
                     <p className="text-xl font-black text-foreground">Aucune maintenance planifiée</p>
                     <p className="text-muted-foreground font-medium mt-2">Tous les services fonctionnent normalement.</p>
                 </div>
@@ -141,8 +141,8 @@ export default function StatusPage() {
 
             {/* Historique incidents */}
             <Section title="Historique des incidents (30 derniers jours)">
-                <div className="p-8 rounded-3xl bg-muted/10 border border-border/60 text-center">
-                    <p className="text-5xl mb-4">🎉</p>
+                <div className="p-8 rounded-3xl bg-muted/10 border border-border/60 text-center" role="status" aria-live="polite">
+                    <p className="text-5xl mb-4" aria-hidden="true">🎉</p>
                     <p className="text-xl font-black text-foreground">Aucun incident signalé</p>
                     <p className="text-muted-foreground font-medium mt-2">Tous les systèmes ont fonctionné normalement sur les 30 derniers jours.</p>
                 </div>
@@ -153,9 +153,9 @@ export default function StatusPage() {
                 <p className="text-muted-foreground font-medium text-lg leading-relaxed mb-6">
                     Si vous rencontrez un problème non répertorié ici, contactez-nous immédiatement :
                 </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <a href="mailto:justemoailtepro@gmail.com" className="block p-6 rounded-2xl bg-muted/20 border border-border/60 hover:bg-muted/40 transition-all">
-                        <p className="text-2xl mb-2">📧</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6" role="list" aria-label="Signalement de problèmes">
+                    <a href="mailto:justemoailtepro@gmail.com" className="block p-6 rounded-2xl bg-muted/20 border border-border/60 hover:bg-muted/40 transition-all" role="listitem" aria-label="Signaler un problème par e-mail">
+                        <p className="text-2xl mb-2" aria-hidden="true">📧</p>
                         <p className="font-black text-foreground">E-mail</p>
                         <p className="text-primary text-sm font-medium mt-1">justemoailtepro@gmail.com</p>
                     </a>
@@ -164,8 +164,10 @@ export default function StatusPage() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block p-6 rounded-2xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all"
+                        role="listitem"
+                        aria-label="Signaler un problème par WhatsApp"
                     >
-                        <p className="text-2xl mb-2">💬</p>
+                        <p className="text-2xl mb-2" aria-hidden="true">💬</p>
                         <p className="font-black text-foreground">WhatsApp Pro</p>
                         <p className="text-green-500 text-sm font-medium mt-1">+229 41 43 84 05</p>
                     </a>

@@ -62,7 +62,7 @@ export function LegalLayout({ icon, badge, title, subtitle, lastUpdated, childre
             {/* Footer minimal */}
             <footer className="border-t border-border/40 py-10 px-6">
                 <div className="max-w-5xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-                    <p>© 2026 J+Services — MikhmonPro. Tous droits réservés.</p>
+                    <p>© 2026 J+Services — Moailte Studio. Tous droits réservés.</p>
                     <div className="flex items-center gap-6">
                         <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
                         <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>

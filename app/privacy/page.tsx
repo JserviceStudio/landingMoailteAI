@@ -20,10 +20,10 @@ export default function PrivacyPage() {
                 <p>
                     L'application <strong className="text-foreground">MikhmonPro</strong> (MikhmoAI V6 & V7) est éditée par :
                 </p>
-                <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 font-medium text-foreground space-y-1">
+                <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 font-medium text-foreground space-y-1" role="region" aria-label="Informations éditeur">
                     <p><strong>J+Services</strong></p>
-                    <p>E-mail : <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline">justemoailtepro@gmail.com</a></p>
-                    <p>WhatsApp professionnel : <a href="https://wa.me/22941438405" className="text-primary underline">+229 41 43 84 05</a></p>
+                    <p>E-mail : <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline" aria-label="Contacter par e-mail">justemoailtepro@gmail.com</a></p>
+                    <p>WhatsApp professionnel : <a href="https://wa.me/22941438405" className="text-primary underline" aria-label="Contacter par WhatsApp">+229 41 43 84 05</a></p>
                 </div>
             </Section>
 
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
 
             <Section title="5. Partage des données avec des tiers">
                 <SubSection title="5.1 Google LLC">
-                    <p>L'authentification Google est gérée par <strong className="text-foreground">Google Identity Services</strong>. Consultez la politique de confidentialité de Google : <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline">policies.google.com/privacy</a></p>
+                    <p>L'authentification Google est gérée par <strong className="text-foreground">Google Identity Services</strong>. Consultez la politique de confidentialité de Google : <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-primary underline" aria-label="Politique de confidentialité Google">policies.google.com/privacy</a></p>
                 </SubSection>
                 <SubSection title="5.2 Aucun autre partage">
                     <p>Nous ne vendons, ne louons et ne partageons pas vos données personnelles avec des tiers à des fins commerciales ou publicitaires.</p>
@@ -139,7 +139,7 @@ export default function PrivacyPage() {
                     "Droit de retrait du consentement : à tout moment, sans préjudice",
                 ]} />
                 <p className="mt-4">
-                    Pour exercer ces droits, contactez-nous à : <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline">justemoailtepro@gmail.com</a>
+                    Pour exercer ces droits, contactez-nous à : <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline" aria-label="Exercer vos droits RGPD">justemoailtepro@gmail.com</a>
                 </p>
             </Section>
 
@@ -156,10 +156,10 @@ export default function PrivacyPage() {
             </Section>
 
             <Section title="12. Contact">
-                <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 space-y-3 text-foreground">
+                <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 space-y-3 text-foreground" role="region" aria-label="Contact confidentialité">
                     <p>Pour toute question relative à cette politique de confidentialité :</p>
-                    <p>📧 <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline">justemoailtepro@gmail.com</a></p>
-                    <p>💬 WhatsApp : <a href="https://wa.me/22941438405" className="text-primary underline">+229 41 43 84 05</a></p>
+                    <p>📧 <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline" aria-label="Contact politique confidentialité par e-mail">justemoailtepro@gmail.com</a></p>
+                    <p>💬 WhatsApp : <a href="https://wa.me/22941438405" className="text-primary underline" aria-label="Contact politique confidentialité par WhatsApp">+229 41 43 84 05</a></p>
                     <p>⏱ Délai de réponse : sous <strong>72 heures ouvrées</strong></p>
                 </div>
             </Section>

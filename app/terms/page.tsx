@@ -138,10 +138,10 @@ export default function TermsPage() {
             </Section>
 
             <Section title="11. Contact">
-                <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 space-y-3 text-foreground">
+                <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 space-y-3 text-foreground" role="region" aria-label="Informations de contact">
                     <p>Pour toute question sur ces conditions :</p>
-                    <p>📧 <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline">justemoailtepro@gmail.com</a></p>
-                    <p>💬 WhatsApp : <a href="https://wa.me/22941438405" className="text-primary underline">+229 41 43 84 05</a></p>
+                    <p>📧 <a href="mailto:justemoailtepro@gmail.com" className="text-primary underline" aria-label="Contacter par e-mail">justemoailtepro@gmail.com</a></p>
+                    <p>💬 WhatsApp : <a href="https://wa.me/22941438405" className="text-primary underline" aria-label="Contacter par WhatsApp">+229 41 43 84 05</a></p>
                 </div>
             </Section>
 

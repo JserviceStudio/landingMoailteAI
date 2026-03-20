@@ -23,29 +23,30 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </div>
 
             {/* Professional Navbar */}
-            <nav className="sticky top-0 z-50 px-4 py-4 lg:px-12 lg:py-8">
+            <nav className="sticky top-0 z-50 px-4 py-4 lg:px-12 lg:py-8" role="navigation" aria-label="Navigation principale">
                 <div className="max-w-7xl mx-auto glass rounded-2xl lg:rounded-[2.5rem] px-5 lg:px-10 py-3.5 lg:py-5 flex items-center justify-between border-border/40 shadow-xl backdrop-saturate-150">
-                    <Link href="/" className="flex items-center gap-3 lg:gap-4 group outline-none">
-                        <div className="p-2.5 lg:p-3.5 bg-primary rounded-xl lg:rounded-2xl glow-primary group-hover:scale-110 group-active:scale-95 transition-all duration-500">
-                            <Cpu className="w-5 h-5 lg:w-7 lg:h-7 text-white" />
+                    <Link href="/" className="flex items-center gap-3 lg:gap-4 group outline-none" aria-label="Accueil - Retour à la page d'accueil">
+                        <div className="flex items-center justify-center min-w-[36px] min-h-[36px] lg:min-w-[48px] lg:min-h-[48px] bg-red-600 rounded-xl lg:rounded-2xl glow-primary group-hover:scale-110 group-active:scale-95 transition-all duration-500">
+                            <span className="font-black text-white text-lg lg:text-2xl leading-none">J+</span>
                         </div>
                         <span className="font-black text-xl lg:text-3xl tracking-tighter text-foreground">
-                            Mikhmon<span className="text-primary italic">Pro</span>
+                            Moailte<span className="text-primary italic">Studio</span>
                         </span>
                     </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center gap-12">
                         {[
-                            { name: "Fonctionnalités", href: "#features" },
-                            { name: "IA Moailte", href: "#ai" },
-                            { name: "Business", href: "#business" },
-                            { name: "Support", href: "/support" }
+                            { name: "Fonctionnalités", href: "#features", ariaLabel: "Aller aux fonctionnalités principales" },
+                            { name: "MoailteStudio", href: "#ai", ariaLabel: "Découvrir MoailteStudio" },
+                            { name: "Business", href: "#business", ariaLabel: "Espace business et partenaires" },
+                            { name: "Support", href: "/support", ariaLabel: "Accéder au support technique" }
                         ].map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
                                 className="text-sm font-bold text-muted-foreground hover:text-foreground transition-all tracking-wide uppercase hover:translate-y-[-1px] active:translate-y-0"
+                                aria-label={link.ariaLabel}
                             >
                                 {link.name}
                             </Link>
@@ -55,6 +56,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                         <Link
                             href="#download"
                             className="px-8 py-4 bg-foreground text-background rounded-2xl font-black text-sm hover:opacity-90 active:scale-95 transition-all shadow-2xl tracking-tighter"
+                            aria-label="Télécharger l'application MoailteStudio"
                         >
                             TÉLÉCHARGER
                         </Link>
@@ -66,7 +68,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="p-2.5 rounded-xl glass border-border/60 text-foreground active:scale-90 transition-transform shadow-lg"
-                            aria-label="Toggle Menu"
+                            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                            aria-expanded={isMenuOpen}
+                            aria-controls="mobile-menu"
                         >
                             <AnimatePresence mode="wait">
                                 {isMenuOpen ? (
@@ -92,19 +96,24 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             exit={{ opacity: 0, scale: 0.95, y: -20 }}
                             transition={{ type: "spring", damping: 20, stiffness: 100 }}
                             className="absolute left-4 right-4 top-24 z-40 glass rounded-[2.5rem] p-8 border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] lg:hidden"
+                            id="mobile-menu"
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label="Menu mobile de navigation"
                         >
                             <div className="flex flex-col gap-8">
                                 {[
-                                    { name: "Fonctionnalités", id: "features", isPage: false },
-                                    { name: "AI Moailte", id: "ai", isPage: false },
-                                    { name: "Business", id: "business", isPage: false },
-                                    { name: "Support", id: "support", isPage: true }
+                                    { name: "Fonctionnalités", id: "features", isPage: false, ariaLabel: "Aller aux fonctionnalités principales" },
+                                    { name: "AI Moailte", id: "ai", isPage: false, ariaLabel: "Découvrir l'intelligence artificielle Moailte" },
+                                    { name: "Business", id: "business", isPage: false, ariaLabel: "Espace business et partenaires" },
+                                    { name: "Support", id: "support", isPage: true, ariaLabel: "Accéder au support technique" }
                                 ].map((item) => (
                                     <Link
                                         key={item.name}
                                         href={item.isPage ? `/${item.id}` : `#${item.id}`}
                                         onClick={() => setIsMenuOpen(false)}
                                         className="text-4xl font-black text-foreground border-b border-border/40 pb-6 tracking-tighter"
+                                        aria-label={item.ariaLabel}
                                     >
                                         {item.name}
                                     </Link>
@@ -113,6 +122,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                     href="#download"
                                     onClick={() => setIsMenuOpen(false)}
                                     className="w-full py-6 bg-primary text-white rounded-3xl font-black text-2xl text-center shadow-2xl glow-primary active:scale-95 transition-all"
+                                    aria-label="Télécharger l'application MoailteStudio"
                                 >
                                     OBTENIR L'APP
                                 </Link>
@@ -123,7 +133,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </nav>
 
             {/* Content Wrapper */}
-            <main className="max-w-7xl mx-auto px-4 lg:px-12 relative pb-20">
+            <main className="max-w-7xl mx-auto px-4 lg:px-12 relative pb-20" role="main" aria-label="Contenu principal">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -134,11 +144,11 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </main>
 
             {/* Professional Footer */}
-            <footer className="py-20 border-t border-border/40 bg-background/50 backdrop-blur-md">
+            <footer className="py-20 border-t border-border/40 bg-background/50 backdrop-blur-md" role="contentinfo" aria-label="Pied de page">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row justify-between items-center gap-12">
                     <div className="text-center lg:text-left space-y-4">
                         <p className="font-black text-3xl tracking-tighter text-foreground">
-                            Mikhmon<span className="text-primary italic">Pro</span>
+                            Moailte<span className="text-primary italic"> Studio</span>
                         </p>
                         <p className="text-muted-foreground text-sm font-medium max-w-sm">
                             L&apos;excellence de la gestion Hotspot MikroTik sur Android. Optimisé pour les versions <strong>V6 & V7</strong>.
@@ -152,7 +162,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             { label: "Support", href: "/support" },
                             { label: "Status", href: "/status" },
                         ] as const).map(item => (
-                            <Link key={item.label} href={item.href} className="hover:text-primary transition-colors hover:translate-y-[-1px] dark:hover:text-primary">
+                            <Link key={item.label} href={item.href} className="hover:text-primary transition-colors hover:translate-y-[-1px] dark:hover:text-primary" aria-label={`Accéder à la page ${item.label.toLowerCase()}`}>
                                 {item.label}
                             </Link>
                         ))}
