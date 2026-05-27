@@ -447,7 +447,7 @@ export default function Home() {
 
           <div className="flex justify-center mb-6 lg:mb-12 relative z-10">
             <Image
-              src="/50kMOAILTE STUDIO.png"
+              src="/moailte-studio-logo.png"
               alt="Logo MOAILTE STUDIO"
               width={160}
               height={160}
@@ -537,7 +537,7 @@ export default function Home() {
           <div className="relative z-10 pt-10 sm:pt-16 flex flex-col items-center gap-6" role="group" aria-label="Footer branding">
             <div className="h-[1px] w-32 bg-white/20" aria-hidden="true" />
             <Image
-              src="/MOAILTE STUDIO+.svg"
+              src="/moailte-studio-plus.svg"
               alt="Moailte Studio"
               width={240}
               height={60}

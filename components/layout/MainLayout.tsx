@@ -194,7 +194,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                     <div className="flex flex-col items-center lg:items-end gap-4">
                         <div className="relative h-10 w-48">
                             <Image
-                                src="/MOAILTE STUDIO+.svg"
+                                src="/moailte-studio-plus.svg"
                                 alt="Moailte Studio"
                                 fill
                                 className="object-contain opacity-80 dark:opacity-90 hover:opacity-100 transition-opacity"
