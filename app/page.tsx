@@ -22,43 +22,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/components/i18n/LanguageContext";
-import { useState, useEffect } from "react";
-
-interface ApkInfo {
-  name: string;
-  url: string;
-  arch: string;
-  version: string;
-  size: number;
-  updatedAt: string;
-}
-
-interface ApkManifest {
-  generatedAt: string;
-  apks: ApkInfo[];
-  latestByArch: Record<string, ApkInfo>;
-}
 
 export default function Home() {
   const { t } = useTranslation();
-  const [apkManifest, setApkManifest] = useState<ApkManifest | null>(null);
-
-  useEffect(() => {
-    fetch("/apk-manifest.json")
-      .then((res) => res.json())
-      .then((data) => setApkManifest(data))
-      .catch(() => setApkManifest(null));
-  }, []);
-
-  const getApkUrl = (arch: string) => {
-    if (apkManifest?.latestByArch[arch]) {
-      return apkManifest.latestByArch[arch].url;
-    }
-    if (apkManifest?.latestByArch["universal"]) {
-      return apkManifest.latestByArch["universal"].url;
-    }
-    return "/MikhmonPro-3.3.2.apk";
-  };
 
   return (
     <MainLayout>
@@ -90,7 +56,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 pt-6" role="group" aria-label="Primary actions">
             {/* Bouton APK ARM64 */}
             <a
-              href={getApkUrl("arm64")}
+              href="/MikhmonPro-3.3.2.apk"
               className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-foreground text-background rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_arm64_label")}
               role="button"
@@ -101,7 +67,7 @@ export default function Home() {
 
             {/* Bouton APK ARM32 */}
             <a
-              href={getApkUrl("arm32")}
+              href="/MikhmonPro-3.3.2.apk"
               className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 glass text-foreground border border-border/60 rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden transition-[transform,background-color] w-full sm:w-auto text-center justify-center hover:bg-foreground/5 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_arm32_label")}
               role="button"
@@ -501,7 +467,7 @@ export default function Home() {
           <div className="flex flex-col xl:flex-row justify-center gap-6 xl:gap-8 relative z-10 items-center w-full" role="group" aria-label="Final download actions">
             {/* Téléchargement direct APK ARM64 */}
             <motion.a
-              href={getApkUrl("arm64")}
+              href="/MikhmonPro-3.3.2.apk"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-white text-black rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(255,255,255,0.4)] transition-[transform,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
@@ -518,7 +484,7 @@ export default function Home() {
 
             {/* Téléchargement direct APK ARM32 */}
             <motion.a
-              href={getApkUrl("arm32")}
+              href="/MikhmonPro-3.3.2.apk"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-black/40 text-white border border-white/20 rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-2xl backdrop-blur-3xl transition-[transform,background-color,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
