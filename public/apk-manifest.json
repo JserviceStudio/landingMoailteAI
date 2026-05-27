@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-05-27T17:33:18.265Z",
+  "apks": [
+    {
+      "name": "MikhmonPro-3.3.2.apk",
+      "url": "/MikhmonPro-3.3.2.apk",
+      "arch": "universal",
+      "version": "3.3.2",
+      "size": 170041587,
+      "updatedAt": "2026-05-27T08:51:36.823Z"
+    }
+  ],
+  "latestByArch": {
+    "universal": {
+      "name": "MikhmonPro-3.3.2.apk",
+      "url": "/MikhmonPro-3.3.2.apk",
+      "arch": "universal",
+      "version": "3.3.2",
+      "size": 170041587,
+      "updatedAt": "2026-05-27T08:51:36.823Z"
+    }
+  }
+}
