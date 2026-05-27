@@ -16,8 +16,33 @@ export async function GET(request: NextRequest) {
       return new NextResponse('No APK found', { status: 404 });
     }
     
-    // Récupérer les infos de chaque fichier pour trouver le plus récent
-    const latestApk = apkFiles
+    // Récupérer le paramètre d'architecture (arm64 ou arm32)
+    const arch = request.nextUrl.searchParams.get('arch')?.toLowerCase() || '';
+    let filteredApks = apkFiles;
+    
+    if (arch === 'arm32') {
+      filteredApks = apkFiles.filter(name => 
+        name.toLowerCase().includes('arm32') || 
+        name.toLowerCase().includes('v7a') || 
+        name.toLowerCase().includes('armeabi') ||
+        name.toLowerCase().includes('32')
+      );
+    } else if (arch === 'arm64') {
+      filteredApks = apkFiles.filter(name => 
+        name.toLowerCase().includes('arm64') || 
+        name.toLowerCase().includes('v8a') || 
+        name.toLowerCase().includes('aarch64') ||
+        name.toLowerCase().includes('64')
+      );
+    }
+    
+    // Repli de sécurité : si aucun APK ne correspond au filtre, utiliser tous les APK disponibles
+    if (filteredApks.length === 0) {
+      filteredApks = apkFiles;
+    }
+    
+    // Récupérer le plus récent
+    const latestApk = filteredApks
       .map(name => ({
         name,
         time: fs.statSync(path.join(publicDir, name)).mtime.getTime(),

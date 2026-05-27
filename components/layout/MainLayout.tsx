@@ -3,12 +3,35 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Cpu, Menu, X } from "lucide-react";
+import { Menu, X, Globe, Check } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useTranslation, Language } from "@/components/i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
+const languages: { code: Language; label: string; flag: string }[] = [
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "fil", label: "Filipino", flag: "🇵🇭" },
+  { code: "id", label: "Indonesia", flag: "🇮🇩" },
+];
+
 export default function MainLayout({ children }: { children: React.ReactNode }) {
+    const { language, setLanguage, t } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLangOpen, setIsLangOpen] = useState(false);
+
+    const getWhatsAppLink = () => {
+        const textMap = {
+            fr: "Bonjour, je souhaite avoir des informations sur MikhmonPro.",
+            en: "Hello, I would like to get information about MikhmonPro.",
+            fil: "Kamusta, nais ko pong magtanong tungkol sa MikhmonPro.",
+            id: "Halo, saya ingin menanyakan informasi tentang MikhmonPro."
+        };
+        const msg = encodeURIComponent(textMap[language] || textMap.en);
+        return `https://wa.me/22996937864?text=${msg}`;
+    };
+
+    const currentLanguage = languages.find((lang) => lang.code === language) || languages[0];
 
     return (
         <div className="min-h-screen relative selection:bg-primary/30 font-sans tracking-tight">
@@ -23,9 +46,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </div>
 
             {/* Professional Navbar */}
-            <nav className="sticky top-0 z-50 px-4 py-4 lg:px-12 lg:py-8" role="navigation" aria-label="Navigation principale">
-                <div className="max-w-7xl mx-auto glass rounded-2xl lg:rounded-[2.5rem] px-5 lg:px-10 py-3.5 lg:py-5 flex items-center justify-between border-border/40 shadow-xl backdrop-saturate-150">
-                    <Link href="/" className="flex items-center gap-3 lg:gap-4 group outline-none" aria-label="Accueil - Retour à la page d'accueil">
+            <nav className="sticky top-0 z-50 px-4 py-4 xl:px-12 xl:py-8" role="navigation" aria-label={t("nav.logo_label")}>
+                <div className="max-w-7xl mx-auto glass rounded-2xl xl:rounded-[2.5rem] px-5 xl:px-10 py-3.5 xl:py-5 flex items-center justify-between border-border/40 shadow-xl backdrop-saturate-150">
+                    <Link href="/" className="flex items-center gap-3 xl:gap-4 group outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl" aria-label={t("nav.logo_label")}>
                         <div className="flex items-center justify-center min-w-[36px] min-h-[36px] lg:min-w-[48px] lg:min-h-[48px] bg-red-600 rounded-xl lg:rounded-2xl glow-primary group-hover:scale-110 group-active:scale-95 transition-all duration-500">
                             <span className="font-black text-white text-lg lg:text-2xl leading-none">J+</span>
                         </div>
@@ -34,18 +57,18 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                         </span>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center gap-12">
+                    {/* Desktop Navigation - Cleaned from language selector */}
+                    <div className="hidden xl:flex items-center gap-6 xl:gap-8">
                         {[
-                            { name: "Fonctionnalités", href: "#features", ariaLabel: "Aller aux fonctionnalités principales" },
-                            { name: "MoailteStudio", href: "#ai", ariaLabel: "Découvrir MoailteStudio" },
-                            { name: "Business", href: "#business", ariaLabel: "Espace business et partenaires" },
-                            { name: "Support", href: "/support", ariaLabel: "Accéder au support technique" }
+                            { name: t("nav.features"), href: "#features", ariaLabel: t("nav.features") },
+                            { name: t("nav.ai"), href: "#ai", ariaLabel: t("nav.ai") },
+                            { name: t("nav.business"), href: "#business", ariaLabel: t("nav.business") },
+                            { name: t("nav.support"), href: "/support", ariaLabel: t("nav.support") }
                         ].map((link) => (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className="text-sm font-bold text-muted-foreground hover:text-foreground transition-all tracking-wide uppercase hover:translate-y-[-1px] active:translate-y-0"
+                                className="text-sm font-bold text-muted-foreground hover:text-foreground transition-all tracking-wide uppercase hover:translate-y-[-1px] active:translate-y-0 focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2 outline-none rounded-lg"
                                 aria-label={link.ariaLabel}
                             >
                                 {link.name}
@@ -55,20 +78,20 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                         <ThemeToggle />
                         <Link
                             href="#download"
-                            className="px-8 py-4 bg-foreground text-background rounded-2xl font-black text-sm hover:opacity-90 active:scale-95 transition-all shadow-2xl tracking-tighter"
-                            aria-label="Télécharger l'application MoailteStudio"
+                            className="px-6 py-3.5 bg-foreground text-background rounded-2xl font-black text-sm hover:opacity-90 active:scale-95 transition-all shadow-2xl tracking-tighter focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
+                            aria-label={t("nav.download")}
                         >
-                            TÉLÉCHARGER
+                            {t("nav.download")}
                         </Link>
                     </div>
 
                     {/* Mobile Right Actions */}
-                    <div className="flex lg:hidden items-center gap-4">
+                    <div className="flex xl:hidden items-center gap-4">
                         <ThemeToggle />
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
                             className="p-2.5 rounded-xl glass border-border/60 text-foreground active:scale-90 transition-transform shadow-lg"
-                            aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
+                            aria-label={isMenuOpen ? t("nav.menu_close") : t("nav.menu_open")}
                             aria-expanded={isMenuOpen}
                             aria-controls="mobile-menu"
                         >
@@ -95,7 +118,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: -20 }}
                             transition={{ type: "spring", damping: 20, stiffness: 100 }}
-                            className="absolute left-4 right-4 top-24 z-40 glass rounded-[2.5rem] p-8 border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] lg:hidden"
+                            className="absolute left-4 right-4 top-24 z-40 glass rounded-[2.5rem] p-8 border-border shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] xl:hidden"
                             id="mobile-menu"
                             role="dialog"
                             aria-modal="true"
@@ -103,10 +126,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                         >
                             <div className="flex flex-col gap-8">
                                 {[
-                                    { name: "Fonctionnalités", id: "features", isPage: false, ariaLabel: "Aller aux fonctionnalités principales" },
-                                    { name: "AI Moailte", id: "ai", isPage: false, ariaLabel: "Découvrir l'intelligence artificielle Moailte" },
-                                    { name: "Business", id: "business", isPage: false, ariaLabel: "Espace business et partenaires" },
-                                    { name: "Support", id: "support", isPage: true, ariaLabel: "Accéder au support technique" }
+                                    { name: t("nav.features"), id: "features", isPage: false, ariaLabel: t("nav.features") },
+                                    { name: t("nav.ai"), id: "ai", isPage: false, ariaLabel: t("nav.ai") },
+                                    { name: t("nav.business"), id: "business", isPage: false, ariaLabel: t("nav.business") },
+                                    { name: t("nav.support"), id: "support", isPage: true, ariaLabel: t("nav.support") }
                                 ].map((item) => (
                                     <Link
                                         key={item.name}
@@ -122,9 +145,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                     href="#download"
                                     onClick={() => setIsMenuOpen(false)}
                                     className="w-full py-6 bg-primary text-white rounded-3xl font-black text-2xl text-center shadow-2xl glow-primary active:scale-95 transition-all"
-                                    aria-label="Télécharger l'application MoailteStudio"
+                                    aria-label={t("nav.download")}
                                 >
-                                    OBTENIR L'APP
+                                    {t("nav.get_app")}
                                 </Link>
                             </div>
                         </motion.div>
@@ -151,18 +174,18 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             Moailte<span className="text-primary italic"> Studio</span>
                         </p>
                         <p className="text-muted-foreground text-sm font-medium max-w-sm">
-                            L&apos;excellence de la gestion Hotspot MikroTik sur Android. Optimisé pour les versions <strong>V6 & V7</strong>.
+                            {t("footer.desc_prefix")}<strong>{t("footer.desc_bold")}</strong>{t("footer.desc_suffix")}
                         </p>
                     </div>
 
                     <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground/80 dark:text-muted-foreground">
                         {([
-                            { label: "Privacy", href: "/privacy" },
-                            { label: "Terms", href: "/terms" },
-                            { label: "Support", href: "/support" },
-                            { label: "Status", href: "/status" },
+                            { label: t("footer.privacy"), href: "/privacy", aria: t("footer.privacy_aria") },
+                            { label: t("footer.terms"), href: "/terms", aria: t("footer.terms_aria") },
+                            { label: t("footer.support"), href: "/support", aria: t("footer.support_aria") },
+                            { label: t("footer.status"), href: "/status", aria: t("footer.status_aria") },
                         ] as const).map(item => (
-                            <Link key={item.label} href={item.href} className="hover:text-primary transition-colors hover:translate-y-[-1px] dark:hover:text-primary" aria-label={`Accéder à la page ${item.label.toLowerCase()}`}>
+                            <Link key={item.label} href={item.href} className="hover:text-primary transition-colors hover:translate-y-[-1px] dark:hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2 outline-none rounded-md" aria-label={item.aria}>
                                 {item.label}
                             </Link>
                         ))}
@@ -178,11 +201,147 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             />
                         </div>
                         <div className="text-muted-foreground/60 text-[10px] font-bold uppercase tracking-widest">
-                            © 2026 Moailte Studio. Tous droits réservés.
+                            {t("footer.copyright")}
                         </div>
                     </div>
                 </div>
             </footer>
+
+            {/* Arrière-plan pour fermer au clic extérieur */}
+            {isLangOpen && (
+                <div 
+                    className="fixed inset-0 z-40 cursor-default" 
+                    onClick={() => setIsLangOpen(false)} 
+                />
+            )}
+
+            {/* Bouton de Sélection de Langue Flottant et son Panneau */}
+            <div className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-50 flex flex-col items-start gap-4">
+                <AnimatePresence>
+                    {isLangOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="glass border border-border/60 rounded-[2.5rem] p-5 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.35)] dark:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] flex flex-col gap-4 w-72 sm:w-80 backdrop-blur-2xl relative overflow-hidden"
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label="Sélectionner la langue"
+                        >
+                            {/* Dégradé lumineux décoratif interne */}
+                            <div className="absolute -top-10 -right-10 w-24 h-24 bg-primary/10 rounded-full blur-2xl pointer-events-none" />
+                            
+                            <div className="flex items-center gap-2.5 pb-2 border-b border-border/40">
+                                <div className="p-1.5 bg-primary/10 rounded-xl text-primary">
+                                    <Globe className="w-4 h-4" />
+                                </div>
+                                <div>
+                                    <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground">
+                                        Language / Langue
+                                    </h4>
+                                    <p className="text-xs font-bold text-foreground">
+                                        MikhmonPro International
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-2" role="listbox" aria-label="Langues disponibles">
+                                {languages.map((lang, idx) => {
+                                    const isActive = lang.code === language;
+                                    
+                                    // Libellés natifs et complémentaires
+                                    const subLabels: Record<Language, string> = {
+                                        fr: "Français (French)",
+                                        en: "English (US)",
+                                        fil: "Filipino (Tagalog)",
+                                        id: "Bahasa Indonesia"
+                                    };
+
+                                    return (
+                                        <motion.button
+                                            key={lang.code}
+                                            type="button"
+                                            role="option"
+                                            aria-selected={isActive}
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: idx * 0.05 }}
+                                            onClick={() => {
+                                                setLanguage(lang.code);
+                                                setIsLangOpen(false);
+                                            }}
+                                            className={`group/item flex items-center justify-between w-full p-3 rounded-2xl border transition-all duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-1 outline-none text-left cursor-pointer ${
+                                                isActive
+                                                    ? "bg-primary/10 border-primary/40 text-primary shadow-sm"
+                                                    : "bg-muted/10 border-border/30 hover:border-border/60 hover:bg-muted/25 text-muted-foreground hover:text-foreground hover:translate-x-1"
+                                            }`}
+                                        >
+                                            <span className="flex items-center gap-3">
+                                                {/* Conteneur de drapeau avec effet de surbrillance */}
+                                                <span className={`w-8 h-8 rounded-xl flex items-center justify-center text-lg shadow-sm border transition-colors ${
+                                                    isActive 
+                                                        ? "bg-background/80 border-primary/30" 
+                                                        : "bg-background/40 border-border/40 group-hover/item:bg-background/80"
+                                                }`}>
+                                                    {lang.flag}
+                                                </span>
+                                                <span className="flex flex-col">
+                                                    <span className="text-xs font-black uppercase tracking-wider">
+                                                        {lang.label}
+                                                    </span>
+                                                    <span className="text-[10px] opacity-60 font-medium">
+                                                        {subLabels[lang.code]}
+                                                    </span>
+                                                </span>
+                                            </span>
+                                            {isActive && (
+                                                <span className="w-5 h-5 rounded-full bg-primary/20 flex items-center justify-center">
+                                                    <Check className="w-3.5 h-3.5 text-primary stroke-[3]" />
+                                                </span>
+                                            )}
+                                        </motion.button>
+                                    );
+                                })}
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                <button
+                    type="button"
+                    onClick={() => setIsLangOpen(!isLangOpen)}
+                    className="mobile-touch relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-muted/20 hover:bg-muted/30 text-foreground border border-border/50 rounded-full shadow-2xl backdrop-blur-md hover:scale-110 active:scale-95 transition-[background-color,transform,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none group z-50 cursor-pointer"
+                    aria-haspopup="dialog"
+                    aria-expanded={isLangOpen}
+                    aria-label="Changer de langue / Change language"
+                >
+                    <Globe className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors group-hover:rotate-12 duration-500" />
+                    <span className="absolute -top-1 -right-1 text-xs bg-background/80 border border-border/60 rounded-full w-6 h-6 flex items-center justify-center shadow-lg pointer-events-none select-none">
+                        {currentLanguage.flag}
+                    </span>
+                </button>
+            </div>
+
+            {/* Bouton WhatsApp Business Flottant */}
+            <a
+                href={getWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] text-white rounded-full shadow-[0_16px_32px_rgba(37,211,102,0.4)] hover:bg-[#20ba5a] hover:scale-110 active:scale-95 transition-[background-color,transform,box-shadow] duration-300 group focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-4 outline-none"
+                aria-label="Discuter avec l'assistant sur WhatsApp"
+            >
+                {/* Effet pulsant d'appel à l'action */}
+                <span className="absolute inset-0 rounded-full bg-[#25D366]/30 animate-ping group-hover:animate-none pointer-events-none" aria-hidden="true" />
+                
+                {/* Badge en ligne vert clair */}
+                <span className="absolute -top-1 -right-1 w-5.5 h-5.5 bg-emerald-400 border-4 border-background rounded-full" aria-hidden="true" />
+                
+                {/* Icône WhatsApp SVG */}
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.981.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+            </a>
         </div>
     );
 }
