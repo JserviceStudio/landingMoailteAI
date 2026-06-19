@@ -90,13 +90,17 @@ export default function Home() {
 
             {/* Bouton Boutique */}
             <a
-              href="https://store.jmoai.com"
+              href="https://store.mikhmoai.com"
               target="_blank"
               rel="noopener noreferrer"
               className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-primary text-white rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(var(--color-primary-rgb),0.3)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_store_label")}
               role="button"
             >
+              {/* Effet Pulse/Ping pour attirer l'attention */}
+              <span className="absolute inset-0 rounded-full border-2 border-white animate-ping opacity-20 pointer-events-none" />
+              
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
               <ShoppingBag className="w-6 h-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
               {t("hero.btn_store")}
             </a>
@@ -521,7 +525,7 @@ export default function Home() {
 
             {/* Boutique / Activation de licence */}
             <motion.a
-              href="https://store.jmoai.com"
+              href="https://store.mikhmoai.com"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03, y: -4 }}
