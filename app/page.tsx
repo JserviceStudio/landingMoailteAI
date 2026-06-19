@@ -93,14 +93,14 @@ export default function Home() {
               href="https://store.mikhmoai.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-primary text-white rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(var(--color-primary-rgb),0.3)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none"
+              className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-yellow-400 text-black rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(250,204,21,0.4)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-yellow-400/30 focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_store_label")}
               role="button"
             >
               {/* Effet Pulse/Ping pour attirer l'attention */}
-              <span className="absolute inset-0 rounded-full border-2 border-white animate-ping opacity-20 pointer-events-none" />
+              <span className="absolute inset-0 rounded-full border-2 border-yellow-400 animate-ping opacity-30 pointer-events-none" />
               
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-[200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-in-out" />
               <ShoppingBag className="w-6 h-6 group-hover:scale-110 transition-transform" aria-hidden="true" />
               {t("hero.btn_store")}
             </a>
@@ -530,16 +530,19 @@ export default function Home() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-primary text-white rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(var(--color-primary-rgb),0.4)] transition-[transform,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none"
+              className="mobile-touch relative group px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-yellow-400 text-black rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(250,204,21,0.4)] transition-[transform,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 outline-none"
               role="button"
               aria-label={t("download.store_aria")}
             >
-              <span className="text-xs uppercase opacity-40 font-black tracking-[0.3em] leading-none text-white/70">{t("download.store_badge")}</span>
+              {/* Effet Pulse/Ping pour attirer l'attention */}
+              <span className="absolute inset-0 rounded-[2.5rem] border-4 border-yellow-400 animate-ping opacity-30 pointer-events-none" />
+              
+              <span className="text-xs uppercase opacity-60 font-black tracking-[0.3em] leading-none text-black/80">{t("download.store_badge")}</span>
               <span className="flex items-center gap-2.5 text-2xl sm:text-3xl lg:text-4xl tracking-tighter">
                 <ShoppingBag className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
                 {t("download.store_title")}
               </span>
-              <span className="text-[10px] font-bold opacity-45 tracking-wider uppercase leading-none">{t("download.store_desc")}</span>
+              <span className="text-[10px] font-bold opacity-60 tracking-wider uppercase leading-none">{t("download.store_desc")}</span>
             </motion.a>
 
             {/* App Store — coming soon */}
