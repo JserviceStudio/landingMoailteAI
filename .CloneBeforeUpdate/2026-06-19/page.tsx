@@ -22,24 +22,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/components/i18n/LanguageContext";
-import { useState } from "react";
-import ApkInstallModal from "@/components/ui/ApkInstallModal";
 
 export default function Home() {
   const { t } = useTranslation();
-  const [isApkModalOpen, setIsApkModalOpen] = useState(false);
-
-  const handleDownload = (e: React.MouseEvent<HTMLAnchorElement>, arch: string) => {
-    e.preventDefault();
-    setIsApkModalOpen(true);
-    // Programmatically trigger the download in background
-    window.location.href = `/api/download/latest?arch=${arch}`;
-  };
 
   return (
     <MainLayout>
       {/* --- ELITE HERO SECTION --- */}
-      <MotionSection className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-12 pb-12 lg:pt-24 lg:pb-32 min-h-[90vh] relative px-4 sm:px-6 lg:px-8" aria-labelledby="hero-title">
+      <MotionSection className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-36 pb-12 lg:pt-52 lg:pb-32 min-h-[90vh] relative px-4 sm:px-6 lg:px-8" aria-labelledby="hero-title">
         <div className="flex-1 space-y-8 text-center lg:text-left z-10" role="region" aria-label="Hero section">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -67,7 +57,6 @@ export default function Home() {
             {/* Bouton APK ARM64 */}
             <a
               href="/api/download/latest?arch=arm64"
-              onClick={(e) => handleDownload(e, 'arm64')}
               className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-foreground text-background rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_arm64_label")}
               role="button"
@@ -79,7 +68,6 @@ export default function Home() {
             {/* Bouton APK ARM32 */}
             <a
               href="/api/download/latest?arch=arm32"
-              onClick={(e) => handleDownload(e, 'arm32')}
               className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 glass text-foreground border border-border/60 rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden transition-[transform,background-color] w-full sm:w-auto text-center justify-center hover:bg-foreground/5 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_arm32_label")}
               role="button"
@@ -189,7 +177,7 @@ export default function Home() {
                   width={380}
                   height={380}
                   className="relative drop-shadow-[0_0_60px_rgba(34,211,238,0.3)] filter brightness-110 max-w-[260px] sm:max-w-[340px] lg:max-w-full h-auto object-contain"
-                  priority={true}
+                  loading="lazy"
                 />
               </motion.div>
             </div>
@@ -254,43 +242,41 @@ export default function Home() {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 min-h-[900px]" role="region" aria-label="Specifications Bento Grid">
           {/* Bento Item 1: Large Content */}
-          <div className="lg:col-span-8 m3-card m3-state p-0 relative overflow-hidden group min-h-[480px] lg:min-h-[600px] flex flex-col lg:flex-row" role="article" aria-label={t("features.bento_ssh_title")}>
-            <div className="flex-1 p-6 sm:p-12 lg:p-20 flex flex-col justify-center relative z-10 space-y-6 sm:space-y-8" role="group" aria-label="SSH description">
+          <div className="lg:col-span-8 glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] p-6 sm:p-12 lg:p-20 xl:p-24 border-border/60 relative overflow-hidden group min-h-[480px] lg:min-h-[600px] flex flex-col justify-end" role="article" aria-label={t("features.bento_ssh_title")}>
+            <div className="absolute top-0 right-0 w-1/2 h-full hidden lg:block pointer-events-none opacity-40 group-hover:opacity-60 transition-opacity" aria-hidden="true">
+              <Image
+                src="/performance_securite.png"
+                alt={t("features.bento_ssh_img_alt")}
+                fill
+                className="object-contain object-right"
+                loading="lazy"
+              />
+            </div>
+            <div className="relative z-10 space-y-6 sm:space-y-8" role="group" aria-label="SSH description">
               <div className="p-5 sm:p-6 bg-primary/10 rounded-2xl sm:rounded-3xl w-fit" aria-hidden="true">
                 <Terminal className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 text-primary" aria-hidden="true" />
               </div>
               <h3 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tighter leading-[0.9] text-foreground text-balance">
                 {t("features.bento_ssh_title")}
               </h3>
-              <p className="text-base sm:text-xl lg:text-2xl text-muted-foreground font-medium tracking-tight leading-tight">
+              <p className="text-base sm:text-xl lg:text-2xl xl:text-3xl text-muted-foreground max-w-2xl lg:max-w-xl xl:max-w-2xl font-medium tracking-tight leading-tight">
                 {t("features.bento_ssh_desc_prefix")}<span className="text-foreground font-black">{t("features.bento_ssh_desc_bold")}</span>{t("features.bento_ssh_desc_suffix")}
               </p>
-            </div>
-            <div className="relative flex-1 lg:h-full min-h-[250px] lg:min-h-0 bg-primary/5">
-              <Image
-                src="/performance_securite.png"
-                alt={t("features.bento_ssh_img_alt")}
-                fill
-                className="object-cover object-left-top lg:object-left"
-                loading="lazy"
-              />
             </div>
           </div>
 
           {/* Bento Item 2 & 3: Compact stack */}
           <div className="lg:col-span-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-8 lg:gap-10" role="region" aria-label="Compact Features">
-            <div className="m3-card m3-state p-0 group overflow-hidden relative flex flex-col min-h-[350px]" role="article" aria-label={t("features.bento_vouchers_title")}>
-              <div className="p-8 sm:p-10 lg:p-12 xl:p-16 flex-1 flex flex-col relative z-10">
-                <QrCode className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 text-accent mb-6 sm:mb-10 group-hover:rotate-12 transition-transform" aria-hidden="true" />
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 sm:mb-6 tracking-tighter leading-none">{t("features.bento_vouchers_title")}</h3>
-                <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-medium leading-tight">{t("features.bento_vouchers_desc")}</p>
+            <div className="glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] p-8 sm:p-10 lg:p-12 xl:p-16 border-border group hover:bg-accent/5 transition-colors duration-300 overflow-hidden relative" role="article" aria-label={t("features.bento_vouchers_title")}>
+              <div className="absolute -right-4 -bottom-4 w-40 h-40 opacity-0 group-hover:opacity-20 transition-opacity" aria-hidden="true">
+                <Image src="/gestion_vouchers_simplifiee.png" alt={t("features.bento_vouchers_img_alt")} fill className="object-contain" loading="lazy" />
               </div>
-              <div className="relative w-full h-32 sm:h-40 bg-accent/5 mt-auto">
-                <Image src="/gestion_vouchers_simplifiee.png" alt={t("features.bento_vouchers_img_alt")} fill className="object-cover object-top opacity-60 group-hover:opacity-100 transition-opacity" loading="lazy" />
-              </div>
+              <QrCode className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 text-accent mb-6 sm:mb-10 group-hover:rotate-12 transition-transform relative z-10" aria-hidden="true" />
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 sm:mb-6 tracking-tighter leading-none relative z-10">{t("features.bento_vouchers_title")}</h3>
+              <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-medium leading-tight relative z-10">{t("features.bento_vouchers_desc")}</p>
             </div>
             
-            <div className="m3-card m3-state p-8 sm:p-10 lg:p-12 xl:p-16 group relative overflow-hidden" role="article" aria-label={t("features.bento_simple_title")}>
+            <div className="glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] p-8 sm:p-10 lg:p-12 xl:p-16 border-border group hover:bg-primary/5 transition-colors duration-300" role="article" aria-label={t("features.bento_simple_title")}>
               <Layers className="w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 text-primary mb-6 sm:mb-10 group-hover:scale-110 transition-transform" aria-hidden="true" />
               <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black mb-4 sm:mb-6 tracking-tighter leading-none">{t("features.bento_simple_title")}</h3>
               <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-medium leading-tight">{t("features.bento_simple_desc")}</p>
@@ -319,32 +305,29 @@ export default function Home() {
         {/* Bento Business Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10" role="group" aria-label="Business Solutions">
           {/* Card 1 — Boutique Web SaaS */}
-          <div className="m3-card m3-state p-0 relative overflow-hidden group min-h-[450px] lg:min-h-[500px] flex flex-col" role="article" aria-label="Web Store">
-            {/* Top section with edge-to-edge image */}
-            <div className="relative w-full h-48 sm:h-64 lg:h-80 bg-primary/5">
-              <Image src="/web_store_cloud_revenue.png" alt="Revenue stats" fill className="object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-500" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+          <div className="glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] p-6 sm:p-12 lg:p-16 xl:p-20 border-border relative overflow-hidden group hover:bg-primary/5 transition-[background-color] duration-700 min-h-[450px] lg:min-h-[500px] flex flex-col justify-between" role="article" aria-label="Web Store">
+            <div className="absolute -right-24 -top-24 w-120 h-120 lg:w-150 lg:h-150 opacity-[0.02] group-hover:opacity-[0.06] transition-opacity duration-1000 rotate-[-10deg] pointer-events-none" aria-hidden="true">
+              <Image src="/web_store_cloud_revenue.png" alt="Revenue stats" width={600} height={600} className="object-contain" loading="lazy" />
+            </div>
+            <div className="absolute -right-16 -top-16 w-80 h-80 bg-primary/5 rounded-full blur-[80px] group-hover:bg-primary/10 transition-all duration-1000" aria-hidden="true" />
+            <div className="relative z-10 space-y-6 sm:space-y-8" role="group" aria-label="Web Store Info">
+              <div className="p-4 sm:p-5 bg-primary/10 rounded-2xl sm:rounded-3xl w-fit" aria-hidden="true">
+                <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary" aria-hidden="true" />
+              </div>
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-[10px] font-black uppercase tracking-wider mb-4 border border-green-500/20 animate-pulse" role="status" aria-live="polite">
+                  {t("business.card_store_badge")}
+                </div>
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-none mb-4 sm:mb-6">
+                  {t("business.card_store_title_prefix")}<br /><span className="text-primary">{t("business.card_store_title_gradient")}</span>
+                </h3>
+                <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-medium leading-relaxed">
+                  {t("business.card_store_desc")}
+                </p>
+              </div>
             </div>
             
-            <div className="p-6 sm:p-12 lg:p-16 xl:p-20 flex-1 flex flex-col relative z-10 -mt-16 sm:-mt-24">
-              <div className="space-y-6 sm:space-y-8" role="group" aria-label="Web Store Info">
-                <div className="p-4 sm:p-5 bg-background rounded-2xl sm:rounded-3xl w-fit shadow-lg border border-border" aria-hidden="true">
-                  <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-[10px] font-black uppercase tracking-wider mb-4 border border-green-500/20 animate-pulse" role="status" aria-live="polite">
-                    {t("business.card_store_badge")}
-                  </div>
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-none mb-4 sm:mb-6">
-                    {t("business.card_store_title_prefix")}<br /><span className="text-primary">{t("business.card_store_title_gradient")}</span>
-                  </h3>
-                  <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-medium leading-relaxed">
-                    {t("business.card_store_desc")}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-8 mt-auto" role="list" aria-label="Web Store Features">
+            <div className="relative z-10 grid grid-cols-2 gap-3 sm:gap-4 pt-8" role="list" aria-label="Web Store Features">
               {[
                 { label: t("business.card_store_f1_lbl"), desc: t("business.card_store_f1_desc") },
                 { label: t("business.card_store_f2_lbl"), desc: t("business.card_store_f2_desc") },
@@ -357,13 +340,12 @@ export default function Home() {
                 </div>
               ))}
             </div>
-            </div>
           </div>
  
           {/* Card 2 — VPN + Multi-Passerelles + API */}
           <div className="flex flex-col gap-8 lg:gap-10" role="region" aria-label="VPN & API Solutions">
             {/* VPN Gateway */}
-            <div className="m3-card m3-state p-6 sm:p-12 lg:p-14 relative overflow-hidden group flex-1" role="article" aria-label="VPN Gateway">
+            <div className="glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] p-6 sm:p-12 lg:p-14 border-border relative overflow-hidden group hover:bg-accent/5 transition-[background-color] duration-700 flex-1" role="article" aria-label="VPN Gateway">
               <div className="absolute -left-10 -bottom-10 w-60 h-60 bg-accent/5 rounded-full blur-[60px] group-hover:bg-accent/10 transition-all duration-1000" aria-hidden="true" />
               <div className="relative z-10 space-y-4 sm:space-y-6" role="group" aria-label="VPN info">
                 <div className="p-4 sm:p-5 bg-accent/10 rounded-2xl sm:rounded-3xl w-fit" aria-hidden="true">
@@ -386,7 +368,7 @@ export default function Home() {
             </div>
   
             {/* API & Développeurs */}
-            <div className="m3-card m3-state p-6 sm:p-12 lg:p-14 relative overflow-hidden group" role="article" aria-label="Developer API">
+            <div className="glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] p-6 sm:p-12 lg:p-14 border-border relative overflow-hidden group hover:bg-muted/10 transition-[background-color] duration-700" role="article" aria-label="Developer API">
               <div className="relative z-10 space-y-4 sm:space-y-6" role="group" aria-label="API info">
                 <div className="p-4 sm:p-5 bg-muted/30 rounded-2xl sm:rounded-3xl w-fit" aria-hidden="true">
                   <Terminal className="w-8 h-8 sm:w-10 sm:h-10 text-foreground" aria-hidden="true" />
@@ -415,7 +397,7 @@ export default function Home() {
         </div>
  
         {/* CTA Partenariat */}
-        <div className="text-center p-6 sm:p-12 lg:p-16 xl:p-20 m3-card space-y-6 sm:space-y-8" role="region" aria-label="Partnership call to action">
+        <div className="text-center p-6 sm:p-12 lg:p-16 xl:p-20 glass rounded-[3rem] sm:rounded-[4rem] lg:rounded-[5rem] border-border space-y-6 sm:space-y-8" role="region" aria-label="Partnership call to action">
           <h3 className="text-2xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter text-foreground text-balance">
             {t("business.cta_title_prefix")} <span className="text-gradient">{t("business.cta_title_gradient")}</span>
           </h3>
@@ -460,7 +442,7 @@ export default function Home() {
 
       {/* --- ELITE PRESTIGE CTA --- */}
       <MotionSection id="download" className="py-20 lg:py-32" aria-labelledby="download-title">
-        <div className="relative p-6 sm:p-16 lg:p-28 xl:p-32 rounded-[2.5rem] sm:rounded-[4rem] lg:rounded-[6rem] overflow-hidden text-center space-y-12 sm:space-y-16 lg:space-y-20 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.6)]" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #000000 100%)' }} role="region" aria-label="Download final section">
+        <div className="relative p-6 sm:p-16 lg:p-28 xl:p-32 rounded-[2.5rem] sm:rounded-[4rem] lg:rounded-[6rem] overflow-hidden text-center space-y-12 sm:space-y-16 lg:space-y-20 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.6)] animate-glow" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #000000 100%)' }} role="region" aria-label="Download final section">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10 mix-blend-overlay pointer-events-none" aria-hidden="true" />
 
           <div className="flex justify-center mb-6 lg:mb-12 relative z-10">
@@ -486,7 +468,6 @@ export default function Home() {
             {/* Téléchargement direct APK ARM64 */}
             <motion.a
               href="/api/download/latest?arch=arm64"
-              onClick={(e) => handleDownload(e as unknown as React.MouseEvent<HTMLAnchorElement>, 'arm64')}
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-white text-black rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(255,255,255,0.4)] transition-[transform,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
@@ -504,10 +485,9 @@ export default function Home() {
             {/* Téléchargement direct APK ARM32 */}
             <motion.a
               href="/api/download/latest?arch=arm32"
-              onClick={(e) => handleDownload(e as unknown as React.MouseEvent<HTMLAnchorElement>, 'arm32')}
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-black/40 text-white border border-white/20 rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-2xl transition-[transform,background-color,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
+              className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-black/40 text-white border border-white/20 rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-2xl backdrop-blur-3xl transition-[transform,background-color,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
               role="button"
               aria-label={t("download.arch_arm32_aria")}
             >
@@ -570,7 +550,6 @@ export default function Home() {
           </div>
         </div>
       </MotionSection>
-      <ApkInstallModal isOpen={isApkModalOpen} onClose={() => setIsApkModalOpen(false)} />
     </MainLayout>
   );
 }

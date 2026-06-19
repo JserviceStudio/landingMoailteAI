@@ -1,56 +1,151 @@
 @import "tailwindcss";
 
+/* ================================================================
+   MATERIAL DESIGN 3 — DESIGN SYSTEM TOKENS
+   Bento 2026 — MoailteStudio / MikhmonPro
+   ================================================================ */
+
 @theme {
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-accent: hsl(var(--accent));
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-  --color-card: hsla(var(--card)/var(--card-opacity));
-  --color-border: hsl(var(--border));
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui;
+  /* ── Color roles (mapped from M3 tokens) ── */
+  --color-background:          hsl(var(--md-surface));
+  --color-foreground:          hsl(var(--md-on-surface));
+  --color-primary:             hsl(var(--md-primary));
+  --color-primary-foreground:  hsl(var(--md-on-primary));
+  --color-accent:              hsl(var(--md-secondary));
+  --color-muted:               hsl(var(--md-surface-container));
+  --color-muted-foreground:    hsl(var(--md-on-surface-variant));
+  --color-card:                hsl(var(--md-surface-container-low));
+  --color-border:              hsl(var(--md-outline-variant));
+
+  /* ── Surface containers ── */
+  --color-surface-lowest:  hsl(var(--md-surface-container-lowest));
+  --color-surface-low:     hsl(var(--md-surface-container-low));
+  --color-surface:         hsl(var(--md-surface));
+  --color-surface-high:    hsl(var(--md-surface-container-high));
+  --color-surface-highest: hsl(var(--md-surface-container-highest));
+
+  /* ── Typography ── */
+  --font-sans:    var(--font-inter), ui-sans-serif, system-ui;
   --font-heading: var(--font-outfit), var(--font-inter);
 
+  /* ── M3 Motion curves ── */
+  --motion-standard:               cubic-bezier(0.2,  0,   0,   1);
+  --motion-emphasized-decelerate:  cubic-bezier(0.05, 0.7, 0.1, 1);
+  --motion-emphasized-accelerate:  cubic-bezier(0.3,  0,   0.8, 0.15);
 
+  /* ── M3 Shape scale ── */
+  --shape-xs:   4px;
+  --shape-sm:   8px;
+  --shape-md:   12px;
+  --shape-lg:   16px;
+  --shape-xl:   28px;
+  --shape-2xl:  36px;
+  --shape-3xl:  48px;
+  --shape-full: 9999px;
 }
 
+/* ================================================================
+   BASE LAYER — M3 Color Scheme
+   ================================================================ */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
-    --accent: 188 78% 41%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --border: 214.3 31.8% 91.4%;
-    --card: 0 0% 100%;
-    --card-opacity: 0.8;
+    /* ── M3 Light scheme ── */
+    --md-primary:                   217 91% 54%;
+    --md-on-primary:                0 0% 100%;
+    --md-primary-container:         214 100% 92%;
+    --md-on-primary-container:      217 91% 18%;
 
-    /* Fluid Typography Variables */
+    --md-secondary:                 188 72% 38%;
+    --md-on-secondary:              0 0% 100%;
+    --md-secondary-container:       188 72% 89%;
+    --md-on-secondary-container:    188 72% 14%;
+
+    --md-tertiary:                  262 55% 56%;
+    --md-on-tertiary:               0 0% 100%;
+    --md-tertiary-container:        262 55% 92%;
+    --md-on-tertiary-container:     262 55% 18%;
+
+    --md-surface:                   220 28% 98%;
+    --md-on-surface:                220 22% 10%;
+    --md-surface-variant:           216 18% 90%;
+    --md-on-surface-variant:        218 10% 44%;
+
+    --md-surface-container-lowest:  0 0% 100%;
+    --md-surface-container-low:     220 22% 96%;
+    --md-surface-container:         218 18% 93%;
+    --md-surface-container-high:    216 14% 88%;
+    --md-surface-container-highest: 215 10% 84%;
+
+    --md-outline:                   218 8% 54%;
+    --md-outline-variant:           216 14% 78%;
+
+    /* Legacy compat */
+    --background:         220 28% 98%;
+    --foreground:         220 22% 10%;
+    --primary:            217 91% 54%;
+    --primary-foreground: 0 0% 100%;
+    --accent:             188 72% 38%;
+    --muted:              218 18% 93%;
+    --muted-foreground:   218 10% 44%;
+    --border:             216 14% 78%;
+    --card:               220 22% 96%;
+    --card-opacity:       0.88;
+    --color-primary-rgb:  59 130 246;
+
+    /* Fluid Typography */
     --text-fluid-hero: clamp(3rem, 9vw, 8.5rem);
-    --text-fluid-h2: clamp(2.5rem, 7vw, 6.5rem);
-    --text-fluid-h3: clamp(2rem, 6vw, 5rem);
-    --text-fluid-p: clamp(1rem, 1.8vw, 1.35rem);
+    --text-fluid-h2:   clamp(2.5rem, 7vw, 6.5rem);
+    --text-fluid-h3:   clamp(2rem, 6vw, 5rem);
+    --text-fluid-p:    clamp(1rem, 1.8vw, 1.35rem);
   }
 
   .dark {
-    --background: 224 71% 4%;
-    --foreground: 213 31% 91%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --accent: 191 91% 50%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --border: 217.2 32.6% 17.5%;
-    --card: 222.2 84% 10%;
-    --card-opacity: 0.6;
+    /* ── M3 Dark scheme ── */
+    --md-primary:                   213 88% 72%;
+    --md-on-primary:                217 91% 22%;
+    --md-primary-container:         217 91% 28%;
+    --md-on-primary-container:      213 88% 92%;
+
+    --md-secondary:                 188 72% 64%;
+    --md-on-secondary:              188 72% 14%;
+    --md-secondary-container:       188 55% 22%;
+    --md-on-secondary-container:    188 72% 84%;
+
+    --md-tertiary:                  262 52% 78%;
+    --md-on-tertiary:               262 55% 22%;
+    --md-tertiary-container:        262 52% 30%;
+    --md-on-tertiary-container:     262 52% 92%;
+
+    --md-surface:                   220 26% 8%;
+    --md-on-surface:                215 18% 90%;
+    --md-surface-variant:           218 16% 17%;
+    --md-on-surface-variant:        218 10% 68%;
+
+    --md-surface-container-lowest:  220 28% 5%;
+    --md-surface-container-low:     220 22% 10%;
+    --md-surface-container:         218 18% 14%;
+    --md-surface-container-high:    216 14% 18%;
+    --md-surface-container-highest: 215 10% 22%;
+
+    --md-outline:                   218 8% 40%;
+    --md-outline-variant:           216 10% 28%;
+
+    /* Legacy compat */
+    --background:         220 26% 8%;
+    --foreground:         215 18% 90%;
+    --primary:            213 88% 72%;
+    --primary-foreground: 217 91% 22%;
+    --accent:             188 72% 64%;
+    --muted:              218 18% 14%;
+    --muted-foreground:   218 10% 68%;
+    --border:             216 10% 28%;
+    --card:               220 22% 10%;
+    --card-opacity:       0.72;
+    --color-primary-rgb:  147 197 253;
   }
 
   * {
-    border-color: hsl(var(--border));
+    border-color: hsl(var(--md-outline-variant));
     -webkit-tap-highlight-color: transparent;
     box-sizing: border-box;
     word-break: keep-all;
@@ -58,20 +153,16 @@
   }
 
   body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    transition: background-color 0.5s ease, color 0.5s ease;
+    background-color: hsl(var(--md-surface));
+    color: hsl(var(--md-on-surface));
+    transition: background-color 0.5s var(--motion-standard),
+                color 0.5s var(--motion-standard);
     overflow-x: hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: var(--font-inter), sans-serif;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-outfit), sans-serif;
     letter-spacing: -0.05em;
   }
@@ -82,112 +173,178 @@
   }
 
   ::selection {
-    background-color: hsla(var(--primary)/0.3);
+    background-color: hsla(var(--md-primary) / 0.22);
     color: inherit;
   }
 }
 
+/* ================================================================
+   UTILITIES — M3 Components
+   ================================================================ */
 @layer utilities {
+  /* ── Glass / Frosted surface (M3 surface container) ── */
   .glass {
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid hsla(var(--border)/0.4);
-    background-color: hsla(var(--card)/var(--card-opacity));
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid hsla(var(--md-outline-variant) / 0.55);
+    background-color: hsla(var(--md-surface-container-low) / 0.85);
+    box-shadow:
+      0 2px 8px rgba(0,0,0,0.04),
+      0 1px 2px rgba(0,0,0,0.06);
   }
 
+  .dark .glass {
+    background-color: hsla(var(--md-surface-container) / 0.78);
+    border-color: hsla(var(--md-outline-variant) / 0.35);
+    box-shadow:
+      0 4px 16px rgba(0,0,0,0.28),
+      0 1px 4px rgba(0,0,0,0.18);
+  }
+
+  /* ── M3 Bento card ── */
+  .m3-card {
+    background-color: hsl(var(--md-surface-container-low));
+    border: 1px solid hsla(var(--md-outline-variant) / 0.5);
+    border-radius: var(--shape-xl);
+    transition: background-color 0.3s var(--motion-standard),
+                box-shadow 0.3s var(--motion-standard),
+                transform 0.3s var(--motion-standard);
+  }
+
+  .m3-card:hover {
+    background-color: hsl(var(--md-surface-container));
+    box-shadow: 0 6px 20px -4px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+  }
+
+  .dark .m3-card {
+    background-color: hsl(var(--md-surface-container));
+    border-color: hsla(var(--md-outline-variant) / 0.25);
+  }
+
+  /* ── M3 State layer on hover ── */
+  .m3-state {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .m3-state::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: hsl(var(--md-primary));
+    opacity: 0;
+    transition: opacity 0.2s var(--motion-standard);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .m3-state:hover::after  { opacity: 0.06; }
+  .m3-state:active::after { opacity: 0.10; }
+
+  /* ── M3 Elevation shadows ── */
+  .elevation-1 {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04),
+                0 1px 3px 1px rgba(0,0,0,0.04);
+  }
+  .elevation-2 {
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08),
+                0 2px 6px 2px rgba(0,0,0,0.06);
+  }
+  .elevation-3 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.10),
+                0 4px 8px 3px rgba(0,0,0,0.08);
+  }
+  .elevation-4 {
+    box-shadow: 0 2px 3px rgba(0,0,0,0.12),
+                0 6px 10px 4px rgba(0,0,0,0.10);
+  }
+  .elevation-5 {
+    box-shadow: 0 4px 4px rgba(0,0,0,0.14),
+                0 8px 12px 6px rgba(0,0,0,0.12);
+  }
+
+  /* ── Text gradient (primary → secondary) ── */
   .text-gradient {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--md-primary)),
+      hsl(var(--md-secondary))
+    );
     font-weight: 900;
   }
 
+  /* ── Background patterns ── */
   .tech-gradient {
-    background-image: linear-gradient(to bottom right, #f8fafc, #f1f5f9, #e2e8f0);
+    background-image: linear-gradient(
+      160deg,
+      hsl(var(--md-surface-container-lowest)) 0%,
+      hsl(var(--md-surface)) 55%,
+      hsl(var(--md-surface-container-low)) 100%
+    );
   }
 
-  .dark .tech-gradient {
-    background-image: linear-gradient(135deg, #020617 0%, #0f172a 50%, #1e1b4b 100%);
-  }
-
+  /* ── Glow ── */
   .glow-primary {
-    box-shadow: 0 0 40px -10px hsla(var(--primary)/0.5);
+    box-shadow: 0 0 28px -8px hsla(var(--md-primary) / 0.4);
   }
 
+  /* ── Touch / Interaction ── */
   .mobile-touch {
     cursor: pointer;
     user-select: none;
-    transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.2s var(--motion-standard);
   }
 
   .mobile-touch:active {
-    transform: scale(0.96);
-    opacity: 0.9;
+    transform: scale(0.97);
+    opacity: 0.92;
   }
 
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
+  /* ── Scrollbar ── */
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-  .no-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .scroll-mt-header { scroll-margin-top: 6rem; }
 
-  .scroll-mt-header {
-    scroll-margin-top: 6rem;
-  }
-
-  /* Utility classes explicitly defining the line-height for the fluid typography */
-  .text-fluid-hero {
-    font-size: var(--text-fluid-hero);
-    line-height: 0.8;
-  }
-  .text-fluid-h2 {
-    font-size: var(--text-fluid-h2);
-    line-height: 0.9;
-  }
-  .text-fluid-h3 {
-    font-size: var(--text-fluid-h3);
-    line-height: 1.1;
-  }
+  /* ── Fluid Typography ── */
+  .text-fluid-hero { font-size: var(--text-fluid-hero); line-height: 0.82; }
+  .text-fluid-h2   { font-size: var(--text-fluid-h2);   line-height: 0.9;  }
+  .text-fluid-h3   { font-size: var(--text-fluid-h3);   line-height: 1.1;  }
 }
 
+/* ================================================================
+   KEYFRAMES — M3 Motion
+   ================================================================ */
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-20px) rotate(1.5deg);
-  }
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-18px) rotate(1deg); }
 }
 
 .animate-float {
-  animation: float 7s ease-in-out infinite;
+  animation: float 8s ease-in-out infinite;
 }
 
 @keyframes glow-pulse {
-
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(1);
-    filter: blur(140px);
-  }
-
-  50% {
-    opacity: 0.6;
-    transform: scale(1.15);
-    filter: blur(100px);
-  }
+  0%, 100% { opacity: 0.22; transform: scale(1);    filter: blur(120px); }
+  50%       { opacity: 0.48; transform: scale(1.12); filter: blur(88px);  }
 }
 
 .animate-glow {
-  animation: glow-pulse 10s ease-in-out infinite;
+  animation: glow-pulse 12s ease-in-out infinite;
+}
+
+@keyframes m3-fade-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+.m3-animate-in {
+  animation: m3-fade-up 0.36s cubic-bezier(0.05, 0.7, 0.1, 1) forwards;
 }

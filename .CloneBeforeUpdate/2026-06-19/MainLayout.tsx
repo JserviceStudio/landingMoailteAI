@@ -47,76 +47,66 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
             {/* Professional Navbar */}
             <nav className="sticky top-0 z-50 px-4 py-4 xl:px-12 xl:py-8" role="navigation" aria-label={t("nav.logo_label")}>
-                <div className="max-w-6xl mx-auto glass elevation-2 rounded-[2rem] xl:rounded-full p-2.5 xl:p-3 flex items-center justify-between border border-border/50 backdrop-saturate-150 shadow-lg transition-all">
-                    <Link href="/" className="flex items-center gap-3 xl:gap-4 pl-3 pr-5 py-2 group outline-none rounded-full hover:bg-foreground/5 transition-colors" aria-label={t("nav.logo_label")}>
-                        <div className="flex items-center justify-center min-w-[36px] min-h-[36px] lg:min-w-[42px] lg:min-h-[42px] bg-red-600 rounded-full glow-primary group-hover:scale-110 group-active:scale-95 transition-all duration-500 shadow-inner">
-                            <span className="font-black text-white text-lg lg:text-xl leading-none">J+</span>
+                <div className="max-w-7xl mx-auto glass rounded-2xl xl:rounded-[2.5rem] px-5 xl:px-10 py-3.5 xl:py-5 flex items-center justify-between border-border/40 shadow-xl backdrop-saturate-150">
+                    <Link href="/" className="flex items-center gap-3 xl:gap-4 group outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-2xl" aria-label={t("nav.logo_label")}>
+                        <div className="flex items-center justify-center min-w-[36px] min-h-[36px] lg:min-w-[48px] lg:min-h-[48px] bg-red-600 rounded-xl lg:rounded-2xl glow-primary group-hover:scale-110 group-active:scale-95 transition-all duration-500">
+                            <span className="font-black text-white text-lg lg:text-2xl leading-none">J+</span>
                         </div>
-                        <span className="font-black text-xl lg:text-2xl tracking-tighter text-foreground">
+                        <span className="font-black text-xl lg:text-3xl tracking-tighter text-foreground">
                             Moailte<span className="text-primary italic">Studio</span>
                         </span>
                     </Link>
 
-                    {/* Desktop Navigation - Bento Dynamic Style */}
-                    <div className="hidden xl:flex items-center gap-3">
-                        <div className="flex items-center gap-1 p-1.5 bg-foreground/5 dark:bg-foreground/10 rounded-full border border-border/40 backdrop-blur-md">
-                            {[
-                                { name: t("nav.features"), href: "#features", ariaLabel: t("nav.features") },
-                                { name: t("nav.ai"), href: "#ai", ariaLabel: t("nav.ai") },
-                                { name: t("nav.business"), href: "#business", ariaLabel: t("nav.business") },
-                                { name: t("nav.support"), href: "/support", ariaLabel: t("nav.support") }
-                            ].map((link) => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="px-5 py-2.5 text-xs font-black text-muted-foreground hover:text-foreground hover:bg-background/90 transition-all tracking-wider uppercase rounded-full focus-visible:ring-2 focus-visible:ring-primary outline-none"
-                                    aria-label={link.ariaLabel}
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
-                        </div>
-
-                        <div className="flex items-center gap-2 p-1.5 bg-foreground/5 dark:bg-foreground/10 rounded-full border border-border/40 backdrop-blur-md">
-                            <div className="rounded-full overflow-hidden">
-                                <ThemeToggle />
-                            </div>
+                    {/* Desktop Navigation - Cleaned from language selector */}
+                    <div className="hidden xl:flex items-center gap-6 xl:gap-8">
+                        {[
+                            { name: t("nav.features"), href: "#features", ariaLabel: t("nav.features") },
+                            { name: t("nav.ai"), href: "#ai", ariaLabel: t("nav.ai") },
+                            { name: t("nav.business"), href: "#business", ariaLabel: t("nav.business") },
+                            { name: t("nav.support"), href: "/support", ariaLabel: t("nav.support") }
+                        ].map((link) => (
                             <Link
-                                href="#download"
-                                className="px-6 py-2.5 bg-primary text-primary-foreground rounded-full font-black text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-lg focus-visible:ring-2 focus-visible:ring-primary outline-none"
-                                aria-label={t("nav.download")}
+                                key={link.name}
+                                href={link.href}
+                                className="text-sm font-bold text-muted-foreground hover:text-foreground transition-all tracking-wide uppercase hover:translate-y-[-1px] active:translate-y-0 focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2 outline-none rounded-lg"
+                                aria-label={link.ariaLabel}
                             >
-                                {t("nav.download")}
+                                {link.name}
                             </Link>
-                        </div>
+                        ))}
+                        <div className="h-8 w-[1px] bg-border mx-2" />
+                        <ThemeToggle />
+                        <Link
+                            href="#download"
+                            className="px-6 py-3.5 bg-foreground text-background rounded-2xl font-black text-sm hover:opacity-90 active:scale-95 transition-all shadow-2xl tracking-tighter focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
+                            aria-label={t("nav.download")}
+                        >
+                            {t("nav.download")}
+                        </Link>
                     </div>
 
-                    {/* Mobile Right Actions - Bento Style */}
-                    <div className="flex xl:hidden items-center gap-2 pr-1">
-                        <div className="flex items-center gap-1.5 p-1.5 bg-foreground/5 dark:bg-foreground/10 rounded-full border border-border/40">
-                            <div className="rounded-full overflow-hidden">
-                                <ThemeToggle />
-                            </div>
-                            <button
-                                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="p-2.5 rounded-full bg-background text-foreground hover:bg-muted active:scale-90 transition-all shadow-sm"
-                                aria-label={isMenuOpen ? t("nav.menu_close") : t("nav.menu_open")}
-                                aria-expanded={isMenuOpen}
-                                aria-controls="mobile-menu"
-                            >
-                                <AnimatePresence mode="wait">
-                                    {isMenuOpen ? (
-                                        <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
-                                            <X size={20} />
-                                        </motion.div>
-                                    ) : (
-                                        <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
-                                            <Menu size={20} />
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-                            </button>
-                        </div>
+                    {/* Mobile Right Actions */}
+                    <div className="flex xl:hidden items-center gap-4">
+                        <ThemeToggle />
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            className="p-2.5 rounded-xl glass border-border/60 text-foreground active:scale-90 transition-transform shadow-lg"
+                            aria-label={isMenuOpen ? t("nav.menu_close") : t("nav.menu_open")}
+                            aria-expanded={isMenuOpen}
+                            aria-controls="mobile-menu"
+                        >
+                            <AnimatePresence mode="wait">
+                                {isMenuOpen ? (
+                                    <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }}>
+                                        <X size={24} />
+                                    </motion.div>
+                                ) : (
+                                    <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }}>
+                                        <Menu size={24} />
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </button>
                     </div>
                 </div>
 
@@ -154,7 +144,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                 <Link
                                     href="#download"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="w-full py-6 bg-primary text-primary-foreground rounded-3xl font-black text-2xl text-center elevation-3 glow-primary m3-state transition-all"
+                                    className="w-full py-6 bg-primary text-white rounded-3xl font-black text-2xl text-center shadow-2xl glow-primary active:scale-95 transition-all"
                                     aria-label={t("nav.download")}
                                 >
                                     {t("nav.get_app")}
@@ -166,7 +156,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </nav>
 
             {/* Content Wrapper */}
-            <main className="max-w-7xl mx-auto px-4 lg:px-12 relative pb-32" role="main" aria-label="Contenu principal">
+            <main className="max-w-7xl mx-auto px-4 lg:px-12 relative pb-20" role="main" aria-label="Contenu principal">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -226,7 +216,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             )}
 
             {/* Bouton de Sélection de Langue Flottant et son Panneau */}
-            <div className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-50">
+            <div className="fixed bottom-6 left-6 lg:bottom-10 lg:left-10 z-50 flex flex-col items-start gap-4">
                 <AnimatePresence>
                     {isLangOpen && (
                         <motion.div
@@ -234,7 +224,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 20, scale: 0.95 }}
                             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            className="absolute bottom-[calc(100%+16px)] left-0 glass border border-border/60 rounded-[2rem] p-5 elevation-5 flex flex-col gap-4 w-72 sm:w-80 backdrop-blur-2xl overflow-hidden origin-bottom-left"
+                            className="glass border border-border/60 rounded-[2.5rem] p-5 shadow-[0_32px_64px_-16px_rgba(0,0,0,0.35)] dark:shadow-[0_32px_64px_-16px_rgba(0,0,0,0.6)] flex flex-col gap-4 w-72 sm:w-80 backdrop-blur-2xl relative overflow-hidden"
                             role="dialog"
                             aria-modal="true"
                             aria-label="Sélectionner la langue"
@@ -321,19 +311,15 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                 <button
                     type="button"
                     onClick={() => setIsLangOpen(!isLangOpen)}
-                    className="mobile-touch relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-muted/20 hover:bg-muted/30 text-foreground border border-border/50 rounded-full elevation-3 backdrop-blur-md m3-state transition-[background-color,transform,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none group z-50 cursor-pointer"
+                    className="mobile-touch relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-muted/20 hover:bg-muted/30 text-foreground border border-border/50 rounded-full shadow-2xl backdrop-blur-md hover:scale-110 active:scale-95 transition-[background-color,transform,box-shadow] duration-300 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 outline-none group z-50 cursor-pointer"
                     aria-haspopup="dialog"
                     aria-expanded={isLangOpen}
                     aria-label="Changer de langue / Change language"
                 >
-                    <div className="flex items-center justify-center gap-1.5 transition-transform duration-500 group-hover:scale-105">
-                        <span className="text-xl sm:text-2xl select-none leading-none drop-shadow-sm">
-                            {currentLanguage.flag}
-                        </span>
-                        <span className="text-xs sm:text-sm font-black tracking-wider text-muted-foreground group-hover:text-primary transition-colors">
-                            {currentLanguage.code === 'fil' ? 'PH' : currentLanguage.code.toUpperCase()}
-                        </span>
-                    </div>
+                    <Globe className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors group-hover:rotate-12 duration-500" />
+                    <span className="absolute -top-1 -right-1 text-xs bg-background/80 border border-border/60 rounded-full w-6 h-6 flex items-center justify-center shadow-lg pointer-events-none select-none">
+                        {currentLanguage.flag}
+                    </span>
                 </button>
             </div>
 
