@@ -24,21 +24,43 @@ export const viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mikhmoai.com"),
-  title: "MikhmonPro — Gestion Hotspot MikroTik V6 & V7",
-  description: "L'excellence de la gestion Hotspot MikroTik sur Android. Gagnez en productivité avec MoailteStudio et la Boutique Web SaaS intégrée.",
+  title: {
+    default: "MikhmoAI — Suite MikroTik tout-en-un",
+    template: "%s | MikhmoAI",
+  },
+  description: "MikhmoAI (MikroTik Hotspot and Monitoring with AI) automatise Hotspot, RADIUS, multi-site, VPN, monitoring et déploiement de services MikroTik sur mobile et ordinateur.",
   keywords: ["MikroTik", "Mikhmon", "Hotspot", "Voucher", "SaaS", "VPN", "Android", "Gestion Réseau"],
   authors: [{ name: "J+Services" }],
+  creator: "Moailte Studio",
+  publisher: "J+Services",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "technology",
+  applicationName: "MikhmoAI",
+  manifest: "/manifest.webmanifest",
   openGraph: {
-    title: "MikhmonPro — Gestion Hotspot MikroTik Elite",
-    description: "Conçue pour les professionnels. Gérez vos zones Wifi, générez des tickets et automatisez votre business 24h/24.",
-    url: "https://mikhmon-pro.jservices.fr",
-    siteName: "MikhmonPro",
+    title: "MikhmoAI — Suite d’exploitation MikroTik tout-en-un",
+    description: "Hotspot, RADIUS, multi-routeurs, VPN, topologie, monitoring et déploiement automatisé sur Android, Windows et Linux.",
+    url: "https://mikhmoai.com",
+    siteName: "MikhmoAI",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "MikhmonPro Dashboard Preview",
+        alt: "MikhmoAI Dashboard Preview",
       },
     ],
     locale: "fr_FR",
@@ -46,12 +68,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MikhmonPro — Hotspot Management Pro",
-    description: "Simplifiez la gestion de vos serveurs MikroTik avec l'IA et le mode SaaS.",
+    title: "MikhmoAI — MikroTik Hotspot and Monitoring with AI",
+    description: "Une plateforme unique pour exploiter, superviser et déployer vos services MikroTik.",
     images: ["/og-image.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
@@ -64,7 +87,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body className={`${inter.variable} ${outfit.variable} antialiased font-sans`}>
         <ThemeProvider
           attribute="class"

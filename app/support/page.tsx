@@ -1,9 +1,11 @@
-import { LegalLayout, Section, SubSection, InfoBox } from "@/components/layout/LegalLayout";
+import { LegalLayout, Section, SubSection } from "@/components/layout/LegalLayout";
 import { HeadphonesIcon } from "lucide-react";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export const metadata = {
-    title: "Support — MikhmonPro",
-    description: "Centre d'aide et support technique pour MikhmonPro, application Android de gestion Hotspot MikroTik.",
+    title: "Support et FAQ",
+    description: "Centre d'aide et support technique pour MikhmoAI, application Android de gestion Hotspot MikroTik.",
+    alternates: { canonical: "/support" },
 };
 
 const faqItems = [
@@ -13,7 +15,7 @@ const faqItems = [
     },
     {
         q: "L'application est-elle compatible avec MikroTik V6 et V7 ?",
-        a: "Oui. MikhmonPro est entièrement compatible avec RouterOS V6 et V7. Lors de l'ajout d'une passerelle, l'application détecte automatiquement la version et adapte le protocole de communication.",
+        a: "Oui. MikhmoAI est entièrement compatible avec RouterOS V6 et V7. Lors de l'ajout d'une passerelle, l'application détecte automatiquement la version et adapte le protocole de communication.",
     },
     {
         q: "Comment activer le mode SaaS pour la boutique web ?",
@@ -43,6 +45,16 @@ const faqItems = [
 
 export default function SupportPage() {
     return (
+        <>
+        <JsonLd data={{
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqItems.map((item) => ({
+                "@type": "Question",
+                name: item.q,
+                acceptedAnswer: { "@type": "Answer", text: item.a },
+            })),
+        }} />
         <LegalLayout
             icon={<HeadphonesIcon className="w-4 h-4" />}
             badge="Centre d'aide"
@@ -67,7 +79,7 @@ export default function SupportPage() {
                         <p className="text-xs text-muted-foreground mt-2">Réponse sous 72h ouvrées</p>
                     </a>
                     <a
-                        href="https://wa.me/22941438405?text=Bonjour%2C%20j%27ai%20besoin%20d%27aide%20avec%20MikhmonPro."
+                        href="https://wa.me/22941438405?text=Bonjour%2C%20j%27ai%20besoin%20d%27aide%20avec%20MikhmoAI."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block p-8 rounded-3xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all group"
@@ -119,7 +131,7 @@ export default function SupportPage() {
                     <p>Pour nous aider à corriger rapidement un problème, incluez dans votre message :</p>
                     <ol className="space-y-2 list-none" role="list" aria-label="Étapes pour signaler un bug">
                         {[
-                            "La version de MikhmonPro (visible dans Paramètres → À propos)",
+                            "La version de MikhmoAI (visible dans Paramètres → À propos)",
                             "La version Android de votre appareil",
                             "La version RouterOS de votre MikroTik",
                             "Description précise de l'erreur et étapes pour la reproduire",
@@ -137,5 +149,6 @@ export default function SupportPage() {
             </Section>
 
         </LegalLayout>
+        </>
     );
 }

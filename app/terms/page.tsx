@@ -2,8 +2,9 @@ import { LegalLayout, Section, SubSection, InfoBox, BulletList } from "@/compone
 import { FileText } from "lucide-react";
 
 export const metadata = {
-    title: "Conditions d'utilisation — MikhmonPro",
-    description: "Conditions générales d'utilisation de MikhmonPro, application Android de gestion Hotspot MikroTik.",
+    title: "Conditions d’utilisation",
+    description: "Conditions générales d'utilisation de MikhmoAI, application Android de gestion Hotspot MikroTik.",
+    alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {
@@ -12,22 +13,22 @@ export default function TermsPage() {
             icon={<FileText className="w-4 h-4" />}
             badge="Conditions d'utilisation"
             title="Conditions Générales"
-            subtitle="En téléchargeant ou utilisant MikhmonPro, vous acceptez les présentes conditions d'utilisation. Veuillez les lire attentivement."
+            subtitle="En téléchargeant ou utilisant MikhmoAI, vous acceptez les présentes conditions d'utilisation. Veuillez les lire attentivement."
             lastUpdated="27 février 2026"
         >
 
             <Section title="1. Acceptation des conditions">
                 <p>
-                    En téléchargeant, installant ou utilisant l'application <strong className="text-foreground">MikhmonPro</strong> (ci-après «&nbsp;l'Application&nbsp;»), vous acceptez d'être lié par les présentes Conditions Générales d'Utilisation (CGU). Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser l'Application.
+                    En téléchargeant, installant ou utilisant l'application <strong className="text-foreground">MikhmoAI</strong> (ci-après «&nbsp;l'Application&nbsp;»), vous acceptez d'être lié par les présentes Conditions Générales d'Utilisation (CGU). Si vous n'acceptez pas ces conditions, vous ne devez pas utiliser l'Application.
                 </p>
                 <InfoBox>
-                    Ces CGU constituent un accord juridique entre vous (l'utilisateur) et <strong>J+Services</strong>, éditeur de MikhmonPro.
+                    Ces CGU constituent un accord juridique entre vous (l'utilisateur) et <strong>J+Services</strong>, éditeur de MikhmoAI.
                 </InfoBox>
             </Section>
 
             <Section title="2. Description du service">
                 <p>
-                    MikhmonPro est une application Android de <strong className="text-foreground">gestion de zones Hotspot</strong> basée sur Mikhmon, conçue pour les environnements MikroTik V6 et V7. Elle permet notamment :
+                    MikhmoAI est une application Android de <strong className="text-foreground">gestion de zones Hotspot</strong> basée sur Mikhmon, conçue pour les environnements MikroTik V6 et V7. Elle permet notamment :
                 </p>
                 <BulletList items={[
                     "La gestion et la surveillance des utilisateurs Hotspot MikroTik",
@@ -90,13 +91,13 @@ export default function TermsPage() {
                     L'Application, son code source, ses designs, logos, textes, et l'assistant IA <strong className="text-foreground">Moailte</strong> sont la propriété exclusive de <strong className="text-foreground">J+Services</strong> et sont protégés par les lois sur la propriété intellectuelle.
                 </p>
                 <p>
-                    MikhmonPro est basé sur le projet open-source <strong className="text-foreground">Mikhmon</strong>. Les parties open-source restent soumises à leurs licences respectives.
+                    MikhmoAI est basé sur le projet open-source <strong className="text-foreground">Mikhmon</strong>. Les parties open-source restent soumises à leurs licences respectives.
                 </p>
             </Section>
 
             <Section title="6. Responsabilité et garanties">
                 <InfoBox>
-                    <strong>⚠️ Important :</strong> MikhmonPro est fournie «&nbsp;en l'état&nbsp;». J+Services ne saurait être tenu responsable des pertes de données, interruptions de service réseau ou dommages résultant de l'utilisation de l'Application.
+                    <strong>⚠️ Important :</strong> MikhmoAI est fournie «&nbsp;en l'état&nbsp;». J+Services ne saurait être tenu responsable des pertes de données, interruptions de service réseau ou dommages résultant de l'utilisation de l'Application.
                 </InfoBox>
 
                 <SubSection title="6.1 Limitation de responsabilité">

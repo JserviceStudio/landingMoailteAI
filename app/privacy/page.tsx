@@ -2,8 +2,9 @@ import { LegalLayout, Section, SubSection, InfoBox, BulletList } from "@/compone
 import { Shield } from "lucide-react";
 
 export const metadata = {
-    title: "Politique de Confidentialité — MikhmonPro",
-    description: "Politique de confidentialité de MikhmonPro, application Android de gestion Hotspot MikroTik.",
+    title: "Politique de confidentialité",
+    description: "Politique de confidentialité de MikhmoAI, application Android de gestion Hotspot MikroTik.",
+    alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {
@@ -12,13 +13,13 @@ export default function PrivacyPage() {
             icon={<Shield className="w-4 h-4" />}
             badge="Vie Privée & Données"
             title="Politique de Confidentialité"
-            subtitle="MikhmonPro s'engage à protéger vos données personnelles. Cette politique explique quelles données nous collectons, comment nous les utilisons et vos droits."
+            subtitle="MikhmoAI s'engage à protéger vos données personnelles. Cette politique explique quelles données nous collectons, comment nous les utilisons et vos droits."
             lastUpdated="27 février 2026"
         >
 
             <Section title="1. Identité du responsable de traitement">
                 <p>
-                    L'application <strong className="text-foreground">MikhmonPro</strong> (MikhmoAI V6 & V7) est éditée par :
+                    L'application <strong className="text-foreground">MikhmoAI</strong> (MikhmoAI V6 & V7) est éditée par :
                 </p>
                 <div className="p-6 rounded-2xl bg-muted/20 border border-border/60 font-medium text-foreground space-y-1" role="region" aria-label="Informations éditeur">
                     <p><strong>J+Services</strong></p>
@@ -29,7 +30,7 @@ export default function PrivacyPage() {
 
             <Section title="2. Données collectées">
                 <InfoBox>
-                    <strong>Principe fondamental :</strong> MikhmonPro fonctionne principalement en mode local. Les identifiants de vos routeurs et vos configurations sont stockés <strong>uniquement sur votre appareil</strong> et ne sont jamais transmis à nos serveurs.
+                    <strong>Principe fondamental :</strong> MikhmoAI fonctionne principalement en mode local. Les identifiants de vos routeurs et vos configurations sont stockés <strong>uniquement sur votre appareil</strong> et ne sont jamais transmis à nos serveurs.
                 </InfoBox>
 
                 <SubSection title="2.1 Données stockées localement sur votre appareil">
@@ -54,7 +55,7 @@ export default function PrivacyPage() {
                 </SubSection>
 
                 <SubSection title="2.3 Mode SaaS / Boutique Web (optionnel)">
-                    <p>Si vous activez le mode SaaS ou la boutique web, des données de synchronisation peuvent être échangées entre l'application et <strong className="text-foreground">votre propre serveur web</strong> (que vous configurez). MikhmonPro ne collecte pas ces données sur ses propres serveurs.</p>
+                    <p>Si vous activez le mode SaaS ou la boutique web, des données de synchronisation peuvent être échangées entre l'application et <strong className="text-foreground">votre propre serveur web</strong> (que vous configurez). MikhmoAI ne collecte pas ces données sur ses propres serveurs.</p>
                 </SubSection>
 
                 <SubSection title="2.4 Données non collectées">
@@ -72,7 +73,7 @@ export default function PrivacyPage() {
                 <p>Les données collectées sont utilisées exclusivement pour :</p>
                 <BulletList items={[
                     "Authentifier votre compte utilisateur via Google OAuth 2.0",
-                    "Activer et vérifier votre licence MikhmonPro (mode SaaS)",
+                    "Activer et vérifier votre licence MikhmoAI (mode SaaS)",
                     "Améliorer les fonctionnalités de l'application",
                     "Vous envoyer des communications relatives à votre compte (mises à jour, licences)",
                     "Répondre à vos demandes de support",
@@ -81,7 +82,7 @@ export default function PrivacyPage() {
 
             <Section title="4. Fonctionnalités d'Intelligence Artificielle">
                 <p>
-                    MikhmonPro intègre <strong className="text-foreground">Moailte AI</strong>, un assistant intelligent pour la gestion Hotspot. Les requêtes adressées à l'IA peuvent inclure des métadonnées de configuration réseau (profils, stock de tickets) afin de générer des réponses personnalisées.
+                    MikhmoAI intègre <strong className="text-foreground">Moailte AI</strong>, un assistant intelligent pour la gestion Hotspot. Les requêtes adressées à l'IA peuvent inclure des métadonnées de configuration réseau (profils, stock de tickets) afin de générer des réponses personnalisées.
                 </p>
                 <InfoBox>
                     Les interactions avec l'assistant IA sont <strong>traitées localement sur l'appareil</strong> ou via des services d'inférence sécurisés. Aucune conversation n'est stockée sur nos serveurs sans votre consentement explicite.
@@ -115,7 +116,7 @@ export default function PrivacyPage() {
                     ]} />
                 </SubSection>
                 <SubSection title="Permissions non utilisées">
-                    <p>MikhmonPro <strong className="text-foreground">ne demande pas</strong> l'accès à vos contacts, SMS, microphone, localisation GPS ou galerie photos.</p>
+                    <p>MikhmoAI <strong className="text-foreground">ne demande pas</strong> l'accès à vos contacts, SMS, microphone, localisation GPS ou galerie photos.</p>
                 </SubSection>
             </Section>
 
@@ -145,7 +146,7 @@ export default function PrivacyPage() {
 
             <Section title="10. Politique relative aux mineurs">
                 <p>
-                    MikhmonPro est destinée à un usage professionnel et est conçue pour des utilisateurs de <strong className="text-foreground">18 ans et plus</strong>. Nous ne collectons pas sciemment de données personnelles de mineurs.
+                    MikhmoAI est destinée à un usage professionnel et est conçue pour des utilisateurs de <strong className="text-foreground">18 ans et plus</strong>. Nous ne collectons pas sciemment de données personnelles de mineurs.
                 </p>
             </Section>
 

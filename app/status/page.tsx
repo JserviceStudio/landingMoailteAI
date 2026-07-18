@@ -7,7 +7,7 @@ export default function StatusPage() {
 
     const services = [
         {
-            name: "Application MikhmonPro (APK)",
+            name: "Application MikhmoAI (APK)",
             description: "Téléchargement direct & fonctionnement principal",
             status: "operational",
             uptime: "99.9%",
@@ -78,7 +78,7 @@ export default function StatusPage() {
             icon={<Activity className="w-4 h-4" />}
             badge="État des services"
             title="Status"
-            subtitle="Monitoring en temps réel de tous les services MikhmonPro."
+            subtitle="Monitoring en temps réel de tous les services MikhmoAI."
             lastUpdated="27 février 2026"
         >
 
@@ -160,7 +160,7 @@ export default function StatusPage() {
                         <p className="text-primary text-sm font-medium mt-1">justemoailtepro@gmail.com</p>
                     </a>
                     <a
-                        href="https://wa.me/22941438405?text=Bonjour%2C%20je%20signale%20un%20incident%20sur%20MikhmonPro."
+                        href="https://wa.me/22941438405?text=Bonjour%2C%20je%20signale%20un%20incident%20sur%20MikhmoAI."
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block p-6 rounded-2xl bg-green-500/5 border border-green-500/20 hover:bg-green-500/10 transition-all"

@@ -34,16 +34,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Read from localStorage or fallback to browser preferences
-    const savedLang = localStorage.getItem("mikhmonpro_lang") as Language;
-    if (savedLang && ["fr", "en", "fil", "id"].includes(savedLang)) {
-      setLanguageState(savedLang);
-    } else {
-      const detected = getBrowserLanguage();
-      setLanguageState(detected);
-      localStorage.setItem("mikhmonpro_lang", detected);
-    }
-    setIsMounted(true);
+    // Defer client preference hydration to keep the server-rendered French
+    // content stable and avoid a synchronous render cascade in the effect.
+    const timer = window.setTimeout(() => {
+      const savedLang = localStorage.getItem("mikhmonpro_lang") as Language;
+      if (savedLang && ["fr", "en", "fil", "id"].includes(savedLang)) {
+        setLanguageState(savedLang);
+      } else {
+        const detected = getBrowserLanguage();
+        setLanguageState(detected);
+        localStorage.setItem("mikhmonpro_lang", detected);
+      }
+      setIsMounted(true);
+    }, 0);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const setLanguage = (lang: Language) => {
@@ -78,7 +82,8 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     return typeof value === "string" ? value : key;
   };
 
-  // Avoid hydration mismatch by rendering children only after mounting
+  // Render the French SSR content immediately so search engines and users
+  // receive meaningful content before JavaScript hydration.
   if (!isMounted) {
     // Fallback dictionary functions during hydration (default to fr)
     const tFallback = (key: string): string => {
@@ -96,7 +101,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     
     return (
       <LanguageContext.Provider value={{ language: "fr", setLanguage, t: tFallback }}>
-        <div style={{ visibility: "hidden" }}>{children}</div>
+        {children}
       </LanguageContext.Provider>
     );
   }

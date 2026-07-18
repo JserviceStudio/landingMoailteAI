@@ -28,6 +28,7 @@ export function LegalLayout({ icon, badge, title, subtitle, lastUpdated, childre
                         <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
                         <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
                         <Link href="/support" className="hover:text-foreground transition-colors">Support</Link>
+                        <Link href="/blog" className="hover:text-foreground transition-colors">Guides</Link>
                         <Link href="/status" className="hover:text-foreground transition-colors">Status</Link>
                     </div>
                 </div>
@@ -67,6 +68,7 @@ export function LegalLayout({ icon, badge, title, subtitle, lastUpdated, childre
                         <Link href="/privacy" className="hover:text-foreground transition-colors">Privacy</Link>
                         <Link href="/terms" className="hover:text-foreground transition-colors">Terms</Link>
                         <Link href="/support" className="hover:text-foreground transition-colors">Support</Link>
+                        <Link href="/solutions" className="hover:text-foreground transition-colors">Solutions</Link>
                         <a href="mailto:justemoailtepro@gmail.com" className="hover:text-foreground transition-colors inline-flex items-center gap-1">
                             Contact <ExternalLink className="w-3 h-3" />
                         </a>

@@ -2,9 +2,10 @@ import { LegalLayout, Section, InfoBox, BulletList } from "@/components/layout/L
 import { Trash2 } from "lucide-react";
 
 export const metadata = {
-    title: "Suppression de compte & données — MikhmonPro",
+    title: "Suppression de compte et de données",
     description:
-        "Demandez la suppression de votre compte MikhmonPro et des données associées. Procédure dans l'application ou par demande web, conformément aux règles Google Play et au RGPD.",
+        "Demandez la suppression de votre compte MikhmoAI et des données associées. Procédure dans l'application ou par demande web, conformément aux règles Google Play et au RGPD.",
+    alternates: { canonical: "/account-deletion" },
 };
 
 export default function AccountDeletionPage() {
@@ -13,13 +14,13 @@ export default function AccountDeletionPage() {
             icon={<Trash2 className="w-4 h-4" />}
             badge="Suppression de compte & données"
             title="Suppression de votre compte et de vos données"
-            subtitle="Cette page explique comment demander la suppression de votre compte MikhmonPro (MikhmoAI) et des données personnelles associées, ainsi que les données éventuellement conservées et pour quelle durée."
+            subtitle="Cette page explique comment demander la suppression de votre compte MikhmoAI (MikhmoAI) et des données personnelles associées, ainsi que les données éventuellement conservées et pour quelle durée."
             lastUpdated="19 juin 2026"
         >
             <Section title="1. Application et éditeur concernés">
                 <p>
                     Cette procédure concerne l'application{" "}
-                    <strong className="text-foreground">MikhmonPro</strong> (MikhmoAI), éditée par :
+                    <strong className="text-foreground">MikhmoAI</strong> (MikhmoAI), éditée par :
                 </p>
                 <div
                     className="p-6 rounded-2xl bg-muted/20 border border-border/60 font-medium text-foreground space-y-1"
@@ -46,7 +47,7 @@ export default function AccountDeletionPage() {
                 <p>Vous pouvez supprimer vous-même votre compte directement dans l'application :</p>
                 <BulletList
                     items={[
-                        "Ouvrez l'application MikhmonPro et connectez-vous à votre compte.",
+                        "Ouvrez l'application MikhmoAI et connectez-vous à votre compte.",
                         "Allez dans Profil / Paramètres du compte.",
                         "Appuyez sur « Supprimer mon compte ».",
                         "Confirmez la demande : votre compte est immédiatement désactivé et vos données personnelles sont anonymisées.",

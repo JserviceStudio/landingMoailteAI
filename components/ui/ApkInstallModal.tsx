@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Download, ShieldCheck, FileKey, X, Smartphone } from "lucide-react";
-import { useTranslation } from "@/components/i18n/LanguageContext";
 
 interface ApkInstallModalProps {
   isOpen: boolean;
@@ -10,15 +9,10 @@ interface ApkInstallModalProps {
 }
 
 export default function ApkInstallModal({ isOpen, onClose }: ApkInstallModalProps) {
-  const { t } = useTranslation();
-  const [show, setShow] = useState(false);
-
   useEffect(() => {
     if (isOpen) {
-      setShow(true);
       document.body.style.overflow = "hidden";
     } else {
-      setTimeout(() => setShow(false), 300);
       document.body.style.overflow = "";
     }
     return () => {
@@ -26,7 +20,7 @@ export default function ApkInstallModal({ isOpen, onClose }: ApkInstallModalProp
     };
   }, [isOpen]);
 
-  if (!isOpen && !show) return null;
+  if (!isOpen) return null;
 
   return (
     <div 
@@ -103,7 +97,7 @@ export default function ApkInstallModal({ isOpen, onClose }: ApkInstallModalProp
             <div>
               <h3 className="font-bold text-foreground">3. Installez et profitez</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                Appuyez sur <strong>Installer</strong>, patientez quelques secondes, puis ouvrez MikhmonPro.
+                Appuyez sur <strong>Installer</strong>, patientez quelques secondes, puis ouvrez MikhmoAI.
               </p>
             </div>
           </div>

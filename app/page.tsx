@@ -8,15 +8,16 @@ import {
   Zap,
   Smartphone,
   ArrowRight,
-  Database,
   Terminal,
   BrainCircuit,
   Layers,
   QrCode,
-  Download,
   Clock,
   Globe,
-  ShoppingBag
+  ShoppingBag,
+  MonitorDown,
+  Laptop,
+  PackageOpen
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -24,20 +25,50 @@ import { motion } from "framer-motion";
 import { useTranslation } from "@/components/i18n/LanguageContext";
 import { useState } from "react";
 import ApkInstallModal from "@/components/ui/ApkInstallModal";
+import { JsonLd } from "@/components/seo/JsonLd";
+import DesktopDownloadModal from "@/components/ui/DesktopDownloadModal";
+import MobileDownloadModal from "@/components/ui/MobileDownloadModal";
 
 export default function Home() {
   const { t } = useTranslation();
   const [isApkModalOpen, setIsApkModalOpen] = useState(false);
+  const [isDesktopModalOpen, setIsDesktopModalOpen] = useState(false);
+  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
 
-  const handleDownload = (e: React.MouseEvent<HTMLAnchorElement>, arch: string) => {
-    e.preventDefault();
+  const startMobileDownload = (arch: "arm64" | "arm32") => {
+    setIsMobileModalOpen(false);
     setIsApkModalOpen(true);
-    // Programmatically trigger the download in background
     window.location.href = `/api/download/latest?arch=${arch}`;
   };
 
   return (
     <MainLayout>
+      <JsonLd data={[
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "MikhmoAI",
+          alternateName: "MikhmonPro",
+          applicationCategory: "NetworkApplication",
+          operatingSystem: "Android, Windows 10, Windows 11, Linux",
+          description: "MikroTik Hotspot and Monitoring with AI : suite multiplateforme pour Hotspot, RADIUS, multi-site, VPN, topologie, monitoring et déploiement automatisé.",
+          url: "https://mikhmoai.com",
+          image: "https://mikhmoai.com/og-image.png",
+          author: { "@type": "Organization", name: "Moailte Studio" },
+          offers: { "@type": "Offer", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
+          featureList: ["Gestion Hotspot MikroTik", "Application Desktop Windows et Linux", "Topologie réseau interactive", "Génération de vouchers", "Monitoring en temps réel", "Accès VPN et SSH", "Compatible RouterOS v6 et v7"],
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Moailte Studio",
+          alternateName: "J+Services",
+          url: "https://mikhmoai.com",
+          logo: "https://mikhmoai.com/icon.png",
+          email: "justemoailtepro@gmail.com",
+          contactPoint: { "@type": "ContactPoint", contactType: "customer support", telephone: "+22941438405", availableLanguage: ["French", "English"] },
+        },
+      ]} />
       {/* --- ELITE HERO SECTION --- */}
       <MotionSection className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-12 pb-12 lg:pt-24 lg:pb-32 min-h-[90vh] relative px-4 sm:px-6 lg:px-8" aria-labelledby="hero-title">
         <div className="flex-1 space-y-8 text-center lg:text-left z-10" role="region" aria-label="Hero section">
@@ -64,29 +95,27 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 pt-6" role="group" aria-label="Primary actions">
-            {/* Bouton APK ARM64 */}
-            <a
-              href="/api/download/latest?arch=arm64"
-              onClick={(e) => handleDownload(e, 'arm64')}
-              className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-foreground text-background rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-primary/20 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
-              aria-label={t("hero.btn_arm64_label")}
-              role="button"
+            {/* Un seul point d’entrée Mobile, puis choix ARM64 / ARM32 */}
+            <button
+              type="button"
+              onClick={() => setIsMobileModalOpen(true)}
+              className="mobile-touch group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-foreground px-8 py-4 text-center text-lg font-black text-background shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] transition-[transform,opacity,box-shadow] hover:-translate-y-1 hover:opacity-90 hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-auto sm:px-10 sm:py-5 lg:px-12 lg:py-6 lg:text-2xl"
+              aria-label="Télécharger MikhmoAI Mobile pour Android"
             >
-              <Download className="w-6 h-6 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
-              {t("hero.btn_arm64")}
-            </a>
+              <Smartphone className="h-6 w-6 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
+              Télécharger Mobile
+            </button>
 
-            {/* Bouton APK ARM32 */}
-            <a
-              href="/api/download/latest?arch=arm32"
-              onClick={(e) => handleDownload(e, 'arm32')}
-              className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 glass text-foreground border border-border/60 rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden transition-[transform,background-color] w-full sm:w-auto text-center justify-center hover:bg-foreground/5 focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 outline-none"
-              aria-label={t("hero.btn_arm32_label")}
-              role="button"
+            {/* Un seul point d’entrée Desktop, puis choix Windows / Linux */}
+            <button
+              type="button"
+              onClick={() => setIsDesktopModalOpen(true)}
+              className="mobile-touch group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-blue-600 px-8 py-4 text-center text-lg font-black text-white shadow-[0_24px_48px_-12px_rgba(37,99,235,0.55)] transition-[transform,background-color,box-shadow] hover:-translate-y-1 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 sm:w-auto sm:px-10 sm:py-5 lg:px-12 lg:py-6 lg:text-2xl"
+              aria-label="Télécharger MikhmoAI Desktop pour Windows ou Linux"
             >
-              <Download className="w-6 h-6 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
-              {t("hero.btn_arm32")}
-            </a>
+              <MonitorDown className="h-6 w-6 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
+              Télécharger Bureau
+            </button>
 
             {/* Bouton Boutique */}
             <a
@@ -126,56 +155,108 @@ export default function Home() {
           role="img"
           aria-label={t("hero.img_alt")}
         >
-          <div className="relative group max-w-[500px] xl:max-w-[600px] w-full">
-            {/* Contextual Glow */}
-            <div className="absolute inset-x-0 -top-20 -bottom-20 bg-primary/20 blur-[180px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-glow" />
-
-            <div className="relative glass p-4 rounded-[2.5rem] sm:rounded-[3.5rem] lg:rounded-[4.5rem] border-border shadow-[0_45px_90px_-15px_rgba(0,0,0,0.5)] transition-transform duration-1000 group-hover:rotate-2 group-hover:scale-[1.02]">
-              <Image
-                src="/hotspot_management.png"
-                alt={t("hero.img_alt")}
-                width={600}
-                height={1200}
-                className="rounded-[2rem] sm:rounded-[3rem] lg:rounded-[3.5rem] object-cover shadow-2xl"
-                priority
-                loading="eager"
-              />
-
-              {/* Telemetry Overlays - Hidden on medium and small screens to avoid overflow */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -left-10 bottom-1/3 glass p-5 rounded-2xl sm:rounded-3xl shadow-2xl border-border hidden lg:flex items-center gap-4 backdrop-saturate-150"
-                role="status"
-                aria-live="polite"
-              >
-                <div className="p-3 bg-green-500/20 rounded-xl" aria-hidden="true">
-                  <Activity className="w-6 h-6 text-green-500" aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">{t("hero.latency_sub")}</p>
-                  <p className="text-base font-black text-foreground tracking-tighter">{t("hero.latency")}</p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 4.5, repeat: Infinity }}
-                className="absolute -right-6 top-1/4 glass p-5 rounded-2xl sm:rounded-3xl shadow-2xl border-border hidden lg:flex items-center gap-4 backdrop-saturate-150"
-                role="status"
-                aria-live="polite"
-              >
-                <div className="p-3 bg-blue-500/20 rounded-xl" aria-hidden="true">
-                  <Database className="w-6 h-6 text-blue-500" aria-hidden="true" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black text-muted-foreground uppercase tracking-widest leading-none mb-1">{t("hero.storage_sub")}</p>
-                  <p className="text-base font-black text-foreground tracking-tighter">{t("hero.storage")}</p>
-                </div>
-              </motion.div>
+          {/* Mobile-first: conserver le mockup mobile actuel sur petits écrans. */}
+          <div className="group relative w-full max-w-[500px] lg:hidden">
+            <div className="absolute inset-x-0 -bottom-20 -top-20 rounded-full bg-primary/20 blur-[180px] opacity-50" />
+            <div className="glass relative rounded-[2.5rem] border-border p-4 shadow-[0_45px_90px_-15px_rgba(0,0,0,0.5)] sm:rounded-[3.5rem]">
+              <Image src="/hotspot_management.png" alt={t("hero.img_alt")} width={600} height={1200} className="rounded-[2rem] object-cover shadow-2xl sm:rounded-[3rem]" priority loading="eager" />
             </div>
           </div>
+
+          {/* Desktop: la suite complète en arrière-plan, l’app mobile au premier plan. */}
+          <div className="relative hidden min-h-[610px] w-full max-w-[780px] lg:block xl:min-h-[690px] xl:max-w-[900px]">
+            <div className="absolute inset-[8%] rounded-full bg-blue-500/20 blur-[140px]" aria-hidden="true" />
+
+            <motion.div initial={{ opacity: 0, x: 50, rotate: 2 }} animate={{ opacity: 1, x: 0, rotate: 0 }} transition={{ duration: 1, delay: 0.15 }} className="absolute left-0 top-[12%] w-[94%]">
+              <div className="rounded-[1.5rem] border border-white/10 bg-[#141821] p-2.5 shadow-[0_55px_120px_-35px_rgba(0,0,0,0.75)]">
+                <div className="flex h-9 items-center gap-1.5 rounded-t-xl bg-[#272b35] px-4">
+                  <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+                  <span className="ml-3 text-[9px] font-black uppercase tracking-[0.2em] text-white/40">MikhmoAI Desktop</span>
+                </div>
+                <div className="relative aspect-[1.86] overflow-hidden rounded-b-xl bg-white">
+                  <Image src="/mikhmonpro-desktop-dashboard.png" alt="MikhmoAI Desktop — console de supervision MikroTik et WISP" fill sizes="(max-width: 1280px) 55vw, 720px" className="object-cover" priority />
+                </div>
+              </div>
+              <div className="mx-auto h-16 w-24 bg-gradient-to-b from-[#292d37] to-[#12151b]" aria-hidden="true" />
+              <div className="mx-auto h-3 w-64 rounded-full bg-[#171a20] shadow-xl" aria-hidden="true" />
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0, y: 60, rotate: 6 }} animate={{ opacity: 1, y: 0, rotate: 3 }} transition={{ duration: 1.1, delay: 0.35, type: "spring" }} className="absolute bottom-0 right-0 z-20 w-[31%] min-w-[220px] xl:w-[29%]">
+              <div className="rounded-[2.4rem] border-[7px] border-[#161922] bg-[#161922] p-1 shadow-[0_45px_90px_-20px_rgba(0,0,0,0.8)] xl:rounded-[3rem] xl:border-[9px]">
+                <Image src="/hotspot_management.png" alt="Application mobile MikhmoAI devant la version Desktop" width={600} height={1200} className="rounded-[1.9rem] object-cover xl:rounded-[2.4rem]" priority />
+              </div>
+              <div className="absolute -left-5 top-20 rounded-2xl border border-white/10 bg-[#111827]/90 px-4 py-3 text-white shadow-xl backdrop-blur-xl">
+                <p className="text-[9px] font-black uppercase tracking-[0.2em] text-blue-300">Mobile + Desktop</p>
+                <p className="mt-1 text-sm font-black">Une seule suite</p>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
+      </MotionSection>
+
+      <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="audiences-title">
+        <div className="mx-auto max-w-7xl">
+          <div className="max-w-4xl">
+            <p className="font-black uppercase tracking-[0.22em] text-primary">Une plateforme, trois parcours</p>
+            <h2 id="audiences-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Bien plus qu’une application de gestion Hotspot.</h2>
+            <p className="mt-6 text-xl leading-relaxed text-muted-foreground">MikhmoAI — MikroTik Hotspot and Monitoring with AI — accompagne aussi bien le débutant que le technicien réseau et le provider qui déploie ses services à grande échelle.</p>
+          </div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {[
+              { href: "/pour-debutants", label: "Gestion simple", title: "Je veux exploiter mon Wi-Fi simplement", text: "Tickets, utilisateurs, portail captif et ventes, sans apprendre toutes les commandes RouterOS.", icon: Smartphone, image: "/audience-jeunes-entrepreneurs-wifi.png", alt: "Jeunes entrepreneurs souriants utilisant MikhmoAI" },
+              { href: "/pour-techniciens", label: "Outils techniques", title: "Je gère des réseaux MikroTik", text: "Topologie, carte terrain, terminal, diagnostics, VPN, SSH et exploitation multi-site.", icon: Layers, image: "/audience-techniciens-reseau-terrain.png", alt: "Techniciens réseau équipés sur un chantier télécom" },
+              { href: "/providers", label: "Entreprise & API", title: "Je déploie des services à l’échelle", text: "RADIUS multi-NAS, automatisation, API et distribution de services pour clients et partenaires.", icon: Globe, image: "/audience-dirigeants-provider.png", alt: "Dirigeants réunis pour un partenariat technologique" },
+            ].map((item) => {
+              const Icon = item.icon;
+              return <Link key={item.href} href={item.href} className="group overflow-hidden rounded-[2.25rem] border border-border/60 bg-card transition duration-500 motion-safe:hover:-translate-y-2 hover:border-primary/40 hover:shadow-2xl">
+                <div className="relative aspect-[3/2] overflow-hidden">
+                  <Image src={item.image} alt={item.alt} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" aria-hidden="true" />
+                  <Icon className="absolute bottom-5 left-5 h-11 w-11 rounded-2xl bg-white/90 p-2.5 text-primary shadow-xl backdrop-blur" aria-hidden="true" />
+                </div>
+                <div className="p-8">
+                  <p className="text-xs font-black uppercase tracking-[0.2em] text-primary">{item.label}</p>
+                  <h3 className="mt-3 text-3xl font-black tracking-tight">{item.title}</h3>
+                  <p className="mt-4 leading-relaxed text-muted-foreground">{item.text}</p>
+                  <span className="mt-7 inline-flex items-center gap-2 font-black text-primary">Découvrir <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" /></span>
+                </div>
+              </Link>;
+            })}
+          </div>
+        </div>
+      </MotionSection>
+
+      <MotionSection className="overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="mobile-showcase-title">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="font-black uppercase tracking-[0.22em] text-orange-500">MikhmoAI Mobile</p>
+            <h2 id="mobile-showcase-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Votre infrastructure MikroTik dans votre poche.</h2>
+            <p className="mt-6 text-xl leading-relaxed text-muted-foreground">Supervisez les connexions, créez des vouchers, pilotez vos routeurs, analysez vos ventes et déployez un accès VPN sécurisé directement depuis Android.</p>
+          </div>
+          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-6 lg:gap-5">
+            {[
+              { src: "/mikhmoai-mobile-dashboard-hotspot-radius.jpeg", alt: "Dashboard mobile MikhmoAI avec sessions Hotspot, PPP, ventes et RADIUS", label: "Dashboard" },
+              { src: "/mikhmoai-mobile-sessions-hotspot-actives.jpeg", alt: "Utilisateurs et sessions Hotspot MikroTik actifs dans MikhmoAI Mobile", label: "Sessions" },
+              { src: "/mikhmoai-mobile-generateur-vouchers.jpeg", alt: "Générateur mobile de vouchers MikroTik par lots", label: "Vouchers" },
+              { src: "/mikhmoai-mobile-console-routeros.jpeg", alt: "Console RouterOS V7 sur l'application mobile MikhmoAI", label: "RouterOS" },
+              { src: "/mikhmoai-mobile-assistant-ia.jpeg", alt: "Assistant Moailte AI analysant le réseau et les ventes", label: "Assistant IA" },
+              { src: "/mikhmoai-mobile-wizard-vpn.jpeg", alt: "Assistant VPN Premium pour accès distant sécurisé à MikroTik", label: "VPN sécurisé" },
+            ].map((screen, index) => (
+              <figure key={screen.src} className={`group relative ${index > 3 ? "hidden sm:block" : ""}`}>
+                <div className="relative aspect-[9/19] overflow-hidden rounded-[1.75rem] bg-black shadow-[0_30px_70px_-30px_rgba(0,0,0,0.8)] transition duration-500 motion-safe:group-hover:-translate-y-3 motion-safe:group-hover:rotate-1">
+                  <Image src={screen.src} alt={screen.alt} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" className="object-cover" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10" aria-hidden="true" />
+                </div>
+                <figcaption className="mt-4 text-center text-xs font-black uppercase tracking-[0.16em] text-muted-foreground">{screen.label}</figcaption>
+              </figure>
+            ))}
+          </div>
+          <div className="mt-12 text-center">
+            <Link href="/solutions/application-mikrotik-android" className="inline-flex items-center gap-3 rounded-full bg-orange-500 px-7 py-4 font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-orange-400">Explorer l’application mobile <ArrowRight className="h-5 w-5" /></Link>
+          </div>
+        </div>
       </MotionSection>
 
       {/* --- AI MOAILTE EXPERIENCE --- */}
@@ -437,7 +518,7 @@ export default function Home() {
               {t("business.cta_btn_email")}
             </a>
             <a
-              href="https://wa.me/22941438405?text=Bonjour%2C%20je%20souhaite%20devenir%20partenaire%20MikhmonPro."
+              href="https://wa.me/22941438405?text=Bonjour%2C%20je%20souhaite%20devenir%20partenaire%20MikhmoAI."
               target="_blank"
               rel="noopener noreferrer"
               className="mobile-touch inline-flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-green-500 text-white rounded-full font-black text-base sm:text-lg lg:text-xl hover:bg-green-600 transition-[background-color,transform,box-shadow] shadow-2xl justify-center focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 outline-none"
@@ -458,6 +539,74 @@ export default function Home() {
             >
               {t("business.cta_doc_link")}
             </Link>
+          </div>
+        </div>
+      </MotionSection>
+
+      {/* --- DESKTOP SUITE SHOWCASE --- */}
+      <MotionSection id="desktop" className="py-20 lg:py-32" aria-labelledby="desktop-title">
+        <div className="grid items-center gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+          <div className="space-y-8 text-center lg:text-left">
+            <div className="inline-flex items-center gap-3 rounded-full border border-orange-500/20 bg-orange-500/10 px-5 py-2 text-xs font-black uppercase tracking-[0.25em] text-orange-500">
+              <MonitorDown className="h-4 w-4" aria-hidden="true" />
+              MikhmoAI Desktop V7
+            </div>
+            <div className="space-y-6">
+              <h2 id="desktop-title" className="text-[clamp(2.5rem,6vw,5.5rem)] font-black uppercase italic leading-[0.88] tracking-tighter text-foreground">
+                Votre réseau. <span className="text-gradient">Sur grand écran.</span>
+              </h2>
+              <p className="text-xl font-medium leading-tight text-muted-foreground lg:text-2xl">
+                La suite MikhmoAI est maintenant disponible sur ordinateur. Supervisez vos topologies, cartes terrain, terminaux RouterOS et ventes Hotspot depuis un espace de travail complet.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-3 lg:justify-start" aria-label="Fonctionnalités Desktop">
+              {["Topologie interactive", "Terminal SSH", "Cartographie WISP", "Portail captif"].map((feature) => (
+                <span key={feature} className="rounded-full border border-border/60 bg-muted/20 px-4 py-2 text-sm font-bold text-foreground">{feature}</span>
+              ))}
+            </div>
+            <div className="flex flex-col justify-center gap-4 pt-2 sm:flex-row lg:justify-start">
+              <a href="/api/download/latest?platform=windows&arch=x64" className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0b62d6] px-7 py-4 font-black text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-600">
+                <MonitorDown className="h-5 w-5" /> Télécharger pour Windows
+              </a>
+              <a href="/api/download/latest?platform=linux&arch=x64" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-foreground px-7 py-4 font-black text-background transition hover:-translate-y-1">
+                <PackageOpen className="h-5 w-5" /> Télécharger pour Linux
+              </a>
+            </div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Windows 10/11 · Linux x86_64 · Mise à jour automatique</p>
+          </div>
+
+          <div className="relative mx-auto w-full max-w-[900px] pb-20 sm:pb-28" role="img" aria-label="MikhmoAI Desktop affiché sur un ordinateur de bureau et un ordinateur portable">
+            <div className="absolute inset-x-[8%] top-[8%] h-[70%] rounded-full bg-orange-500/20 blur-[110px]" aria-hidden="true" />
+
+            {/* Desktop monitor */}
+            <div className="relative rounded-[1.4rem] border border-white/10 bg-[#151820] p-2 shadow-[0_45px_100px_-30px_rgba(0,0,0,0.65)] sm:rounded-[2rem] sm:p-3">
+              <div className="flex h-7 items-center gap-1.5 rounded-t-xl bg-[#252934] px-4 sm:h-9">
+                <span className="h-2 w-2 rounded-full bg-red-400" />
+                <span className="h-2 w-2 rounded-full bg-yellow-400" />
+                <span className="h-2 w-2 rounded-full bg-green-400" />
+                <span className="ml-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white/40">MikhmoAI Desktop</span>
+              </div>
+              <div className="relative aspect-[16/9] overflow-hidden rounded-b-xl bg-white">
+                <Image src="/mikhmonpro-desktop-dashboard.png" alt="Tableau de bord MikhmoAI Desktop avec monitoring MikroTik, trafic, Hotspot et finances" fill sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover" priority />
+              </div>
+            </div>
+            <div className="relative mx-auto h-16 w-20 bg-gradient-to-b from-[#252934] to-[#11131a] sm:h-20 sm:w-28" aria-hidden="true" />
+            <div className="relative mx-auto h-3 w-52 rounded-full bg-[#171a22] shadow-xl sm:w-72" aria-hidden="true" />
+
+            {/* Laptop mockup */}
+            <motion.div initial={{ opacity: 0, x: 30, y: 20 }} whileInView={{ opacity: 1, x: 0, y: 0 }} viewport={{ once: true }} className="absolute -bottom-2 right-0 w-[46%] sm:-right-5 sm:w-[48%]">
+              <div className="rounded-t-xl border-[5px] border-[#20232c] bg-[#20232c] p-1 shadow-[0_30px_70px_-20px_rgba(0,0,0,0.7)] sm:rounded-t-2xl sm:border-[8px]">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-sm bg-white">
+                  <Image src="/mikhmonpro-desktop-dashboard.png" alt="Application MikhmoAI sur ordinateur portable" fill sizes="(max-width: 1024px) 45vw, 28vw" className="object-cover object-left" />
+                </div>
+              </div>
+              <div className="relative -left-[5%] h-3 w-[110%] rounded-b-xl bg-gradient-to-b from-[#4b4f59] to-[#1b1e25] shadow-lg sm:h-4">
+                <div className="mx-auto h-1 w-1/4 rounded-b bg-black/30" />
+              </div>
+            </motion.div>
+            <div className="absolute bottom-3 left-2 hidden items-center gap-2 rounded-2xl border border-border/50 bg-background/90 px-4 py-3 text-sm font-black shadow-xl backdrop-blur-xl sm:flex">
+              <Laptop className="h-5 w-5 text-orange-500" /> Une seule suite, tous vos écrans
+            </div>
           </div>
         </div>
       </MotionSection>
@@ -486,42 +635,49 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col xl:flex-row justify-center gap-6 xl:gap-8 relative z-10 items-center w-full" role="group" aria-label="Final download actions">
-            {/* Téléchargement direct APK ARM64 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 justify-center gap-6 xl:gap-8 relative z-10 items-stretch w-full" role="group" aria-label="Téléchargements MikhmoAI pour Windows, Linux et Android">
+            {/* Windows Desktop */}
             <motion.a
-              href="/api/download/latest?arch=arm64"
-              onClick={(e) => handleDownload(e as unknown as React.MouseEvent<HTMLAnchorElement>, 'arm64')}
+              href="/api/download/latest?platform=windows&arch=x64"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-white text-black rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(255,255,255,0.4)] transition-[transform,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
-              role="button"
-              aria-label={t("download.arch_arm64_aria")}
+              className="mobile-touch px-8 py-6 sm:px-10 sm:py-8 bg-[#0b62d6] text-white rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(37,99,235,0.55)] transition-[transform,box-shadow] w-full focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 outline-none"
+              aria-label="Télécharger la dernière version de MikhmoAI Desktop pour Windows"
             >
-              <span className="text-xs uppercase opacity-40 font-black tracking-[0.3em] leading-none">{t("download.arch_arm64")}</span>
-              <span className="flex items-center gap-2.5 text-2xl sm:text-3xl lg:text-4xl tracking-tighter">
-                <Download className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
-                {t("nav.download")}
-              </span>
-              <span className="text-[10px] font-bold opacity-30 tracking-wider uppercase leading-none">{t("download.arch_arm64_desc")}</span>
+              <span className="text-xs uppercase opacity-70 font-black tracking-[0.3em] leading-none">Desktop x64</span>
+              <span className="flex items-center gap-2.5 text-2xl sm:text-3xl tracking-tighter"><MonitorDown className="w-7 h-7" /> Windows</span>
+              <span className="text-[10px] font-bold opacity-70 tracking-wider uppercase leading-none">Windows 10 / 11 · dernière version</span>
             </motion.a>
 
-            {/* Téléchargement direct APK ARM32 */}
+            {/* Linux Desktop */}
             <motion.a
-              href="/api/download/latest?arch=arm32"
-              onClick={(e) => handleDownload(e as unknown as React.MouseEvent<HTMLAnchorElement>, 'arm32')}
+              href="/api/download/latest?platform=linux&arch=x64"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-black/40 text-white border border-white/20 rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-2xl transition-[transform,background-color,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 outline-none"
-              role="button"
-              aria-label={t("download.arch_arm32_aria")}
+              className="mobile-touch px-8 py-6 sm:px-10 sm:py-8 bg-orange-500 text-black rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(249,115,22,0.5)] transition-[transform,box-shadow] w-full focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 outline-none"
+              aria-label="Télécharger la dernière version de MikhmoAI Desktop pour Linux"
             >
-              <span className="text-xs uppercase opacity-40 font-black tracking-[0.3em] leading-none">{t("download.arch_arm32")}</span>
-              <span className="flex items-center gap-2.5 text-2xl sm:text-3xl lg:text-4xl tracking-tighter">
-                <Download className="w-7 h-7 sm:w-8 sm:h-8" aria-hidden="true" />
-                {t("nav.download")}
-              </span>
-              <span className="text-[10px] font-bold opacity-30 tracking-wider uppercase leading-none">{t("download.arch_arm32_desc")}</span>
+              <span className="text-xs uppercase opacity-60 font-black tracking-[0.3em] leading-none">Desktop x86_64</span>
+              <span className="flex items-center gap-2.5 text-2xl sm:text-3xl tracking-tighter"><PackageOpen className="w-7 h-7" /> Linux</span>
+              <span className="text-[10px] font-bold opacity-60 tracking-wider uppercase leading-none">AppImage / DEB / RPM</span>
             </motion.a>
+
+            {/* Android Mobile : le choix d’architecture se fait dans le popup. */}
+            <motion.button
+              type="button"
+              onClick={() => setIsMobileModalOpen(true)}
+              whileHover={{ scale: 1.03, y: -4 }}
+              whileTap={{ scale: 0.98 }}
+              className="mobile-touch w-full cursor-pointer rounded-[2.5rem] bg-white px-8 py-6 font-black text-black shadow-[0_30px_60px_-15px_rgba(255,255,255,0.4)] transition-[transform,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:px-10 sm:py-8"
+              aria-label="Télécharger MikhmoAI Mobile pour Android"
+            >
+              <span className="block text-xs font-black uppercase leading-none tracking-[0.3em] opacity-40">Android Mobile</span>
+              <span className="mt-2 flex items-center justify-center gap-2.5 text-2xl tracking-tighter sm:text-3xl lg:text-4xl">
+                <Smartphone className="h-7 w-7 sm:h-8 sm:w-8" aria-hidden="true" />
+                Télécharger
+              </span>
+              <span className="mt-2 block text-[10px] font-bold uppercase leading-none tracking-wider opacity-30">Choix ARM64 ou ARM32</span>
+            </motion.button>
 
             {/* Boutique / Activation de licence */}
             <motion.a
@@ -530,7 +686,7 @@ export default function Home() {
               rel="noopener noreferrer"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
-              className="mobile-touch relative group px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-yellow-400 text-black rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(250,204,21,0.4)] transition-[transform,box-shadow] w-full sm:w-auto focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 outline-none"
+              className="mobile-touch relative group px-8 py-6 sm:px-10 sm:py-8 bg-yellow-400 text-black rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(250,204,21,0.4)] transition-[transform,box-shadow] w-full focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 outline-none"
               role="button"
               aria-label={t("download.store_aria")}
             >
@@ -548,7 +704,7 @@ export default function Home() {
             {/* App Store — coming soon */}
             <motion.div
               whileHover={{ scale: 1.01 }}
-              className="mobile-touch px-8 py-6 sm:px-12 sm:py-8 lg:px-16 lg:py-10 bg-black/20 text-white/40 border border-white/10 rounded-[2.5rem] font-black flex flex-col items-center gap-2 cursor-not-allowed backdrop-blur-3xl shadow-2xl transition-transform w-full sm:w-auto opacity-50 select-none"
+              className="mobile-touch px-8 py-6 sm:px-10 sm:py-8 bg-black/20 text-white/40 border border-white/10 rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-not-allowed backdrop-blur-3xl shadow-2xl transition-transform w-full opacity-50 select-none"
               role="status"
               aria-live="polite"
               aria-label={t("download.ios_aria")}
@@ -578,6 +734,8 @@ export default function Home() {
         </div>
       </MotionSection>
       <ApkInstallModal isOpen={isApkModalOpen} onClose={() => setIsApkModalOpen(false)} />
+      <DesktopDownloadModal isOpen={isDesktopModalOpen} onClose={() => setIsDesktopModalOpen(false)} />
+      <MobileDownloadModal isOpen={isMobileModalOpen} onClose={() => setIsMobileModalOpen(false)} onSelect={startMobileDownload} />
     </MainLayout>
   );
 }

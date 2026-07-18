@@ -22,10 +22,10 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
     const getWhatsAppLink = () => {
         const textMap = {
-            fr: "Bonjour, je souhaite avoir des informations sur MikhmonPro.",
-            en: "Hello, I would like to get information about MikhmonPro.",
-            fil: "Kamusta, nais ko pong magtanong tungkol sa MikhmonPro.",
-            id: "Halo, saya ingin menanyakan informasi tentang MikhmonPro."
+            fr: "Bonjour, je souhaite avoir des informations sur MikhmoAI.",
+            en: "Hello, I would like to get information about MikhmoAI.",
+            fil: "Kamusta, nais ko pong magtanong tungkol sa MikhmoAI.",
+            id: "Halo, saya ingin menanyakan informasi tentang MikhmoAI."
         };
         const msg = encodeURIComponent(textMap[language] || textMap.en);
         return `https://wa.me/22996937864?text=${msg}`;
@@ -64,6 +64,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                 { name: t("nav.features"), href: "#features", ariaLabel: t("nav.features") },
                                 { name: t("nav.ai"), href: "#ai", ariaLabel: t("nav.ai") },
                                 { name: t("nav.business"), href: "#business", ariaLabel: t("nav.business") },
+                                { name: "Desktop", href: "#desktop", ariaLabel: "Application MikhmoAI Desktop" },
+                                { name: "Solutions", href: "/solutions", ariaLabel: "Solutions de gestion MikroTik" },
+                                { name: "Guides", href: "/blog", ariaLabel: "Guides et tutoriels MikroTik" },
                                 { name: t("nav.support"), href: "/support", ariaLabel: t("nav.support") }
                             ].map((link) => (
                                 <Link
@@ -139,6 +142,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                     { name: t("nav.features"), id: "features", isPage: false, ariaLabel: t("nav.features") },
                                     { name: t("nav.ai"), id: "ai", isPage: false, ariaLabel: t("nav.ai") },
                                     { name: t("nav.business"), id: "business", isPage: false, ariaLabel: t("nav.business") },
+                                    { name: "Desktop", id: "desktop", isPage: false, ariaLabel: "Application MikhmoAI Desktop" },
+                                    { name: "Solutions", id: "solutions", isPage: true, ariaLabel: "Solutions de gestion MikroTik" },
+                                    { name: "Guides", id: "blog", isPage: true, ariaLabel: "Guides et tutoriels MikroTik" },
                                     { name: t("nav.support"), id: "support", isPage: true, ariaLabel: t("nav.support") }
                                 ].map((item) => (
                                     <Link
@@ -194,6 +200,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             { label: t("footer.terms"), href: "/terms", aria: t("footer.terms_aria") },
                             { label: t("footer.support"), href: "/support", aria: t("footer.support_aria") },
                             { label: t("footer.status"), href: "/status", aria: t("footer.status_aria") },
+                            { label: "Solutions", href: "/solutions", aria: "Découvrir les solutions MikroTik" },
+                            { label: "Guides", href: "/blog", aria: "Lire les guides MikroTik" },
                         ] as const).map(item => (
                             <Link key={item.label} href={item.href} className="hover:text-primary transition-colors hover:translate-y-[-1px] dark:hover:text-primary focus-visible:text-primary focus-visible:ring-2 focus-visible:ring-primary/20 focus-visible:ring-offset-2 outline-none rounded-md" aria-label={item.aria}>
                                 {item.label}
@@ -251,7 +259,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                         Language / Langue
                                     </h4>
                                     <p className="text-xs font-bold text-foreground">
-                                        MikhmonPro International
+                                        MikhmoAI International
                                     </p>
                                 </div>
                             </div>
