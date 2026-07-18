@@ -59,7 +59,7 @@ export default function PrivacyPage() {
                 </SubSection>
 
                 <SubSection title="2.4 Statistiques agrégées du site web">
-                    <p>Le site mikhmoai.com comptabilise les téléchargements lancés et les visites uniques quotidiennes par pays. L’adresse IP n’est jamais enregistrée : elle est immédiatement transformée en empreinte irréversible, renouvelée chaque jour et supprimée des données de déduplication après sept jours. Seuls les totaux agrégés par pays sont affichés publiquement.</p>
+                    <p>Le site mikhmoai.com comptabilise les téléchargements lancés et les visites uniques quotidiennes par pays. Le pays est approximativement déduit du fuseau horaire fourni par le navigateur. L’adresse IP n’est jamais enregistrée : elle est immédiatement transformée en empreinte irréversible, renouvelée chaque jour et supprimée des données de déduplication après sept jours. Seuls les totaux agrégés par pays sont affichés publiquement.</p>
                 </SubSection>
 
                 <SubSection title="2.5 Données non collectées">

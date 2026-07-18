@@ -25,7 +25,13 @@ export function GlobalImpact() {
     let active = true;
     const load = async (method: "GET" | "POST") => {
       try {
-        const response = await fetch("/api/stats", { method, cache: "no-store" });
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const response = await fetch("/api/stats", {
+          method,
+          cache: "no-store",
+          headers: method === "POST" ? { "Content-Type": "application/json" } : undefined,
+          body: method === "POST" ? JSON.stringify({ timezone }) : undefined,
+        });
         if (active && response.ok) setStats(await response.json());
       } catch {}
     };

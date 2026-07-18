@@ -7,7 +7,9 @@ export function GET() {
   return NextResponse.json(publicStats(), { headers: { "Cache-Control": "no-store" } });
 }
 
-export function POST(request: NextRequest) {
-  const detectedCountry = recordVisit(request);
+export async function POST(request: NextRequest) {
+  const body = await request.json().catch(() => ({})) as { timezone?: unknown };
+  const timezone = typeof body.timezone === "string" ? body.timezone : undefined;
+  const detectedCountry = recordVisit(request, timezone);
   return NextResponse.json({ ...publicStats(), detectedCountry }, { headers: { "Cache-Control": "no-store" } });
 }

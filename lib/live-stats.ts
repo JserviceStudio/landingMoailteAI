@@ -3,6 +3,7 @@ import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import type { NextRequest } from "next/server";
+import { getCountryForTimezone } from "countries-and-timezones";
 
 type Platform = "android" | "windows" | "linux" | "macos";
 type StatsFile = {
@@ -43,11 +44,12 @@ function writeStats(stats: StatsFile) {
   fs.renameSync(temporary, file);
 }
 
-function countryFromRequest(request: NextRequest) {
+function countryFromRequest(request: NextRequest, timezone?: string) {
   for (const header of ["x-country-code", "x-hcdn-country", "x-visitor-country", "cf-ipcountry", "x-vercel-ip-country", "cloudfront-viewer-country"]) {
     const value = request.headers.get(header)?.trim().toUpperCase();
     if (value && /^[A-Z]{2}$/.test(value) && value !== "XX") return value;
   }
+  if (timezone && timezone.length <= 64) return getCountryForTimezone(timezone)?.id ?? "";
   return "";
 }
 
@@ -66,7 +68,7 @@ export function recordDownload(platform: Platform) {
   writeStats(stats);
 }
 
-export function recordVisit(request: NextRequest) {
+export function recordVisit(request: NextRequest, timezone?: string) {
   const stats = readStats();
   const day = new Date().toISOString().slice(0, 10);
   const hash = visitorHash(request, day);
@@ -75,7 +77,7 @@ export function recordVisit(request: NextRequest) {
     seenToday.push(hash);
     stats.visits.dailyHashes[day] = seenToday;
     stats.visits.total += 1;
-    const country = countryFromRequest(request);
+    const country = countryFromRequest(request, timezone);
     if (country) stats.visits.countries[country] = (stats.visits.countries[country] ?? 0) + 1;
   }
   const cutoff = new Date();
@@ -83,7 +85,7 @@ export function recordVisit(request: NextRequest) {
   const cutoffDay = cutoff.toISOString().slice(0, 10);
   for (const storedDay of Object.keys(stats.visits.dailyHashes)) if (storedDay < cutoffDay) delete stats.visits.dailyHashes[storedDay];
   writeStats(stats);
-  return countryFromRequest(request) || null;
+  return countryFromRequest(request, timezone) || null;
 }
 
 export function publicStats() {
