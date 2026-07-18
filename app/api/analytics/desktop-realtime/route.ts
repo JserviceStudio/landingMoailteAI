@@ -27,13 +27,23 @@ function corsHeaders() {
 
 function analyticsClient() {
   const encodedCredentials = process.env.GA4_SERVICE_ACCOUNT_JSON_BASE64;
-  if (!encodedCredentials) return new BetaAnalyticsDataClient();
+  if (encodedCredentials) {
+    const credentials = JSON.parse(Buffer.from(encodedCredentials, "base64").toString("utf8")) as {
+      client_email: string;
+      private_key: string;
+    };
+    return new BetaAnalyticsDataClient({ credentials });
+  }
 
-  const credentials = JSON.parse(Buffer.from(encodedCredentials, "base64").toString("utf8")) as {
-    client_email: string;
-    private_key: string;
-  };
-  return new BetaAnalyticsDataClient({ credentials });
+  const clientEmail = process.env.GA4_CLIENT_EMAIL;
+  const privateKey = process.env.GA4_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  if (clientEmail && privateKey) {
+    return new BetaAnalyticsDataClient({
+      credentials: { client_email: clientEmail, private_key: privateKey },
+    });
+  }
+
+  return new BetaAnalyticsDataClient();
 }
 
 export function OPTIONS() {
