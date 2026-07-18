@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google-analytics/data": "^6.1.0",
     "clsx": "^2.1.1",
     "countries-and-timezones": "^3.9.0",
     "d3-geo": "^3.1.1",
