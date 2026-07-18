@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
+import "flag-icons/css/flag-icons.min.css";
 
 // Hostinger CDN previously kept prerendered HTML from an older deployment
 // while the corresponding hashed Next.js chunks had already been removed.

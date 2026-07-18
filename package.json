@@ -13,6 +13,7 @@
     "countries-and-timezones": "^3.9.0",
     "d3-geo": "^3.1.1",
     "firebase": "^12.9.0",
+    "flag-icons": "^7.5.0",
     "framer-motion": "12.34.3",
     "lucide-react": "^0.563.0",
     "motion-dom": "12.34.3",

@@ -14,10 +14,6 @@ type Stats = {
 
 const initialStats: Stats = { downloads: { total: 0, platforms: {} }, visits: { total: 0, countries: [] } };
 
-function flag(code: string) {
-  return code.toUpperCase().replace(/./g, (letter) => String.fromCodePoint(127397 + letter.charCodeAt(0)));
-}
-
 export function GlobalImpact() {
   const [stats, setStats] = useState<Stats>(initialStats);
 
@@ -73,13 +69,13 @@ export function GlobalImpact() {
         <div className="mt-12 overflow-hidden rounded-[2.5rem] border border-border/60 bg-background p-4 sm:p-8">
           <svg viewBox="0 0 960 470" role="img" aria-label="Carte mondiale des pays visiteurs" className="h-auto w-full">
             <path d={map.landPath} className="fill-muted stroke-border" strokeWidth="0.7" />
-            {countryPoints.map((country) => <g key={country.code} transform={`translate(${country.x} ${country.y})`}><circle r={Math.min(7 + Math.log2(country.count + 1) * 3, 20)} className="fill-primary/25 stroke-primary" strokeWidth="2" /><text y="4" textAnchor="middle" fontSize="14" aria-label={`${country.name}: ${country.count} visiteurs`}>{flag(country.code)}</text></g>)}
+            {countryPoints.map((country) => <g key={country.code} transform={`translate(${country.x} ${country.y})`} aria-label={`${country.name}: ${country.count} visiteurs`}><circle r={Math.min(10 + Math.log2(country.count + 1) * 3, 22)} className="fill-background stroke-primary" strokeWidth="2" /><foreignObject x="-11" y="-8" width="22" height="16"><span title={`${country.name} — ${country.count} visiteurs`} className={`fi fi-${country.code.toLowerCase()} block h-4 w-[22px] overflow-hidden rounded-sm shadow-sm`} /></foreignObject></g>)}
           </svg>
           {!countryPoints.length && <p className="pb-5 text-center text-sm font-semibold text-muted-foreground">Les premiers pays apparaîtront ici au fil des nouvelles visites.</p>}
         </div>
 
         <div className="mt-6 overflow-hidden rounded-full border border-border/60 bg-background py-3" aria-label="Pays visiteurs">
-          {countryPoints.length ? <div className="flag-ribbon flex w-max gap-3 px-4 motion-reduce:animate-none">{[...countryPoints, ...countryPoints].map((country, index) => <span key={`${country.code}-${index}`} className="inline-flex items-center gap-2 rounded-full bg-muted/30 px-4 py-2 text-sm font-black"><span className="text-xl">{flag(country.code)}</span>{country.name}<span className="text-primary">{country.count}</span></span>)}</div> : <p className="px-5 text-center text-sm text-muted-foreground">Ruban mondial en attente des premières données</p>}
+          {countryPoints.length ? <div className="flag-ribbon flex w-max gap-3 px-4 motion-reduce:animate-none">{[...countryPoints, ...countryPoints].map((country, index) => <span key={`${country.code}-${index}`} title={`${country.name} — ${country.count} visiteurs`} className="inline-flex items-center gap-2 rounded-full bg-muted/30 px-4 py-2 text-sm font-black"><span className={`fi fi-${country.code.toLowerCase()} h-4 overflow-hidden rounded-sm shadow-sm`} />{country.name}<span className="text-primary">{country.count}</span></span>)}</div> : <p className="px-5 text-center text-sm text-muted-foreground">Ruban mondial en attente des premières données</p>}
         </div>
       </div>
     </section>
