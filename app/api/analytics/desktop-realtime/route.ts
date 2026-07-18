@@ -36,7 +36,14 @@ function analyticsClient() {
   }
 
   const clientEmail = process.env.GA4_CLIENT_EMAIL;
-  const privateKey = process.env.GA4_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  let privateKey = process.env.GA4_PRIVATE_KEY?.trim();
+  if (privateKey && privateKey.length > 1) {
+    const wrappedInQuotes =
+      (privateKey.startsWith('"') && privateKey.endsWith('"')) ||
+      (privateKey.startsWith("'") && privateKey.endsWith("'"));
+    if (wrappedInQuotes) privateKey = privateKey.slice(1, -1);
+    privateKey = privateKey.replace(/\\\\n/g, "\n").replace(/\\n/g, "\n");
+  }
   if (clientEmail && privateKey) {
     return new BetaAnalyticsDataClient({
       credentials: { client_email: clientEmail, private_key: privateKey },
