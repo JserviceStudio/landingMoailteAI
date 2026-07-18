@@ -2,6 +2,12 @@ import type { Metadata } from "next";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 
+// Hostinger CDN previously kept prerendered HTML from an older deployment
+// while the corresponding hashed Next.js chunks had already been removed.
+// Dynamic HTML prevents that version mismatch; hashed static assets remain
+// immutable and cacheable by Next.js.
+export const dynamic = "force-dynamic";
+
 const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-outfit",

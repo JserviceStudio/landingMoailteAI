@@ -7,7 +7,7 @@ type Variant = "installer" | "portable";
 
 type ReleaseFile = {
   absolutePath: string;
-  publicPath: string;
+  relativePath: string;
   name: string;
   modifiedAt: number;
   version: number[];
@@ -72,6 +72,11 @@ function isPortable(file: string) {
   return normalized.includes("/portable/") || normalized.includes("portable");
 }
 
+function isInside(directory: string, file: string) {
+  const relative = path.relative(directory, file);
+  return relative !== "" && !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+
 export async function GET(request: NextRequest) {
   try {
     const requestedPlatform = request.nextUrl.searchParams.get("platform")?.toLowerCase();
@@ -83,7 +88,13 @@ export async function GET(request: NextRequest) {
     const variant: Variant = requestedVariant === "portable" ? "portable" : "installer";
     const requestedFormat = request.nextUrl.searchParams.get("format")?.toLowerCase() ?? "";
     const publicDir = path.join(process.cwd(), "public");
-    const releaseDir = path.join(publicDir, "downloads", platform);
+    // Production releases should live outside the deployed application so a
+    // new build cannot delete them. Keep /public/downloads as a local fallback.
+    const externalReleaseDir = process.env.MIKHMOAI_RELEASES_DIR?.trim();
+    const releasesRoot = externalReleaseDir
+      ? path.resolve(externalReleaseDir)
+      : path.join(publicDir, "downloads");
+    const releaseDir = path.join(releasesRoot, platform);
 
     // Android releases historically lived at the root of /public. Keep that
     // location supported while preferring the organized downloads directory.
@@ -99,10 +110,11 @@ export async function GET(request: NextRequest) {
       .filter((file) => !requestedFormat || path.basename(file).toLowerCase().endsWith(`.${requestedFormat.replace(/^\./, "")}`))
       .map((absolutePath) => {
         const name = path.basename(absolutePath);
+        const releaseIsExternal = Boolean(externalReleaseDir) && isInside(releasesRoot, absolutePath);
         return {
           absolutePath,
           name,
-          publicPath: path.relative(publicDir, absolutePath).split(path.sep).join("/"),
+          relativePath: path.relative(releaseIsExternal ? releasesRoot : publicDir, absolutePath).split(path.sep).join("/"),
           modifiedAt: fs.statSync(absolutePath).mtimeMs,
           version: extractVersion(name),
         };
@@ -113,7 +125,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           error: `Aucune version ${platform} disponible pour le moment.`,
-          expectedDirectory: `/public/downloads/${platform}`,
+          expectedDirectory: path.join(releasesRoot, platform),
           variant,
           supportedExtensions: platformExtensions[platform],
         },
@@ -122,17 +134,28 @@ export async function GET(request: NextRequest) {
     }
 
     const release = releases[0];
-    const forwardedHost = request.headers.get("x-forwarded-host");
-    const directHost = request.headers.get("host");
-    const protocol = request.headers.get("x-forwarded-proto") || "https";
-    let realHost = forwardedHost || directHost || "localhost:3000";
+    let downloadUrl: URL;
+    const externalPublicUrl = process.env.MIKHMOAI_RELEASES_URL?.trim();
 
-    if (realHost.includes("0.0.0.0")) {
-      const envUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-      realHost = envUrl.replace(/^https?:\//, "").replace(/^\//, "");
+    if (externalReleaseDir && externalPublicUrl && isInside(releasesRoot, release.absolutePath)) {
+      const baseUrl = externalPublicUrl.endsWith("/") ? externalPublicUrl : `${externalPublicUrl}/`;
+      downloadUrl = new URL(release.relativePath.split("/").map(encodeURIComponent).join("/"), baseUrl);
+    } else {
+      const forwardedHost = request.headers.get("x-forwarded-host");
+      const directHost = request.headers.get("host");
+      const protocol = request.headers.get("x-forwarded-proto") || "https";
+      let realHost = forwardedHost || directHost || "localhost:3000";
+
+      if (realHost.includes("0.0.0.0")) {
+        const envUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+        realHost = envUrl.replace(/^https?:\//, "").replace(/^\//, "");
+      }
+
+      downloadUrl = new URL(
+        `/${release.relativePath.split("/").map(encodeURIComponent).join("/")}`,
+        `${protocol}://${realHost}`,
+      );
     }
-
-    const downloadUrl = new URL(`/${release.publicPath}`, `${protocol}://${realHost}`);
     const response = NextResponse.redirect(downloadUrl);
     response.headers.set("X-Release-Platform", platform);
     response.headers.set("X-Release-File", release.name);

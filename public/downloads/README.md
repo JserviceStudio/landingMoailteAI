@@ -1,5 +1,9 @@
 # Fichiers de distribution MikhmoAI
 
+> En production, utilisez de préférence un dossier persistant extérieur au
+> projet. Consultez `docs/stockage-persistant-telechargements.md`. Le contenu
+> de ce dossier sert principalement au développement local.
+
 Déposez les versions publiées dans les dossiers suivants :
 
 - `windows/installer/` : `.exe`, `.msi` ou `.msix`
