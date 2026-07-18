@@ -52,17 +52,17 @@ export function GlobalImpact() {
   }), [map, stats.visits.countries]);
 
   return (
-    <section className="border-y border-white/10 bg-black/20 py-20" aria-labelledby="global-impact-title">
-      <div className="mx-auto max-w-7xl px-5 lg:px-10">
+    <section className="max-w-full overflow-hidden border-y border-white/10 bg-black/20 py-14 sm:py-20" aria-labelledby="global-impact-title">
+      <div className="mx-auto min-w-0 max-w-7xl px-3 sm:px-5 lg:px-10">
         <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <p className="flex items-center gap-2 font-black uppercase tracking-[0.2em] text-primary"><Radio className="h-4 w-4" /> Activité réelle</p>
-            <h2 id="global-impact-title" className="mt-4 text-4xl font-black tracking-tight sm:text-6xl">MikhmoAI grandit à travers le monde.</h2>
+            <h2 id="global-impact-title" className="mt-4 text-3xl font-black tracking-tight sm:text-6xl">MikhmoAI grandit à travers le monde.</h2>
             <p className="mt-5 max-w-3xl text-lg text-muted-foreground">Compteurs agrégés et actualisés automatiquement, sans conserver l’adresse IP des visiteurs.</p>
           </div>
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-3xl border border-border/60 bg-background p-6"><Download className="h-6 w-6 text-primary" /><strong className="mt-3 block text-4xl font-black tabular-nums">{stats.downloads.total.toLocaleString("fr-FR")}</strong><span className="text-sm text-muted-foreground">téléchargements lancés</span></div>
-            <div className="rounded-3xl border border-border/60 bg-background p-6"><Globe2 className="h-6 w-6 text-primary" /><strong className="mt-3 block text-4xl font-black tabular-nums">{stats.visits.countries.length}</strong><span className="text-sm text-muted-foreground">pays représentés</span></div>
+          <div className="grid min-w-0 grid-cols-1 gap-3 min-[420px]:grid-cols-2">
+            <div className="min-w-0 rounded-3xl border border-border/60 bg-background p-4 sm:p-6"><Download className="h-6 w-6 text-primary" /><strong className="mt-3 block text-3xl font-black tabular-nums sm:text-4xl">{stats.downloads.total.toLocaleString("fr-FR")}</strong><span className="text-sm text-muted-foreground">téléchargements lancés</span></div>
+            <div className="min-w-0 rounded-3xl border border-border/60 bg-background p-4 sm:p-6"><Globe2 className="h-6 w-6 text-primary" /><strong className="mt-3 block text-3xl font-black tabular-nums sm:text-4xl">{stats.visits.countries.length}</strong><span className="text-sm text-muted-foreground">pays représentés</span></div>
           </div>
         </div>
 

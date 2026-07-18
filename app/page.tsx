@@ -616,6 +616,9 @@ export default function Home() {
         </div>
       </MotionSection>
 
+      {/* La preuve sociale précède le dernier appel à l’action. */}
+      <GlobalImpact />
+
       {/* --- ELITE PRESTIGE CTA --- */}
       <MotionSection id="download" className="py-20 lg:py-32" aria-labelledby="download-title">
         <div className="relative p-6 sm:p-16 lg:p-28 xl:p-32 rounded-[2.5rem] sm:rounded-[4rem] lg:rounded-[6rem] overflow-hidden text-center space-y-12 sm:space-y-16 lg:space-y-20 shadow-[0_80px_160px_-40px_rgba(0,0,0,0.6)]" style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #000000 100%)' }} role="region" aria-label="Download final section">
@@ -751,7 +754,6 @@ export default function Home() {
           </div>
         </div>
       </MotionSection>
-      <GlobalImpact />
       <ApkInstallModal isOpen={isApkModalOpen} onClose={() => setIsApkModalOpen(false)} />
       <DesktopDownloadModal isOpen={isDesktopModalOpen} onClose={() => setIsDesktopModalOpen(false)} />
       <MobileDownloadModal isOpen={isMobileModalOpen} onClose={() => setIsMobileModalOpen(false)} onSelect={startMobileDownload} />

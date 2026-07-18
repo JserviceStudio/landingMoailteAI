@@ -148,8 +148,8 @@
     border-color: hsl(var(--md-outline-variant));
     -webkit-tap-highlight-color: transparent;
     box-sizing: border-box;
-    word-break: keep-all;
-    hyphens: none !important;
+    word-break: normal;
+    overflow-wrap: break-word;
   }
 
   body {
@@ -160,6 +160,11 @@
     overflow-x: hidden;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: var(--font-inter), sans-serif;
+  }
+
+  html {
+    max-width: 100%;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
