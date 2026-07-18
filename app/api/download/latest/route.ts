@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { recordDownload } from "@/lib/live-stats";
 
 type Platform = "android" | "windows" | "linux" | "macos";
 type Variant = "installer" | "portable";
@@ -157,6 +158,7 @@ export async function GET(request: NextRequest) {
       );
     }
     const response = NextResponse.redirect(downloadUrl);
+    recordDownload(platform);
     response.headers.set("X-Release-Platform", platform);
     response.headers.set("X-Release-File", release.name);
     response.headers.set("X-Release-Variant", variant);

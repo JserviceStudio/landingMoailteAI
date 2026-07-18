@@ -348,3 +348,12 @@
 .m3-animate-in {
   animation: m3-fade-up 0.36s cubic-bezier(0.05, 0.7, 0.1, 1) forwards;
 }
+
+@keyframes flag-ribbon-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.flag-ribbon {
+  animation: flag-ribbon-scroll 35s linear infinite;
+}

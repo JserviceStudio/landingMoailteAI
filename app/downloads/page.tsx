@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Apple, Download, FileArchive, MonitorDown, PackageOpen, Smartphone } from "lucide-react";
 import { Breadcrumbs, SeoLayout } from "@/components/layout/SeoLayout";
+import { GlobalImpact } from "@/components/analytics/GlobalImpact";
 
 export const metadata: Metadata = {
   title: "Télécharger MikhmoAI pour Windows, macOS, Linux et Android",
@@ -32,5 +33,5 @@ export default function DownloadsPage() {
     <div className="mt-12 max-w-4xl"><p className="font-black uppercase tracking-[0.22em] text-primary">Centre de téléchargement</p><h1 className="mt-5 text-5xl font-black tracking-tight sm:text-7xl">Choisissez la version adaptée à votre appareil.</h1><p className="mt-7 text-xl text-muted-foreground">Les boutons principaux utilisent automatiquement les installateurs recommandés. Les formats ci-dessous répondent aux besoins avancés.</p></div>
     <div className="mt-14 grid gap-7 lg:grid-cols-2">{groups.map(group => { const Icon=group.icon; return <section key={group.title} className="rounded-[2.5rem] border border-border/60 bg-card p-7 sm:p-10"><Icon className="h-10 w-10 text-primary" /><h2 className="mt-6 text-4xl font-black">{group.title}</h2><p className="mt-3 text-muted-foreground">{group.description}</p><a href={group.primary} className="mt-7 flex items-center justify-between rounded-2xl bg-primary px-6 py-5 font-black text-white"><span>{group.recommended}</span><Download className="h-5 w-5" /></a><div className="mt-6 space-y-3">{group.options.map(option => <a key={option.label} href={option.href} className="flex items-start gap-4 rounded-2xl border border-border/60 p-5 transition hover:border-primary/50 hover:bg-muted/20"><FileArchive className="mt-1 h-5 w-5 shrink-0 text-primary" /><span><strong className="block">{option.label}</strong><span className="mt-1 block text-sm text-muted-foreground">{option.note}</span></span></a>)}</div></section> })}</div>
     <section className="mt-8 rounded-[2.5rem] border border-border/60 bg-card p-7 sm:p-10"><Smartphone className="h-9 w-9 text-primary" /><h2 className="mt-5 text-3xl font-black">Android</h2><p className="mt-3 text-muted-foreground">ARM64 convient aux téléphones récents. ARM32 reste disponible pour les anciens appareils.</p><div className="mt-6 flex flex-wrap gap-3"><a href="/api/download/latest?platform=android&arch=arm64" className="rounded-full bg-foreground px-6 py-3 font-black text-background">Android ARM64</a><a href="/api/download/latest?platform=android&arch=arm32" className="rounded-full border border-border px-6 py-3 font-black">Android ARM32</a></div></section>
-  </main></SeoLayout>;
+  </main><GlobalImpact /></SeoLayout>;
 }

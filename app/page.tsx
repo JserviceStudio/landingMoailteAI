@@ -29,6 +29,7 @@ import ApkInstallModal from "@/components/ui/ApkInstallModal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import DesktopDownloadModal from "@/components/ui/DesktopDownloadModal";
 import MobileDownloadModal from "@/components/ui/MobileDownloadModal";
+import { GlobalImpact } from "@/components/analytics/GlobalImpact";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -750,6 +751,7 @@ export default function Home() {
           </div>
         </div>
       </MotionSection>
+      <GlobalImpact />
       <ApkInstallModal isOpen={isApkModalOpen} onClose={() => setIsApkModalOpen(false)} />
       <DesktopDownloadModal isOpen={isDesktopModalOpen} onClose={() => setIsDesktopModalOpen(false)} />
       <MobileDownloadModal isOpen={isMobileModalOpen} onClose={() => setIsMobileModalOpen(false)} onSelect={startMobileDownload} />

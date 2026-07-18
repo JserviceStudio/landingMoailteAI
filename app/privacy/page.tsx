@@ -58,7 +58,11 @@ export default function PrivacyPage() {
                     <p>Si vous activez le mode SaaS ou la boutique web, des données de synchronisation peuvent être échangées entre l'application et <strong className="text-foreground">votre propre serveur web</strong> (que vous configurez). MikhmoAI ne collecte pas ces données sur ses propres serveurs.</p>
                 </SubSection>
 
-                <SubSection title="2.4 Données non collectées">
+                <SubSection title="2.4 Statistiques agrégées du site web">
+                    <p>Le site mikhmoai.com comptabilise les téléchargements lancés et les visites uniques quotidiennes par pays. L’adresse IP n’est jamais enregistrée : elle est immédiatement transformée en empreinte irréversible, renouvelée chaque jour et supprimée des données de déduplication après sept jours. Seuls les totaux agrégés par pays sont affichés publiquement.</p>
+                </SubSection>
+
+                <SubSection title="2.5 Données non collectées">
                     <BulletList items={[
                         "Identifiants des utilisateurs finaux de votre Hotspot",
                         "Données de navigation ou cookies tiers",
@@ -77,6 +81,7 @@ export default function PrivacyPage() {
                     "Améliorer les fonctionnalités de l'application",
                     "Vous envoyer des communications relatives à votre compte (mises à jour, licences)",
                     "Répondre à vos demandes de support",
+                    "Produire des statistiques agrégées de visites et de téléchargements",
                 ]} />
             </Section>
 
