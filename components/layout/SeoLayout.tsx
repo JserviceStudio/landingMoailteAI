@@ -17,6 +17,7 @@ export function SeoLayout({ children }: { children: ReactNode }) {
             <Link href="/pour-techniciens" className="hover:text-foreground">Techniciens</Link>
             <Link href="/providers" className="hover:text-foreground">Entreprises</Link>
             <Link href="/blog" className="hover:text-foreground">Guides MikroTik</Link>
+            <Link href="/downloads" className="hover:text-foreground">Téléchargements</Link>
             <Link href="/support" className="hover:text-foreground">Support</Link>
             <Link href="/#download" className="rounded-full bg-primary px-5 py-3 text-primary-foreground hover:opacity-90">Télécharger</Link>
           </nav>
@@ -37,6 +38,7 @@ export function SeoLayout({ children }: { children: ReactNode }) {
             <Link href="/pour-debutants">Gestion simple</Link>
             <Link href="/pour-techniciens">Outils techniciens</Link>
             <Link href="/providers">Providers & API</Link>
+            <Link href="/downloads">Tous les téléchargements</Link>
             <Link href="/blog">Guides MikroTik</Link>
             <Link href="/support">Support et FAQ</Link>
           </div>

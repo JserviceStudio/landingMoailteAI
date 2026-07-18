@@ -17,7 +17,8 @@ import {
   ShoppingBag,
   MonitorDown,
   Laptop,
-  PackageOpen
+  PackageOpen,
+  Apple
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -50,13 +51,13 @@ export default function Home() {
           name: "MikhmoAI",
           alternateName: "MikhmonPro",
           applicationCategory: "NetworkApplication",
-          operatingSystem: "Android, Windows 10, Windows 11, Linux",
+          operatingSystem: "Android, Windows 10, Windows 11, macOS, Linux",
           description: "MikroTik Hotspot and Monitoring with AI : suite multiplateforme pour Hotspot, RADIUS, multi-site, VPN, topologie, monitoring et déploiement automatisé.",
           url: "https://mikhmoai.com",
           image: "https://mikhmoai.com/og-image.png",
           author: { "@type": "Organization", name: "Moailte Studio" },
           offers: { "@type": "Offer", price: "0", priceCurrency: "EUR", availability: "https://schema.org/InStock" },
-          featureList: ["Gestion Hotspot MikroTik", "Application Desktop Windows et Linux", "Topologie réseau interactive", "Génération de vouchers", "Monitoring en temps réel", "Accès VPN et SSH", "Compatible RouterOS v6 et v7"],
+          featureList: ["Gestion Hotspot MikroTik", "Application Desktop Windows, macOS et Linux", "Topologie réseau interactive", "Génération de vouchers", "Monitoring en temps réel", "Accès VPN et SSH", "Compatible RouterOS v6 et v7"],
         },
         {
           "@context": "https://schema.org",
@@ -571,8 +572,11 @@ export default function Home() {
               <a href="/api/download/latest?platform=linux&arch=x64" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-foreground px-7 py-4 font-black text-background transition hover:-translate-y-1">
                 <PackageOpen className="h-5 w-5" /> Télécharger pour Linux
               </a>
+              <a href="/api/download/latest?platform=macos&arch=arm64" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background px-7 py-4 font-black text-foreground transition hover:-translate-y-1">
+                <Apple className="h-5 w-5" /> Télécharger pour macOS
+              </a>
             </div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Windows 10/11 · Linux x86_64 · Mise à jour automatique</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Windows 10/11 · macOS · Linux x86_64 · Mise à jour automatique</p>
           </div>
 
           <div className="relative mx-auto w-full max-w-[900px] pb-20 sm:pb-28" role="img" aria-label="MikhmoAI Desktop affiché sur un ordinateur de bureau et un ordinateur portable">
@@ -635,7 +639,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 justify-center gap-6 xl:gap-8 relative z-10 items-stretch w-full" role="group" aria-label="Téléchargements MikhmoAI pour Windows, Linux et Android">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 justify-center gap-6 xl:gap-8 relative z-10 items-stretch w-full" role="group" aria-label="Téléchargements MikhmoAI pour Windows, macOS, Linux et Android">
             {/* Windows Desktop */}
             <motion.a
               href="/api/download/latest?platform=windows&arch=x64"
@@ -660,6 +664,19 @@ export default function Home() {
               <span className="text-xs uppercase opacity-60 font-black tracking-[0.3em] leading-none">Desktop x86_64</span>
               <span className="flex items-center gap-2.5 text-2xl sm:text-3xl tracking-tighter"><PackageOpen className="w-7 h-7" /> Linux</span>
               <span className="text-[10px] font-bold opacity-60 tracking-wider uppercase leading-none">AppImage / DEB / RPM</span>
+            </motion.a>
+
+            {/* macOS Desktop */}
+            <motion.a
+              href="/api/download/latest?platform=macos&arch=arm64"
+              whileHover={{ scale: 1.03, y: -4 }}
+              whileTap={{ scale: 0.98 }}
+              className="mobile-touch w-full rounded-[2.5rem] bg-zinc-100 px-8 py-6 font-black text-black shadow-[0_30px_60px_-15px_rgba(255,255,255,0.35)] transition-[transform,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:px-10 sm:py-8"
+              aria-label="Télécharger la dernière version de MikhmoAI Desktop pour macOS"
+            >
+              <span className="block text-xs font-black uppercase leading-none tracking-[0.3em] opacity-50">Desktop Apple Silicon</span>
+              <span className="mt-2 flex items-center justify-center gap-2.5 text-2xl tracking-tighter sm:text-3xl"><Apple className="h-7 w-7" /> macOS</span>
+              <span className="mt-2 block text-[10px] font-bold uppercase leading-none tracking-wider opacity-50">DMG / PKG · dernière version</span>
             </motion.a>
 
             {/* Android Mobile : le choix d’architecture se fait dans le popup. */}

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
-type Platform = "android" | "windows" | "linux";
+type Platform = "android" | "windows" | "linux" | "macos";
+type Variant = "installer" | "portable";
 
 type ReleaseFile = {
   absolutePath: string;
@@ -14,8 +15,9 @@ type ReleaseFile = {
 
 const platformExtensions: Record<Platform, string[]> = {
   android: [".apk"],
-  windows: [".exe", ".msi", ".msix"],
+  windows: [".exe", ".msi", ".msix", ".zip"],
   linux: [".appimage", ".deb", ".rpm", ".tar.gz"],
+  macos: [".dmg", ".pkg", ".zip"],
 };
 
 function walkFiles(directory: string): string[] {
@@ -65,13 +67,21 @@ function matchesArchitecture(filename: string, platform: Platform, arch: string)
   return true;
 }
 
+function isPortable(file: string) {
+  const normalized = file.toLowerCase().replaceAll("\\", "/");
+  return normalized.includes("/portable/") || normalized.includes("portable");
+}
+
 export async function GET(request: NextRequest) {
   try {
     const requestedPlatform = request.nextUrl.searchParams.get("platform")?.toLowerCase();
-    const platform: Platform = requestedPlatform === "windows" || requestedPlatform === "linux"
+    const platform: Platform = requestedPlatform === "windows" || requestedPlatform === "linux" || requestedPlatform === "macos"
       ? requestedPlatform
       : "android";
     const arch = request.nextUrl.searchParams.get("arch")?.toLowerCase() ?? "";
+    const requestedVariant = request.nextUrl.searchParams.get("variant")?.toLowerCase();
+    const variant: Variant = requestedVariant === "portable" ? "portable" : "installer";
+    const requestedFormat = request.nextUrl.searchParams.get("format")?.toLowerCase() ?? "";
     const publicDir = path.join(process.cwd(), "public");
     const releaseDir = path.join(publicDir, "downloads", platform);
 
@@ -85,6 +95,8 @@ export async function GET(request: NextRequest) {
     const releases: ReleaseFile[] = candidatePaths
       .filter((file) => matchesExtension(path.basename(file), platformExtensions[platform]))
       .filter((file) => matchesArchitecture(path.basename(file), platform, arch))
+      .filter((file) => platform === "android" || (variant === "portable" ? isPortable(file) : !isPortable(file)))
+      .filter((file) => !requestedFormat || path.basename(file).toLowerCase().endsWith(`.${requestedFormat.replace(/^\./, "")}`))
       .map((absolutePath) => {
         const name = path.basename(absolutePath);
         return {
@@ -102,6 +114,7 @@ export async function GET(request: NextRequest) {
         {
           error: `Aucune version ${platform} disponible pour le moment.`,
           expectedDirectory: `/public/downloads/${platform}`,
+          variant,
           supportedExtensions: platformExtensions[platform],
         },
         { status: 404 },
@@ -123,6 +136,7 @@ export async function GET(request: NextRequest) {
     const response = NextResponse.redirect(downloadUrl);
     response.headers.set("X-Release-Platform", platform);
     response.headers.set("X-Release-File", release.name);
+    response.headers.set("X-Release-Variant", variant);
     return response;
   } catch (error) {
     console.error("Error finding latest release:", error);

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { MonitorDown, PackageOpen, X, ShieldCheck } from "lucide-react";
+import Link from "next/link";
+import { Apple, MonitorDown, PackageOpen, X, ShieldCheck } from "lucide-react";
 
 type DesktopDownloadModalProps = {
   isOpen: boolean;
@@ -40,7 +41,7 @@ export default function DesktopDownloadModal({ isOpen, onClose }: DesktopDownloa
           <p className="mt-3 text-base text-white/60 sm:text-lg">Le bouton télécharge automatiquement la version la plus récente disponible.</p>
         </div>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+        <div className="mt-8 grid gap-4 sm:grid-cols-3">
           <a href="/api/download/latest?platform=windows&arch=x64" onClick={onClose} className="group rounded-[1.7rem] bg-blue-600 p-6 transition hover:-translate-y-1 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
             <MonitorDown className="h-9 w-9" />
             <p className="mt-8 text-2xl font-black">Windows</p>
@@ -53,11 +54,20 @@ export default function DesktopDownloadModal({ isOpen, onClose }: DesktopDownloa
             <p className="mt-1 text-sm font-semibold text-black/60">AppImage · DEB · RPM</p>
             <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Télécharger →</span>
           </a>
+          <a href="/api/download/latest?platform=macos&arch=arm64" onClick={onClose} className="group rounded-[1.7rem] bg-white p-6 text-black transition hover:-translate-y-1 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <Apple className="h-9 w-9" />
+            <p className="mt-8 text-2xl font-black">macOS</p>
+            <p className="mt-1 text-sm font-semibold text-black/60">Apple Silicon · macOS</p>
+            <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Télécharger →</span>
+          </a>
         </div>
 
         <div className="mt-6 flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm text-white/60">
           <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-green-400" />
           <p>Installez uniquement les fichiers distribués depuis mikhmoai.com et vérifiez leur version avant installation.</p>
+        </div>
+        <div className="mt-5 text-center">
+          <Link href="/downloads" onClick={onClose} className="text-sm font-black text-blue-300 underline underline-offset-4 hover:text-blue-200">Versions portables et autres formats</Link>
         </div>
       </div>
     </div>
