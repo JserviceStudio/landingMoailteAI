@@ -350,6 +350,61 @@ export default function Home() {
         </div>
       </MotionSection>
 
+      <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="webapp-title">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-sky-400/20 bg-white text-slate-950 shadow-[0_45px_120px_-70px_rgba(14,165,233,0.7)] dark:bg-[#090d12] dark:text-white">
+          <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:p-14 xl:p-16">
+            <div>
+              <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-sky-600 dark:text-sky-200">
+                <Globe className="h-4 w-4" aria-hidden="true" />
+                Nouvelle application web
+              </div>
+              <h2 id="webapp-title" className="mt-6 max-w-4xl text-4xl font-black leading-none sm:text-6xl lg:text-7xl">
+                Mikhmon Online, TiketMOMO et MikhmoAI accessibles partout.
+              </h2>
+              <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-white/68 sm:text-xl">
+                Ouvrez <span className="font-black text-slate-950 dark:text-white">app.mikhmo.tech</span> depuis iPhone, Android, PC ou tablette. Retrouvez la stabilité et la confiance de Mikhmon en ligne, avec une expérience plus puissante et optimisée pour 2026.
+              </p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-950 px-7 py-4 font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-sky-100">
+                  <Globe className="h-5 w-5" aria-hidden="true" />
+                  Ouvrir app.mikhmo.tech
+                </a>
+                <Link href="/solutions/mikhmon-online-application-web" className="inline-flex items-center justify-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-7 py-4 font-black text-slate-950 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/15">
+                  Découvrir l’app web
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="grid gap-4">
+              <div className="rounded-[1.5rem] border border-slate-200 bg-slate-50 p-5 dark:border-white/10 dark:bg-white/[0.06]">
+                <div className="flex items-center gap-3">
+                  <Smartphone className="h-7 w-7 text-sky-500" aria-hidden="true" />
+                  <h3 className="text-2xl font-black">Idéal pour les utilisateurs iPhone</h3>
+                </div>
+                <p className="mt-3 text-base leading-relaxed text-slate-600 dark:text-white/62">Pas d’APK à installer : ouvrez le navigateur, connectez-vous et continuez à gérer Mikhmon Online, TiketMOMO et vos fonctions avancées.</p>
+              </div>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {[
+                  { title: "Mikhmon Online", text: "Gestion Hotspot dans le navigateur." },
+                  { title: "TiketMOMO", text: "Vente de tickets WiFi par Mobile Money." },
+                  { title: "Partout", text: "iPhone, Android, PC, tablette." },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-[1.25rem] border border-slate-200 bg-white p-5 dark:border-white/10 dark:bg-black/20">
+                    <p className="text-xl font-black">{item.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-white/58">{item.text}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Link href="/blog/mikhmon-online-iphone" className="rounded-2xl border border-slate-200 bg-slate-50 p-5 font-black text-slate-950 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/10">Guide iPhone</Link>
+                <Link href="/blog/continuer-utiliser-mikhmon-en-ligne" className="rounded-2xl border border-slate-200 bg-slate-50 p-5 font-black text-slate-950 transition hover:bg-slate-100 dark:border-white/10 dark:bg-white/[0.06] dark:text-white dark:hover:bg-white/10">Mikhmon en ligne 2026</Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </MotionSection>
+
       {/* --- AI MOAILTE EXPERIENCE --- */}
       <MotionSection id="ai" className="py-16 lg:py-24" aria-labelledby="ai-title">
         <div className="relative glass p-6 sm:p-12 lg:p-20 xl:p-28 rounded-[3rem] sm:rounded-[4.5rem] lg:rounded-[5.5rem] border-border bg-gradient-to-br from-primary/5 via-transparent to-accent/5 overflow-hidden" role="region" aria-label="AI Section">
