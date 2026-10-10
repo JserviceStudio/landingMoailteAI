@@ -47,7 +47,11 @@ export default async function BlogPostPage({ params }: Props) {
             <p className="mt-12 font-black uppercase tracking-[0.22em] text-primary">{post.eyebrow}</p>
             <h1 className="mt-5 text-5xl font-black tracking-tight sm:text-7xl">{post.title}</h1>
             <p className="mt-7 text-xl text-muted-foreground sm:text-2xl">{post.intro}</p>
-            <div className="mt-7 flex flex-wrap gap-4 text-sm font-bold text-muted-foreground"><span>Publié le 17 juillet 2026</span><span>•</span><span>{post.readingTime} de lecture</span></div>
+            <div className="mt-7 flex flex-wrap gap-4 text-sm font-bold text-muted-foreground">
+              <span>Publié le {new Intl.DateTimeFormat("fr-FR", { dateStyle: "long" }).format(new Date(post.publishedAt))}</span>
+              <span>•</span>
+              <span>{post.readingTime} de lecture</span>
+            </div>
           </header>
           <div className="mx-auto max-w-4xl px-5 pb-16 lg:px-10">
             {post.sections.map((section) => (
