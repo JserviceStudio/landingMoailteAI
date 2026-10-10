@@ -21,7 +21,8 @@ import {
   Apple,
   Wallet,
   ReceiptText,
-  CheckCircle2
+  Ticket,
+  Coins
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -234,16 +235,16 @@ export default function Home() {
       </MotionSection>
 
       <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="tiketmomo-title">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-emerald-500/20 bg-gradient-to-br from-emerald-950 via-slate-950 to-zinc-950 text-white shadow-[0_50px_120px_-55px_rgba(16,185,129,0.8)]">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-yellow-400/35 bg-[#070707] text-white shadow-[0_50px_120px_-55px_rgba(250,204,21,0.85)]">
           <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:p-14 xl:p-16">
             <div className="flex flex-col justify-between gap-10">
               <div>
-                <div className="inline-flex items-center gap-2 rounded-full border border-emerald-300/25 bg-emerald-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-emerald-200">
+                <div className="inline-flex items-center gap-2 rounded-full border border-yellow-300/40 bg-yellow-400/15 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
                   <Wallet className="h-4 w-4" aria-hidden="true" />
-                  TiketMOMO
+                  Tiket<span className="text-yellow-300">MOMO</span>
                 </div>
                 <h2 id="tiketmomo-title" className="mt-6 max-w-4xl text-4xl font-black leading-none sm:text-6xl lg:text-7xl">
-                  Vendez votre WiFi par Mobile Money, automatiquement.
+                  Vendez votre WiFi par <span className="text-yellow-300">Mobile Money</span>, automatiquement.
                 </h2>
                 <p className="mt-6 max-w-3xl text-lg leading-relaxed text-white/72 sm:text-xl">
                   Le client paie depuis son téléphone et reçoit son code WiFi tout de suite. Plus besoin d’imprimer chaque ticket, de courir après la caisse ou d’arrêter les ventes quand le vendeur est absent.
@@ -252,12 +253,12 @@ export default function Home() {
 
               <div className="grid gap-3 sm:grid-cols-3">
                 {[
-                  { title: "Paiement direct", text: "MTN, Moov, Celtiis, Orange, Wave, Free ou Togocom selon le pays configuré." },
-                  { title: "Code instantané", text: "Le ticket WiFi s’affiche après validation du paiement Mobile Money." },
-                  { title: "Stock suivi", text: "Chaque vente est rattachée au bon routeur et visible dans les rapports." },
+                  { title: "Paiement direct", text: "MTN, Moov, Celtiis, Orange, Wave, Free ou Togocom selon le pays configuré.", icon: Wallet },
+                  { title: "Code instantané", text: "Le ticket WiFi s’affiche après validation du paiement Mobile Money.", icon: Ticket },
+                  { title: "Stock suivi", text: "Chaque vente est rattachée au bon routeur et visible dans les rapports.", icon: Coins },
                 ].map((item) => (
                   <div key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
-                    <CheckCircle2 className="h-6 w-6 text-emerald-300" aria-hidden="true" />
+                    <item.icon className="h-7 w-7 text-yellow-300" aria-hidden="true" />
                     <h3 className="mt-4 text-xl font-black">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-white/65">{item.text}</p>
                   </div>
@@ -278,7 +279,7 @@ export default function Home() {
 
             <div className="space-y-5">
               <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 sm:p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-emerald-200">Chiffres à valider avant publication</p>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow-200">Chiffres à valider avant publication</p>
                 <div className="mt-5 grid grid-cols-2 gap-3">
                   {[
                     ["8 000+", "tickets WiFi vendus"],
@@ -302,7 +303,7 @@ export default function Home() {
                 <ol className="mt-5 space-y-3 text-white/72">
                   {["Il se connecte au WiFi et ouvre le portail captif.", "Il choisit un forfait, par exemple 100 F - 2 heures.", "Il paie par Mobile Money depuis son téléphone.", "Son code WiFi s’affiche et il se connecte."].map((step, index) => (
                     <li key={step} className="flex gap-3 rounded-2xl bg-black/20 p-4">
-                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-300 text-sm font-black text-emerald-950">{index + 1}</span>
+                      <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow-300 text-sm font-black text-black">{index + 1}</span>
                       <span>{step}</span>
                     </li>
                   ))}

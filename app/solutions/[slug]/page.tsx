@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import { ArrowRight, Coins, ReceiptText, Ticket, Wallet } from "lucide-react";
 import { Breadcrumbs, DownloadCta, FeatureList, RelatedCard, SeoLayout } from "@/components/layout/SeoLayout";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { blogPosts, getSolution, solutionPages } from "@/lib/seo-content";
@@ -32,6 +33,7 @@ export default async function SolutionPage({ params }: Props) {
   if (!page) notFound();
   const url = `https://mikhmoai.com/solutions/${page.slug}`;
   const related = solutionPages.filter((item) => item.slug !== page.slug).slice(0, 3);
+  const isTiketMomo = page.slug === "vente-vouchers-mobile-money-mikrotik";
   return (
     <SeoLayout>
       <JsonLd data={[
@@ -41,15 +43,66 @@ export default async function SolutionPage({ params }: Props) {
       ]} />
       <main>
         <article>
-          <header className="mx-auto max-w-7xl px-5 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16">
+          <header className={`mx-auto max-w-7xl px-5 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16 ${isTiketMomo ? "max-w-none bg-[#080808] text-white" : ""}`}>
             <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "Solutions", href: "/solutions" }, { label: page.title }]} />
-            <div className="mt-12 max-w-5xl">
-              <p className="font-black uppercase tracking-[0.22em] text-primary">{page.eyebrow}</p>
-              <h1 className="mt-5 text-5xl font-black tracking-tight sm:text-7xl lg:text-8xl">{page.title}</h1>
-              <p className="mt-8 max-w-4xl text-xl text-muted-foreground sm:text-2xl">{page.intro}</p>
-            </div>
+            {isTiketMomo ? (
+              <div className="mx-auto mt-12 grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+                <div>
+                  <div className="inline-flex items-center gap-3 rounded-full border border-yellow-300/40 bg-yellow-400/15 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-yellow-100">
+                    <Ticket className="h-4 w-4 text-yellow-300" aria-hidden="true" />
+                    Tiket<span className="text-yellow-300">MOMO</span>
+                  </div>
+                  <h1 className="mt-6 text-5xl font-black leading-none tracking-tight sm:text-7xl lg:text-8xl">
+                    Vendre vos tickets WiFi par <span className="text-yellow-300">Mobile Money</span>
+                  </h1>
+                  <p className="mt-8 max-w-4xl text-xl leading-relaxed text-white/72 sm:text-2xl">{page.intro}</p>
+                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                    <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-yellow-300 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/25 transition hover:-translate-y-1 hover:bg-yellow-200">
+                      <Wallet className="h-5 w-5" aria-hidden="true" />
+                      Acheter MikhmoAI Pro
+                    </a>
+                    <a href="#tiketmomo-details" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/10 px-7 py-4 font-black text-white transition hover:-translate-y-1 hover:bg-white/15">
+                      Voir comment ça marche
+                      <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                    </a>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden rounded-[2rem] border border-yellow-300/30 bg-white p-4 text-black shadow-[0_45px_100px_-45px_rgba(250,204,21,0.9)]">
+                  <div className="absolute right-5 top-5 rounded-full bg-black px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-yellow-300">Boutique WiFi</div>
+                  <div className="rounded-[1.5rem] bg-[#0b0b0b] p-5 text-white">
+                    <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-[0.2em] text-yellow-300">TiketMOMO</p>
+                        <p className="mt-1 text-2xl font-black">Ticket 100 F</p>
+                      </div>
+                      <Coins className="h-10 w-10 text-yellow-300" aria-hidden="true" />
+                    </div>
+                    <div className="mt-5 grid gap-3">
+                      {["Choisir le forfait", "Payer par Mobile Money", "Recevoir le code WiFi"].map((label, index) => (
+                        <div key={label} className="flex items-center gap-3 rounded-2xl bg-white/8 p-4">
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-yellow-300 text-sm font-black text-black">{index + 1}</span>
+                          <span className="font-bold text-white/85">{label}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="mt-5 rounded-2xl bg-yellow-300 p-4 text-black">
+                      <div className="flex items-center gap-3">
+                        <ReceiptText className="h-6 w-6" aria-hidden="true" />
+                        <p className="font-black">Code remis automatiquement après paiement.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mt-12 max-w-5xl">
+                <p className="font-black uppercase tracking-[0.22em] text-primary">{page.eyebrow}</p>
+                <h1 className="mt-5 text-5xl font-black tracking-tight sm:text-7xl lg:text-8xl">{page.title}</h1>
+                <p className="mt-8 max-w-4xl text-xl text-muted-foreground sm:text-2xl">{page.intro}</p>
+              </div>
+            )}
             {page.image && (
-              <figure className={`relative mt-12 ${page.mobileImage ? "pb-16 sm:pb-24" : ""}`}>
+              <figure className={`relative mt-12 ${page.mobileImage ? "pb-16 sm:pb-24" : ""} ${isTiketMomo ? "mx-auto max-w-7xl" : ""}`}>
                 <div className="overflow-hidden rounded-[2rem] border border-border/60 bg-card p-2 shadow-[0_35px_90px_-35px_rgba(0,0,0,0.55)] sm:p-3">
                   <div className="flex h-8 items-center gap-1.5 rounded-t-2xl bg-foreground/5 px-4" aria-hidden="true">
                     <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -72,9 +125,9 @@ export default async function SolutionPage({ params }: Props) {
               </figure>
             )}
           </header>
-          <div className="mx-auto max-w-5xl px-5 lg:px-10">
+          <div id={isTiketMomo ? "tiketmomo-details" : undefined} className="mx-auto max-w-5xl px-5 lg:px-10">
             {page.sections.map((section) => (
-              <section key={section.title} className="border-t border-border/50 py-12 sm:py-16">
+              <section key={section.title} className={`border-t py-12 sm:py-16 ${isTiketMomo ? "border-yellow-400/25" : "border-border/50"}`}>
                 <h2 className="text-3xl font-black tracking-tight sm:text-5xl">{section.title}</h2>
                 <div className="mt-6 space-y-5 text-lg text-muted-foreground">{section.paragraphs.map((p) => <p key={p}>{p}</p>)}</div>
                 {section.bullets && <div className="mt-8"><FeatureList items={section.bullets} /></div>}
