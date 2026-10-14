@@ -48,8 +48,9 @@ export const metadata: Metadata = {
 const plans = [
   {
     name: "MikhmonPro",
-    price: "13 000 F",
-    priceValue: "13000",
+    price: "13 920 F",
+    priceValue: "13920",
+    usdHint: "≈ 24 $",
     period: "1 an",
     badge: "Offre recommandée",
     description: "Pour accéder à Mikhmon Online, TiketMOMO et aux fonctions avancées dans une seule expérience web.",
@@ -62,6 +63,7 @@ const plans = [
     name: "VPN",
     price: "6 600 F",
     priceValue: "6600",
+    usdHint: "≈ 11 $",
     period: "1 an",
     badge: "Accès distant",
     description: "Pour gérer votre routeur à distance et garder un lien stable avec votre WiFi zone.",
@@ -179,6 +181,7 @@ function LicenseSection() {
               </div>
               <div className="text-right">
                 <p className="text-5xl font-black">{plan.price}</p>
+                <p className={`mt-1 text-base font-black ${plan.highlighted ? "text-yellow-300" : "text-primary"}`}>{plan.usdHint}</p>
                 <p className={`mt-1 text-sm font-bold uppercase tracking-widest ${plan.highlighted ? "text-white/45" : "text-muted-foreground"}`}>{plan.period}</p>
               </div>
             </div>
