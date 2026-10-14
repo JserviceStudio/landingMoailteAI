@@ -47,21 +47,27 @@ export const metadata: Metadata = {
 
 const plans = [
   {
-    name: "VPN",
-    price: "6 600 F",
-    period: "1 an",
-    badge: "Accès distant",
-    description: "Pour gérer votre routeur à distance et garder un lien stable avec votre WiFi zone.",
-    features: ["VPN MikhmoAI", "Gestion routeur à distance", "Idéal pour les interventions", "Accès depuis app.mikhmo.tech"],
-  },
-  {
     name: "MikhmonPro",
     price: "13 000 F",
+    priceValue: "13000",
     period: "1 an",
     badge: "Offre recommandée",
     description: "Pour accéder à Mikhmon Online, TiketMOMO et aux fonctions avancées dans une seule expérience web.",
     features: ["Mikhmon Online", "TiketMOMO", "Fonctions avancées", "Compatible iPhone, Android, PC et tablette"],
+    quickCheckoutUrl: "https://bbvovqmu.mychariow.shop/prd_uwldz5/checkout?locale=fr",
+    multiCountryUrl: "https://live.mikhmoai.com/api/v1/payments/hub?productCode=mikhmoai&planCode=mikhmoai-pro",
     highlighted: true,
+  },
+  {
+    name: "VPN",
+    price: "6 600 F",
+    priceValue: "6600",
+    period: "1 an",
+    badge: "Accès distant",
+    description: "Pour gérer votre routeur à distance et garder un lien stable avec votre WiFi zone.",
+    features: ["VPN MikhmoAI", "Gestion routeur à distance", "Idéal pour les interventions", "Accès depuis app.mikhmo.tech"],
+    quickCheckoutUrl: "https://bbvovqmu.mychariow.shop/prd_lknr8i/checkout?locale=fr",
+    multiCountryUrl: "https://live.mikhmoai.com/api/v1/payments/hub?productCode=mikhmoai&planCode=vpn",
   },
 ];
 
@@ -151,6 +157,69 @@ const tutorials = [
   },
 ];
 
+function LicenseSection() {
+  return (
+    <section id="licences" className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24">
+      <div className="max-w-4xl">
+        <p className="font-black uppercase tracking-[0.22em] text-primary">Activez votre licence</p>
+        <h2 className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Choisissez votre accès MikhmonV8.</h2>
+        <p className="mt-6 text-xl text-muted-foreground">
+          Achat rapide via Chariow pour activer vite. Pour un paiement multi-pays ou une demande de réduction, utilisez le hub MikhmoAI.
+        </p>
+      </div>
+
+      <div className="mt-12 grid gap-6 lg:grid-cols-2">
+        {plans.map((plan) => (
+          <div key={plan.name} className={`rounded-[2rem] border p-7 sm:p-9 ${plan.highlighted ? "border-yellow-400 bg-[#080808] text-white shadow-[0_45px_100px_-60px_rgba(250,204,21,0.8)]" : "border-border/60 bg-card"}`}>
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className={`inline-flex rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.16em] ${plan.highlighted ? "bg-yellow-300 text-black" : "bg-primary/10 text-primary"}`}>{plan.badge}</p>
+                <h3 className="mt-6 text-4xl font-black">{plan.name}</h3>
+                <p className={`mt-3 text-base ${plan.highlighted ? "text-white/65" : "text-muted-foreground"}`}>{plan.description}</p>
+              </div>
+              <div className="text-right">
+                <p className="text-5xl font-black">{plan.price}</p>
+                <p className={`mt-1 text-sm font-bold uppercase tracking-widest ${plan.highlighted ? "text-white/45" : "text-muted-foreground"}`}>{plan.period}</p>
+              </div>
+            </div>
+            <ul className="mt-8 grid gap-3">
+              {plan.features.map((feature) => (
+                <li key={feature} className={`flex items-center gap-3 rounded-2xl p-4 font-bold ${plan.highlighted ? "bg-white/8 text-white/85" : "bg-muted/20"}`}>
+                  <CheckCircle2 className={`h-5 w-5 shrink-0 ${plan.highlighted ? "text-yellow-300" : "text-primary"}`} aria-hidden="true" />
+                  {feature}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8 grid gap-3">
+              <a
+                href={plan.quickCheckoutUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex w-full items-center justify-center gap-3 rounded-full px-7 py-4 font-black transition hover:-translate-y-1 ${plan.highlighted ? "bg-yellow-300 text-black hover:bg-yellow-200" : "bg-foreground text-background hover:opacity-90"}`}
+              >
+                Achat rapide {plan.name}
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </a>
+              <a
+                href={plan.multiCountryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex w-full items-center justify-center gap-3 rounded-full border px-7 py-4 font-black transition hover:-translate-y-1 ${plan.highlighted ? "border-white/15 bg-white/10 text-white hover:bg-white/15" : "border-border bg-background text-foreground hover:bg-muted/40"}`}
+              >
+                Multi-pays / réduction
+                <Globe2 className="h-5 w-5" aria-hidden="true" />
+              </a>
+            </div>
+            <p className={`mt-4 text-xs leading-relaxed ${plan.highlighted ? "text-white/45" : "text-muted-foreground"}`}>
+              L’achat rapide passe par Chariow. Le hub MikhmoAI est conseillé pour les paiements multi-pays ou les options de réduction.
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function MikhmonV8Page() {
   const url = "https://mikhmoai.com/mikhmonv8";
 
@@ -171,10 +240,10 @@ export default function MikhmonV8Page() {
             offers: plans.map((plan) => ({
               "@type": "Offer",
               name: plan.name,
-              price: plan.name === "VPN" ? "6600" : "13000",
+              price: plan.priceValue,
               priceCurrency: "XOF",
               availability: "https://schema.org/InStock",
-              url: "https://app.mikhmo.tech",
+              url: plan.multiCountryUrl,
             })),
           },
           {
@@ -240,7 +309,7 @@ export default function MikhmonV8Page() {
                     href="#licences"
                     className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/10 px-8 py-4 font-black text-white transition hover:-translate-y-1 hover:bg-white/15"
                   >
-                    Voir les licences
+                    Activez ma licence
                     <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </a>
                 </div>
@@ -271,6 +340,8 @@ export default function MikhmonV8Page() {
             </div>
           </div>
         </section>
+
+        <LicenseSection />
 
         <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
           <div className="max-w-4xl">
@@ -376,49 +447,6 @@ export default function MikhmonV8Page() {
                 );
               })}
             </div>
-          </div>
-        </section>
-
-        <section id="licences" className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24">
-          <div className="max-w-4xl">
-            <p className="font-black uppercase tracking-[0.22em] text-primary">Licences</p>
-            <h2 className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Deux offres simples pour lancer MikhmonV8.</h2>
-            <p className="mt-6 text-xl text-muted-foreground">Les prix ci-dessous sont ceux que tu as fournis pour cette landing page.</p>
-          </div>
-
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            {plans.map((plan) => (
-              <div key={plan.name} className={`rounded-[2rem] border p-7 sm:p-9 ${plan.highlighted ? "border-yellow-400 bg-[#080808] text-white shadow-[0_45px_100px_-60px_rgba(250,204,21,0.8)]" : "border-border/60 bg-card"}`}>
-                <div className="flex flex-wrap items-start justify-between gap-4">
-                  <div>
-                    <p className={`inline-flex rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.16em] ${plan.highlighted ? "bg-yellow-300 text-black" : "bg-primary/10 text-primary"}`}>{plan.badge}</p>
-                    <h3 className="mt-6 text-4xl font-black">{plan.name}</h3>
-                    <p className={`mt-3 text-base ${plan.highlighted ? "text-white/65" : "text-muted-foreground"}`}>{plan.description}</p>
-                  </div>
-                  <div className="text-right">
-                    <p className="text-5xl font-black">{plan.price}</p>
-                    <p className={`mt-1 text-sm font-bold uppercase tracking-widest ${plan.highlighted ? "text-white/45" : "text-muted-foreground"}`}>{plan.period}</p>
-                  </div>
-                </div>
-                <ul className="mt-8 grid gap-3">
-                  {plan.features.map((feature) => (
-                    <li key={feature} className={`flex items-center gap-3 rounded-2xl p-4 font-bold ${plan.highlighted ? "bg-white/8 text-white/85" : "bg-muted/20"}`}>
-                      <CheckCircle2 className={`h-5 w-5 shrink-0 ${plan.highlighted ? "text-yellow-300" : "text-primary"}`} aria-hidden="true" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="https://app.mikhmo.tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`mt-8 inline-flex w-full items-center justify-center gap-3 rounded-full px-7 py-4 font-black transition hover:-translate-y-1 ${plan.highlighted ? "bg-yellow-300 text-black hover:bg-yellow-200" : "bg-foreground text-background hover:opacity-90"}`}
-                >
-                  Choisir {plan.name}
-                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
-                </a>
-              </div>
-            ))}
           </div>
         </section>
 
