@@ -290,6 +290,26 @@ export default function MikhmonV8Page() {
 
             <div className="grid gap-8 pt-10 sm:gap-12 sm:pt-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div>
+                <div className="mb-8 grid gap-3 sm:mb-10 sm:flex sm:flex-wrap">
+                  <a
+                    href={plans[1].quickCheckoutUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-yellow-300 px-6 py-3 text-center font-black text-black shadow-lg shadow-yellow-400/20 transition hover:-translate-y-1 hover:bg-yellow-200"
+                  >
+                    Achetez V8
+                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                  </a>
+                  <a
+                    href={plans[0].quickCheckoutUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-yellow-300/40 bg-white/10 px-6 py-3 text-center font-black text-white transition hover:-translate-y-1 hover:bg-white/15"
+                  >
+                    Achetez V8 Pro
+                    <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                  </a>
+                </div>
                 <div className="inline-flex items-center gap-3 rounded-full border border-yellow-300/35 bg-yellow-300/12 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-yellow-200">
                   <Cloud className="h-4 w-4" aria-hidden="true" />
                   Nouvelle application web
@@ -325,15 +345,7 @@ export default function MikhmonV8Page() {
               </div>
 
               <div className="rounded-[1.5rem] border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_45px_110px_-55px_rgba(250,204,21,0.85)] backdrop-blur sm:rounded-[2rem] sm:p-4">
-                <div className="rounded-[1.25rem] bg-white p-3 text-black sm:rounded-[1.5rem] sm:p-4">
-                  <div className="flex items-center justify-between border-b border-black/10 pb-4">
-                    <div>
-                      <p className="text-xs font-black uppercase tracking-[0.2em] text-black/45">Capture bureau intégrée</p>
-                      <p className="mt-1 text-2xl font-black">MikhmonV8 Web</p>
-                    </div>
-                    <Monitor className="h-10 w-10 text-yellow-500" aria-hidden="true" />
-                  </div>
-                  <div className="mt-4 overflow-hidden rounded-2xl border border-black/10 bg-black shadow-2xl">
+                <div className="overflow-hidden rounded-[1.25rem] border border-black/10 bg-black shadow-2xl sm:rounded-[1.5rem]">
                     <div className="flex h-8 items-center gap-1.5 bg-[#333c46] px-4" aria-hidden="true">
                       <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
                       <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
@@ -343,7 +355,6 @@ export default function MikhmonV8Page() {
                     <div className="relative aspect-[1.86]">
                       <Image src="/mikhmonv8-desktop-dashboard.jpg" alt="Dashboard bureau MikhmonV8 avec Hotspot, PPPoE, TiketMOMO et logs" fill sizes="(max-width: 1024px) 90vw, 650px" className="object-cover" priority />
                     </div>
-                  </div>
                 </div>
               </div>
             </div>
