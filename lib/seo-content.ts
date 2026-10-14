@@ -162,21 +162,21 @@ export const solutionPages: SeoPage[] = [
   {
     slug: "mikhmon-online-application-web",
     title: "Mikhmon Online : l’application web MikhmoAI accessible partout",
-    metaTitle: "Mikhmon Online iPhone et web : app.mikhmo.tech",
+    metaTitle: "Mikhmon Online iPhone et web : app.mikhmoai.com",
     description: "Accédez à Mikhmon Online, TiketMOMO et aux fonctions avancées MikhmoAI depuis une application web simple sur iPhone, Android, PC ou tablette.",
     eyebrow: "Application web",
-    intro: "MikhmoAI est aussi disponible en application web à l’adresse app.mikhmo.tech. Elle donne accès à Mikhmon Online, TiketMOMO et aux fonctions avancées depuis un navigateur, sans installer d’APK, idéale pour les utilisateurs iPhone et les équipes qui veulent travailler partout.",
+    intro: "MikhmoAI est aussi disponible en application web à l’adresse app.mikhmoai.com. Elle donne accès à Mikhmon Online, TiketMOMO et aux fonctions avancées depuis un navigateur, sans installer d’APK, idéale pour les utilisateurs iPhone et les équipes qui veulent travailler partout.",
     image: { src: "/mikhmonpro-desktop-dashboard.png", alt: "Application web MikhmoAI avec tableau de bord Mikhmon Online, ventes et supervision MikroTik" },
     mobileImage: { src: "/mikhmoai-mobile-dashboard-hotspot-radius.jpeg", alt: "Mikhmon Online accessible sur mobile avec dashboard Hotspot, ventes et routeurs" },
     keywords: ["Mikhmon Online", "Mikhmon iPhone", "application web MikroTik", "MikhmoAI web", "gérer MikroTik navigateur", "TiketMOMO en ligne"],
     sections: [
-      { title: "Mikhmon Online, sans APK", paragraphs: ["L’application web permet de continuer à utiliser Mikhmon en ligne depuis un navigateur moderne. C’est la solution la plus simple pour les utilisateurs iPhone, les postes partagés et les techniciens qui veulent retrouver leurs outils sans dépendre d’un appareil Android précis."], bullets: ["Accès direct : app.mikhmo.tech", "Compatible iPhone, Android, PC et tablette", "Interface pensée pour les opérations Hotspot", "Aucune installation APK nécessaire"] },
+      { title: "Mikhmon Online, sans APK", paragraphs: ["L’application web permet de continuer à utiliser Mikhmon en ligne depuis un navigateur moderne. C’est la solution la plus simple pour les utilisateurs iPhone, les postes partagés et les techniciens qui veulent retrouver leurs outils sans dépendre d’un appareil Android précis."], bullets: ["Accès direct : app.mikhmoai.com", "Compatible iPhone, Android, PC et tablette", "Interface pensée pour les opérations Hotspot", "Aucune installation APK nécessaire"] },
       { title: "TiketMOMO et les fonctions avancées au même endroit", paragraphs: ["Depuis le web, l’utilisateur retrouve l’écosystème MikhmoAI : Mikhmon Online, TiketMOMO, suivi des ventes, supervision Hotspot et fonctions avancées selon sa licence. L’objectif est de garder un point d’accès unique pour gérer l’activité WiFi."], bullets: ["Vente de tickets WiFi par Mobile Money", "Consultation des ventes", "Gestion Hotspot MikroTik", "Accès aux modules avancés MikhmoAI"] },
       { title: "La stabilité Mikhmon, optimisée pour 2026", paragraphs: ["Le message est simple : retrouver la confiance de Mikhmon, avec une expérience plus puissante, plus accessible et mieux adaptée aux usages actuels. Le web permet de travailler depuis le terrain, le bureau ou un téléphone iOS sans attendre une installation locale."] },
       { title: "Quand choisir l’application web", paragraphs: ["Choisissez l’application web si vous utilisez un iPhone, si vous voulez accéder rapidement à votre espace depuis n’importe quel appareil, ou si vous gérez une équipe qui doit consulter les ventes et opérations sans installer l’application mobile sur chaque téléphone."] },
     ],
     faq: [
-      { question: "Quel est le lien direct de l’application web ?", answer: "Le lien direct est https://app.mikhmo.tech." },
+      { question: "Quel est le lien direct de l’application web ?", answer: "Le lien direct est https://app.mikhmoai.com." },
       { question: "L’application web est-elle adaptée à l’iPhone ?", answer: "Oui. Elle est idéale pour les utilisateurs iPhone qui veulent accéder à Mikhmon Online, TiketMOMO et aux fonctions MikhmoAI depuis le navigateur." },
       { question: "Est-ce que TiketMOMO est accessible depuis le web ?", answer: "Oui, l’application web donne accès à TiketMOMO et aux fonctions liées selon la licence active." },
       { question: "Faut-il remplacer l’application Android ?", answer: "Non. L’application web complète Android et Desktop. Elle sert surtout à accéder rapidement aux fonctions MikhmoAI partout, depuis un navigateur." },
@@ -376,7 +376,7 @@ export const blogPosts: BlogPost[] = [
     ],
     faq: [
       { question: "À quoi sert le dashboard MikhmonV8 ?", answer: "Il sert à voir rapidement l’état du Hotspot, les utilisateurs, PPPoE, le trafic, les logs et les ventes depuis le navigateur." },
-      { question: "Peut-on utiliser ce dashboard sur iPhone ?", answer: "Oui. MikhmonV8 est accessible via app.mikhmo.tech depuis iPhone, Android, PC ou tablette." },
+      { question: "Peut-on utiliser ce dashboard sur iPhone ?", answer: "Oui. MikhmonV8 est accessible via app.mikhmoai.com depuis iPhone, Android, PC ou tablette." },
     ],
   },
   {
@@ -407,7 +407,7 @@ export const blogPosts: BlogPost[] = [
     description: "Tutoriel pour comprendre la page Admin Settings de MikhmonV8 : liste routeur, session active, ouverture, édition et retour à MikhmoAI.",
     eyebrow: "Routeur et session",
     intro: "Avant de gérer un Hotspot, il faut ouvrir la bonne session routeur. La page Admin Settings de MikhmonV8 centralise les routeurs disponibles et l’état de la session Mikhmon Online.",
-    keywords: ["ajouter routeur MikhmonV8", "session Mikhmon Online", "Mikhmon web routeur", "app.mikhmo.tech routeur"],
+    keywords: ["ajouter routeur MikhmonV8", "session Mikhmon Online", "Mikhmon web routeur", "app.mikhmoai.com routeur"],
     publishedAt: "2026-10-14",
     readingTime: "6 min",
     sections: [
@@ -423,20 +423,20 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "mikhmon-online-iphone",
     title: "Mikhmon Online sur iPhone : gérer MikroTik sans APK",
-    metaTitle: "Mikhmon Online iPhone : accès web app.mikhmo.tech",
+    metaTitle: "Mikhmon Online iPhone : accès web app.mikhmoai.com",
     description: "Utilisez Mikhmon Online sur iPhone avec l’application web MikhmoAI : accès navigateur, TiketMOMO et gestion MikroTik sans APK.",
     eyebrow: "Mikhmon iPhone",
-    intro: "Les utilisateurs iPhone n’ont pas besoin d’installer un APK Android pour accéder à l’écosystème MikhmoAI. L’application web ouvre Mikhmon Online, TiketMOMO et les fonctions avancées depuis app.mikhmo.tech.",
-    keywords: ["Mikhmon Online iPhone", "Mikhmon iOS", "Mikhmon sans APK", "application web MikroTik", "app.mikhmo.tech"],
+    intro: "Les utilisateurs iPhone n’ont pas besoin d’installer un APK Android pour accéder à l’écosystème MikhmoAI. L’application web ouvre Mikhmon Online, TiketMOMO et les fonctions avancées depuis app.mikhmoai.com.",
+    keywords: ["Mikhmon Online iPhone", "Mikhmon iOS", "Mikhmon sans APK", "application web MikroTik", "app.mikhmoai.com"],
     publishedAt: "2026-10-10",
     readingTime: "6 min",
     sections: [
-      { title: "Pourquoi l’application web change tout pour iPhone", paragraphs: ["Sur iPhone, l’installation d’un APK n’est pas possible. L’application web règle ce problème : l’utilisateur ouvre son navigateur, va sur app.mikhmo.tech et retrouve son espace MikhmoAI en ligne."] },
+      { title: "Pourquoi l’application web change tout pour iPhone", paragraphs: ["Sur iPhone, l’installation d’un APK n’est pas possible. L’application web règle ce problème : l’utilisateur ouvre son navigateur, va sur app.mikhmoai.com et retrouve son espace MikhmoAI en ligne."] },
       { title: "Ce que vous pouvez y retrouver", paragraphs: ["L’application web donne accès à Mikhmon Online, à TiketMOMO et aux fonctions avancées disponibles selon la licence. Elle sert de point d’entrée simple pour continuer à gérer l’activité WiFi sans changer de téléphone."], bullets: ["Mikhmon Online", "TiketMOMO", "Suivi des ventes", "Fonctions Hotspot et MikroTik"] },
       { title: "Pour qui est-ce idéal ?", paragraphs: ["Elle convient aux gérants de WiFi zone qui utilisent un iPhone, aux propriétaires qui veulent consulter les ventes sans l’app Android, et aux équipes qui travaillent sur plusieurs appareils."] },
     ],
     faq: [
-      { question: "Quel lien ouvrir sur iPhone ?", answer: "Ouvrez https://app.mikhmo.tech dans le navigateur de l’iPhone." },
+      { question: "Quel lien ouvrir sur iPhone ?", answer: "Ouvrez https://app.mikhmoai.com dans le navigateur de l’iPhone." },
       { question: "Faut-il installer une application depuis l’App Store ?", answer: "Non. L’accès se fait directement depuis le navigateur." },
       { question: "TiketMOMO fonctionne-t-il dans l’application web ?", answer: "Oui, TiketMOMO est accessible depuis l’application web selon la licence active." },
     ],
@@ -453,7 +453,7 @@ export const blogPosts: BlogPost[] = [
     readingTime: "7 min",
     sections: [
       { title: "La confiance de Mikhmon, en version web moderne", paragraphs: ["L’objectif n’est pas de compliquer l’outil, mais de retrouver ce que les utilisateurs aiment dans Mikhmon : une gestion claire du Hotspot, des tickets et des opérations courantes. MikhmoAI Web ajoute une base plus accessible et optimisée pour 2026."] },
-      { title: "Accès partout", paragraphs: ["Avec app.mikhmo.tech, vous pouvez ouvrir votre espace depuis un PC, un iPhone, un Android ou une tablette. C’est pratique pour consulter les ventes, vérifier une opération ou travailler depuis un appareil qui n’est pas le vôtre."], bullets: ["Bureau", "Téléphone", "Tablette", "Poste partagé"] },
+      { title: "Accès partout", paragraphs: ["Avec app.mikhmoai.com, vous pouvez ouvrir votre espace depuis un PC, un iPhone, un Android ou une tablette. C’est pratique pour consulter les ventes, vérifier une opération ou travailler depuis un appareil qui n’est pas le vôtre."], bullets: ["Bureau", "Téléphone", "Tablette", "Poste partagé"] },
       { title: "Plus puissant avec TiketMOMO", paragraphs: ["La grande différence est l’intégration commerciale. Le gérant ne se limite plus aux tickets locaux : il peut connecter son activité à TiketMOMO pour vendre par Mobile Money et suivre les ventes en ligne."] },
     ],
     faq: [
@@ -472,12 +472,12 @@ export const blogPosts: BlogPost[] = [
     publishedAt: "2026-10-10",
     readingTime: "6 min",
     sections: [
-      { title: "Un seul lien pour travailler", paragraphs: ["Le lien app.mikhmo.tech sert de porte d’entrée vers l’écosystème web MikhmoAI. L’utilisateur peut y retrouver Mikhmon Online, TiketMOMO et les fonctions avancées selon son compte et sa licence."] },
+      { title: "Un seul lien pour travailler", paragraphs: ["Le lien app.mikhmoai.com sert de porte d’entrée vers l’écosystème web MikhmoAI. L’utilisateur peut y retrouver Mikhmon Online, TiketMOMO et les fonctions avancées selon son compte et sa licence."] },
       { title: "Gérer et vendre", paragraphs: ["La force de l’application web est de réunir les opérations techniques et commerciales : suivre le Hotspot, consulter les ventes, accéder à TiketMOMO et garder une vue sur l’activité WiFi."] },
       { title: "Idéal pour les équipes", paragraphs: ["Quand plusieurs personnes doivent consulter l’activité, l’accès web évite de dépendre d’un seul téléphone Android. Chaque utilisateur autorisé peut ouvrir son espace depuis son navigateur."] },
     ],
     faq: [
-      { question: "Quel est le lien de l’application web ?", answer: "Le lien direct est https://app.mikhmo.tech." },
+      { question: "Quel est le lien de l’application web ?", answer: "Le lien direct est https://app.mikhmoai.com." },
       { question: "Est-ce adapté aux gérants de WiFi zone ?", answer: "Oui. L’application web est pensée pour gérer l’activité Hotspot, les ventes et les modules MikhmoAI depuis n’importe quel appareil compatible." },
     ],
   },

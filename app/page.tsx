@@ -392,12 +392,12 @@ export default function Home() {
                 Mikhmon Online, TiketMOMO et MikhmoAI accessibles partout.
               </h2>
               <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-white/68 sm:text-xl">
-                Ouvrez <span className="font-black text-slate-950 dark:text-white">app.mikhmo.tech</span> depuis iPhone, Android, PC ou tablette. Retrouvez la stabilité et la confiance de Mikhmon en ligne, avec une expérience plus puissante et optimisée pour 2026.
+                Ouvrez <span className="font-black text-slate-950 dark:text-white">app.mikhmoai.com</span> depuis iPhone, Android, PC ou tablette. Retrouvez la stabilité et la confiance de Mikhmon en ligne, avec une expérience plus puissante et optimisée pour 2026.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-950 px-7 py-4 font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-sky-100">
+                <a href="https://app.mikhmoai.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-950 px-7 py-4 font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-sky-100">
                   <Globe className="h-5 w-5" aria-hidden="true" />
-                  Ouvrir app.mikhmo.tech
+                  Ouvrir app.mikhmoai.com
                 </a>
                 <Link href="/solutions/mikhmon-online-application-web" className="inline-flex items-center justify-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-7 py-4 font-black text-slate-950 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/15">
                   Découvrir l’app web
