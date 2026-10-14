@@ -4,8 +4,6 @@ import MainLayout from "@/components/layout/MainLayout";
 import { MotionSection } from "@/components/ui/MotionSection";
 import {
   Shield,
-  Activity,
-  Zap,
   Smartphone,
   ArrowRight,
   Terminal,
@@ -486,26 +484,6 @@ export default function Home() {
         </div>
       </MotionSection>
 
-      {/* --- PERFORMANCE STATS HORIZONTAL SLIDE --- */}
-      <MotionSection className="py-20 lg:py-32" aria-label="Performance Stats">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:px-2" role="list" aria-label="Performance metrics">
-          {[
-            { value: t("stats.polling_val"), label: t("stats.polling_lbl"), icon: Activity, color: "text-blue-500", bg: "bg-blue-500/10" },
-            { value: t("stats.gen_val"), label: t("stats.gen_lbl"), icon: Zap, color: "text-orange-500", bg: "bg-orange-500/10" },
-            { value: t("stats.fps_val"), label: t("stats.fps_lbl"), icon: Smartphone, color: "text-red-500", bg: "bg-red-500/10" },
-            { value: t("stats.sec_val"), label: t("stats.sec_lbl"), icon: Shield, color: "text-green-500", bg: "bg-green-500/10" },
-          ].map((stat, i) => (
-            <div key={i} className="p-8 sm:p-10 lg:p-12 xl:p-14 glass rounded-[2.5rem] sm:rounded-[3.5rem] lg:rounded-[4rem] border-border/80 hover:translate-y-[-10px] transition-transform duration-700 group cursor-default" role="listitem" aria-label={`${stat.label}: ${stat.value}`}>
-              <div className={`p-4 sm:p-5 lg:p-6 ${stat.bg} rounded-2xl sm:rounded-[2rem] w-fit ${stat.color} mb-6 lg:mb-8 group-hover:scale-110 transition-transform`} aria-hidden="true">
-                <stat.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9" aria-hidden="true" />
-              </div>
-              <p className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter mb-3 sm:mb-4 text-foreground leading-none">{stat.value}</p>
-              <p className="text-[10px] sm:text-[11px] lg:text-[12px] text-muted-foreground uppercase tracking-[0.4em] font-black leading-tight">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </MotionSection>
-
       {/* --- ELITE SPECIFICATIONS BENTO GRID --- */}
       <MotionSection id="features" className="py-16 lg:py-24 space-y-16 lg:space-y-24" aria-labelledby="features-title">
         <div className="text-center space-y-6" role="region" aria-label="Bento Header">
@@ -582,53 +560,9 @@ export default function Home() {
         </div>
 
         {/* Bento Business Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10" role="group" aria-label="Business Solutions">
-          {/* Card 1 — Boutique Web SaaS */}
-          <div className="m3-card m3-state p-0 relative overflow-hidden group min-h-[450px] lg:min-h-[500px] flex flex-col" role="article" aria-label="Web Store">
-            {/* Top section with edge-to-edge image */}
-            <div className="relative w-full h-48 sm:h-64 lg:h-80 bg-primary/5">
-              <Image src="/web_store_cloud_revenue.png" alt="Revenue stats" fill className="object-cover object-center opacity-80 group-hover:opacity-100 transition-opacity duration-500" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
-            </div>
-            
-            <div className="p-6 sm:p-12 lg:p-16 xl:p-20 flex-1 flex flex-col relative z-10 -mt-16 sm:-mt-24">
-              <div className="space-y-6 sm:space-y-8" role="group" aria-label="Web Store Info">
-                <div className="p-4 sm:p-5 bg-background rounded-2xl sm:rounded-3xl w-fit shadow-lg border border-border" aria-hidden="true">
-                  <Globe className="w-10 h-10 sm:w-12 sm:h-12 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-[10px] font-black uppercase tracking-wider mb-4 border border-green-500/20 animate-pulse" role="status" aria-live="polite">
-                    {t("business.card_store_badge")}
-                  </div>
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-black tracking-tighter leading-none mb-4 sm:mb-6">
-                    {t("business.card_store_title_prefix")}<br /><span className="text-primary">{t("business.card_store_title_gradient")}</span>
-                  </h3>
-                  <p className="text-base sm:text-lg lg:text-xl text-muted-foreground font-medium leading-relaxed">
-                    {t("business.card_store_desc")}
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-8 mt-auto" role="list" aria-label="Web Store Features">
-              {[
-                { label: t("business.card_store_f1_lbl"), desc: t("business.card_store_f1_desc") },
-                { label: t("business.card_store_f2_lbl"), desc: t("business.card_store_f2_desc") },
-                { label: t("business.card_store_f3_lbl"), desc: t("business.card_store_f3_desc") },
-                { label: t("business.card_store_f4_lbl"), desc: t("business.card_store_f4_desc") },
-              ].map((f, i) => (
-                <div key={i} className="p-4 sm:p-5 bg-muted/20 rounded-2xl sm:rounded-3xl border border-border/60" role="listitem">
-                  <p className="text-xs sm:text-sm font-black text-foreground tracking-tight">{f.label}</p>
-                  <p className="text-[10px] sm:text-xs text-muted-foreground font-medium mt-1 leading-none">{f.desc}</p>
-                </div>
-              ))}
-            </div>
-            </div>
-          </div>
- 
-          {/* Card 2 — VPN + Multi-Passerelles + API */}
-          <div className="flex flex-col gap-8 lg:gap-10" role="region" aria-label="VPN & API Solutions">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10" role="group" aria-label="Business Solutions">
             {/* VPN Gateway */}
-            <div className="m3-card m3-state p-6 sm:p-12 lg:p-14 relative overflow-hidden group flex-1" role="article" aria-label="VPN Gateway">
+            <div className="m3-card m3-state p-6 sm:p-12 lg:p-14 relative overflow-hidden group" role="article" aria-label="VPN Gateway">
               <div className="absolute -left-10 -bottom-10 w-60 h-60 bg-accent/5 rounded-full blur-[60px] group-hover:bg-accent/10 transition-all duration-1000" aria-hidden="true" />
               <div className="relative z-10 space-y-4 sm:space-y-6" role="group" aria-label="VPN info">
                 <div className="p-4 sm:p-5 bg-accent/10 rounded-2xl sm:rounded-3xl w-fit" aria-hidden="true">
@@ -676,7 +610,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
         </div>
  
         {/* CTA Partenariat */}
