@@ -359,6 +359,68 @@ export type BlogPost = SeoPage & { publishedAt: string; readingTime: string };
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "mikhmonv8-dashboard-hotspot",
+    title: "Lire le dashboard MikhmonV8 : Hotspot, PPPoE, trafic et ventes",
+    metaTitle: "Dashboard MikhmonV8 : comprendre Hotspot et ventes",
+    description: "Tutoriel pour comprendre le tableau de bord MikhmonV8 : utilisateurs Hotspot, PPPoE, trafic, logs, rapports vouchers et ventes TiketMOMO.",
+    eyebrow: "Tutoriel MikhmonV8",
+    intro: "Le dashboard MikhmonV8 donne au gérant une vue rapide sur l’état de sa WiFi zone. Il regroupe les sessions Hotspot, PPPoE, trafic, logs, ventes et rapports utiles pour décider vite.",
+    keywords: ["dashboard MikhmonV8", "Mikhmon Online dashboard", "Hotspot MikroTik web", "rapport vouchers", "TiketMOMO ventes"],
+    publishedAt: "2026-10-14",
+    readingTime: "7 min",
+    sections: [
+      { title: "Identifier le routeur et la session", paragraphs: ["En haut du dashboard, vérifiez le nom de la session, le modèle du routeur, la version RouterOS et l’heure du dernier état. Cette zone confirme que vous regardez le bon routeur avant de créer des comptes ou de consulter les ventes."] },
+      { title: "Lire les cartes Hotspot", paragraphs: ["Les cartes Hotspot montrent les utilisateurs actifs, les utilisateurs enregistrés, l’ajout rapide et la génération de comptes. Un gérant peut donc voir immédiatement si la zone fonctionne et passer à l’action sans chercher dans plusieurs menus."], bullets: ["Hotspot Active", "Hotspot User", "Add Hotspot User", "Generate Hotspot User"] },
+      { title: "Suivre PPPoE, trafic et logs", paragraphs: ["Les cartes PPPoE indiquent les sessions et secrets actifs. La zone trafic permet de vérifier si l’interface sélectionnée échange des données, tandis que les logs Hotspot aident à repérer les connexions, expirations ou reconnexions par cookie."] },
+      { title: "Voir TiketMOMO et les rapports", paragraphs: ["Le dashboard affiche aussi un résumé TiketMOMO et les rapports vouchers. Ces blocs relient la partie technique à la caisse : tickets vendus, activité du jour et suivi des forfaits."] },
+    ],
+    faq: [
+      { question: "À quoi sert le dashboard MikhmonV8 ?", answer: "Il sert à voir rapidement l’état du Hotspot, les utilisateurs, PPPoE, le trafic, les logs et les ventes depuis le navigateur." },
+      { question: "Peut-on utiliser ce dashboard sur iPhone ?", answer: "Oui. MikhmonV8 est accessible via app.mikhmo.tech depuis iPhone, Android, PC ou tablette." },
+    ],
+  },
+  {
+    slug: "generer-vouchers-tiketmomo-mikhmonv8",
+    title: "Générer des vouchers dans MikhmonV8 et les vendre avec TiketMOMO",
+    metaTitle: "MikhmonV8 : générer vouchers et stock TiketMOMO",
+    description: "Guide pour générer des vouchers Hotspot dans MikhmonV8, choisir un profil, imprimer le ticket et synchroniser le stock TiketMOMO.",
+    eyebrow: "Vouchers et TiketMOMO",
+    intro: "La page Generate User de MikhmonV8 permet de créer les comptes Hotspot et de préparer le stock qui peut être vendu avec TiketMOMO.",
+    keywords: ["générer vouchers MikhmonV8", "TiketMOMO stock Cloud", "voucher Hotspot MikroTik", "Mikhmon Online vouchers"],
+    publishedAt: "2026-10-14",
+    readingTime: "8 min",
+    sections: [
+      { title: "Choisir la quantité et le serveur", paragraphs: ["Commencez par choisir la quantité, le serveur Hotspot et le mode utilisateur. Pour un test, générez un seul voucher afin de vérifier le profil avant de créer un lot plus grand."] },
+      { title: "Définir le profil et les limites", paragraphs: ["Sélectionnez le profil correspondant au forfait vendu, puis indiquez la durée ou le volume si nécessaire. Les noms simples comme 100F-4H ou 350F-36H aident à reconnaître l’offre dans les derniers lots générés."] },
+      { title: "Mettre en vente sur TiketMOMO", paragraphs: ["La case TiketMOMO sert à synchroniser le stock Cloud. Quand elle est utilisée avec le bon profil et la bonne boutique, les tickets générés peuvent alimenter la vente Mobile Money."], bullets: ["Choisir le profil", "Vérifier la durée", "Cocher TiketMOMO si le stock doit être vendu", "Contrôler le dernier lot généré"] },
+      { title: "Imprimer ou partager", paragraphs: ["Après génération, MikhmonV8 affiche les derniers lots avec les actions Small PDF, impression, QR et options associées. Cela permet de servir à la fois la vente physique et la vente automatique."] },
+    ],
+    faq: [
+      { question: "Faut-il cocher TiketMOMO pour tous les vouchers ?", answer: "Non. Cochez TiketMOMO seulement pour les lots qui doivent être synchronisés au stock Cloud destiné à la vente en ligne." },
+      { question: "Peut-on générer depuis mobile ?", answer: "Oui. Les captures montrent que le formulaire est utilisable sur mobile et sur bureau." },
+    ],
+  },
+  {
+    slug: "ajouter-routeur-mikhmonv8",
+    title: "Ajouter un routeur dans MikhmonV8 et ouvrir une session Mikhmon Online",
+    metaTitle: "Ajouter routeur MikhmonV8 : session Mikhmon Online",
+    description: "Tutoriel pour comprendre la page Admin Settings de MikhmonV8 : liste routeur, session active, ouverture, édition et retour à MikhmoAI.",
+    eyebrow: "Routeur et session",
+    intro: "Avant de gérer un Hotspot, il faut ouvrir la bonne session routeur. La page Admin Settings de MikhmonV8 centralise les routeurs disponibles et l’état de la session Mikhmon Online.",
+    keywords: ["ajouter routeur MikhmonV8", "session Mikhmon Online", "Mikhmon web routeur", "app.mikhmo.tech routeur"],
+    publishedAt: "2026-10-14",
+    readingTime: "6 min",
+    sections: [
+      { title: "Lire la liste des routeurs", paragraphs: ["La liste affiche le nom du Hotspot, le nom de session et les actions disponibles. Le bouton Open sert à entrer dans la session du routeur, tandis que Edit et Delete servent à corriger ou retirer une configuration."] },
+      { title: "Vérifier la session active", paragraphs: ["Le bloc Info Session confirme que MikhmonV8 est actif et indique la version de la section en ligne. Cette vérification évite de travailler sur une session incorrecte."] },
+      { title: "Revenir à MikhmoAI", paragraphs: ["Le bouton Retour à Mikhmo App permet de sortir de la section Mikhmon Online et de revenir vers l’écosystème principal. C’est utile quand on alterne entre configuration routeur, vente TiketMOMO et gestion globale."] },
+    ],
+    faq: [
+      { question: "Pourquoi vérifier la session avant de travailler ?", answer: "Parce qu’un gérant peut avoir plusieurs routeurs ou sessions. Vérifier le nom évite de modifier le mauvais Hotspot." },
+      { question: "MikhmonV8 est-il seulement pour ordinateur ?", answer: "Non. Il est utilisable depuis navigateur sur ordinateur, iPhone, Android ou tablette." },
+    ],
+  },
+  {
     slug: "mikhmon-online-iphone",
     title: "Mikhmon Online sur iPhone : gérer MikroTik sans APK",
     metaTitle: "Mikhmon Online iPhone : accès web app.mikhmo.tech",

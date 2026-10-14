@@ -110,6 +110,47 @@ const captureSlots = [
   },
 ];
 
+const featureTour = [
+  {
+    title: "Dashboard Hotspot",
+    text: "Suivez les utilisateurs actifs, les comptes Hotspot, le trafic, l’uptime, les logs et les ventes TiketMOMO depuis une vue bureau claire.",
+    icon: Gauge,
+  },
+  {
+    title: "Génération de vouchers",
+    text: "Créez les utilisateurs, choisissez le profil, la durée, le volume, imprimez les tickets et synchronisez le stock Cloud pour TiketMOMO.",
+    icon: Ticket,
+  },
+  {
+    title: "Menu Mikhmon complet",
+    text: "Dashboard, Hotspot, PPPoE, Quick Print, Vouchers, TiketMOMO TPay, logs, rapports et réglages restent accessibles en ligne.",
+    icon: Wifi,
+  },
+  {
+    title: "Routeurs et sessions",
+    text: "Ajoutez un routeur, ouvrez une session Mikhmon active, vérifiez la version et revenez à MikhmoAI quand vous avez terminé.",
+    icon: Router,
+  },
+];
+
+const tutorials = [
+  {
+    href: "/blog/mikhmonv8-dashboard-hotspot",
+    title: "Lire le dashboard MikhmonV8",
+    text: "Comprendre les cartes Hotspot, PPPoE, trafic, logs et ventes.",
+  },
+  {
+    href: "/blog/generer-vouchers-tiketmomo-mikhmonv8",
+    title: "Générer des vouchers et vendre avec TiketMOMO",
+    text: "Créer un lot, choisir le profil et synchroniser le stock Cloud.",
+  },
+  {
+    href: "/blog/ajouter-routeur-mikhmonv8",
+    title: "Ajouter un routeur dans MikhmonV8",
+    text: "Préparer la session, ouvrir le routeur et vérifier l’accès web.",
+  },
+];
+
 export default function MikhmonV8Page() {
   const url = "https://mikhmoai.com/mikhmonv8";
 
@@ -305,6 +346,39 @@ export default function MikhmonV8Page() {
           </div>
         </section>
 
+        <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24" aria-labelledby="features-tour-title">
+          <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
+            <div className="lg:sticky lg:top-28">
+              <p className="font-black uppercase tracking-[0.22em] text-primary">Fonctions visibles</p>
+              <h2 id="features-tour-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">On peut déjà transformer les captures en blocs et tutos.</h2>
+              <p className="mt-6 text-xl text-muted-foreground">
+                Les écrans fournis montrent assez d’éléments pour expliquer les parcours clés : consulter le réseau, générer les tickets, vendre avec TiketMOMO et gérer les routeurs.
+              </p>
+              <div className="mt-8 flex flex-col gap-3">
+                {tutorials.map((tutorial) => (
+                  <Link key={tutorial.href} href={tutorial.href} className="group rounded-2xl border border-border/60 bg-card p-5 transition hover:-translate-y-1 hover:border-primary/40">
+                    <span className="text-lg font-black group-hover:text-primary">{tutorial.title}</span>
+                    <span className="mt-2 block text-sm text-muted-foreground">{tutorial.text}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div className="grid gap-5 sm:grid-cols-2">
+              {featureTour.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="rounded-[1.75rem] border border-border/60 bg-card p-6">
+                    <Icon className="h-9 w-9 text-yellow-500" aria-hidden="true" />
+                    <h3 className="mt-6 text-3xl font-black tracking-tight">{item.title}</h3>
+                    <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
         <section id="licences" className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24">
           <div className="max-w-4xl">
             <p className="font-black uppercase tracking-[0.22em] text-primary">Licences</p>
@@ -358,8 +432,8 @@ export default function MikhmonV8Page() {
                   </span>
                 ))}
               </div>
-              <h2 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">MikhmonV8 est prêt. Il manque seulement tes captures.</h2>
-              <p className="mt-4 text-lg opacity-70">Dès que tu fournis les captures mobile et bureau, je les intègre dans les emplacements prévus et j’ajuste le cadrage.</p>
+              <h2 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">MikhmonV8 est maintenant illustré par ses vrais écrans.</h2>
+              <p className="mt-4 text-lg opacity-70">Les captures mobile et bureau montrent déjà les parcours à vendre : dashboard, routeurs, vouchers, TiketMOMO, rapports et accès web.</p>
             </div>
             <Link href="/solutions/mikhmon-online-application-web" className="mt-8 inline-flex items-center gap-3 rounded-full bg-yellow-300 px-7 py-4 font-black text-black lg:mt-0">
               Voir aussi la page solution
