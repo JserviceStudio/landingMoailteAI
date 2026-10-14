@@ -373,6 +373,10 @@ export default function Home() {
                   Découvrir l’app web
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
+                <Link href="/mikhmonv8" className="inline-flex items-center justify-center gap-3 rounded-full border border-yellow-300/40 bg-yellow-300 px-7 py-4 font-black text-black transition hover:-translate-y-1 hover:bg-yellow-200">
+                  Landing MikhmonV8
+                  <ArrowRight className="h-5 w-5" aria-hidden="true" />
+                </Link>
               </div>
             </div>
 
