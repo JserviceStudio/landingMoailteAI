@@ -78,6 +78,10 @@ function isInside(directory: string, file: string) {
   return relative !== "" && !relative.startsWith("..") && !path.isAbsolute(relative);
 }
 
+function uniqueDirectories(directories: string[]) {
+  return Array.from(new Set(directories.map((directory) => path.resolve(directory))));
+}
+
 export async function GET(request: NextRequest) {
   try {
     const requestedPlatform = request.nextUrl.searchParams.get("platform")?.toLowerCase();
@@ -95,19 +99,32 @@ export async function GET(request: NextRequest) {
     const releasesRoot = externalReleaseDir
       ? path.resolve(externalReleaseDir)
       : path.join(publicDir, "downloads");
-    const releaseDir = path.join(releasesRoot, platform);
+    const releasesRootName = path.basename(releasesRoot).toLowerCase();
+    const releaseDirs = uniqueDirectories([
+      path.join(releasesRoot, platform, variant),
+      path.join(releasesRoot, platform),
+      releasesRootName === platform ? path.join(releasesRoot, variant) : "",
+      releasesRootName === variant ? releasesRoot : "",
+      releasesRoot,
+    ].filter(Boolean));
 
     // Android releases historically lived at the root of /public. Keep that
     // location supported while preferring the organized downloads directory.
     const candidatePaths = [
-      ...walkFiles(releaseDir),
+      ...releaseDirs.flatMap((directory) => walkFiles(directory)),
       ...(platform === "android" ? walkFiles(publicDir).filter((file) => path.dirname(file) === publicDir) : []),
-    ];
+    ].filter((file, index, files) => files.indexOf(file) === index);
 
     const releases: ReleaseFile[] = candidatePaths
       .filter((file) => matchesExtension(path.basename(file), platformExtensions[platform]))
       .filter((file) => matchesArchitecture(path.basename(file), platform, arch))
-      .filter((file) => platform === "android" || (variant === "portable" ? isPortable(file) : !isPortable(file)))
+      .filter((file) => {
+        if (platform === "android") return true;
+        const normalized = file.toLowerCase().replaceAll("\\", "/");
+        const isInVariantDirectory = normalized.includes(`/${variant}/`);
+        if (variant === "portable") return isInVariantDirectory || isPortable(file);
+        return isInVariantDirectory || !isPortable(file);
+      })
       .filter((file) => !requestedFormat || path.basename(file).toLowerCase().endsWith(`.${requestedFormat.replace(/^\./, "")}`))
       .map((absolutePath) => {
         const name = path.basename(absolutePath);
@@ -126,7 +143,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           error: `Aucune version ${platform} disponible pour le moment.`,
-          expectedDirectory: path.join(releasesRoot, platform),
+          expectedDirectories: releaseDirs,
           variant,
           supportedExtensions: platformExtensions[platform],
         },
