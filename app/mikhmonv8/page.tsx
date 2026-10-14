@@ -21,25 +21,30 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, SeoLayout } from "@/components/layout/SeoLayout";
 
 export const metadata: Metadata = {
-  title: "MikhmonV8 — Mikhmon Online, TiketMOMO et VPN",
+  title: "MikhmonV8 — Mikhmon Online Pro, TiketMOMO et VPN",
   description:
-    "Découvrez MikhmonV8, l’application web Mikhmon Online accessible partout : iPhone, Android, ordinateur, TiketMOMO, VPN et fonctions avancées.",
+    "Découvrez MikhmonV8, l’application web Mikhmon Online et Mikhmon Pro accessible partout : iPhone, Android, ordinateur, TiketMOMO, VPN et fonctions avancées.",
   keywords: [
     "MikhmonV8",
     "Mikhmon Online",
+    "Mikhmon Online Pro",
+    "Mikhmon Pro",
+    "MikhmonPro",
+    "Mikhmon en ligne",
+    "Mikhmon web",
     "Mikhmon iPhone",
     "application web MikroTik",
+    "logiciel hotspot MikroTik",
     "TiketMOMO",
     "VPN MikroTik",
-    "MikhmonPro",
   ],
   alternates: { canonical: "https://web.mikhmoai.com" },
   openGraph: {
     type: "website",
     url: "https://web.mikhmoai.com",
-    title: "MikhmonV8 — Mikhmon Online accessible partout",
+    title: "MikhmonV8 — Mikhmon Online Pro accessible partout",
     description:
-      "Une application web simple pour retrouver Mikhmon Online, TiketMOMO et les fonctions avancées depuis app.mikhmo.tech.",
+      "Une application web simple pour retrouver Mikhmon Online, Mikhmon Pro, TiketMOMO et les fonctions avancées depuis app.mikhmo.tech.",
     images: ["/og-image.png"],
     locale: "fr_FR",
   },
@@ -53,8 +58,8 @@ const plans = [
     usdHint: "≈ 24 $",
     period: "1 an",
     badge: "Offre recommandée",
-    description: "Pour accéder à Mikhmon Online, TiketMOMO et aux fonctions avancées dans une seule expérience web.",
-    features: ["Mikhmon Online", "TiketMOMO", "Fonctions avancées", "Compatible iPhone, Android, PC et tablette"],
+    description: "Pour accéder à Mikhmon Online, Mikhmon Pro, TiketMOMO et aux fonctions avancées dans une seule expérience web.",
+    features: ["Mikhmon Online Pro", "TiketMOMO", "Fonctions avancées", "Compatible iPhone, Android, PC et tablette"],
     quickCheckoutUrl: "https://bbvovqmu.mychariow.shop/prd_uwldz5/checkout?locale=fr",
     multiCountryUrl: "https://live.mikhmoai.com/api/v1/payments/hub?productCode=mikhmoai&planCode=mikhmoai-pro",
     highlighted: true,
@@ -180,9 +185,10 @@ function LicenseSection() {
                 <p className={`mt-3 text-base ${plan.highlighted ? "text-white/65" : "text-muted-foreground"}`}>{plan.description}</p>
               </div>
               <div className="text-right">
-                <p className="text-5xl font-black">{plan.price}</p>
-                <p className={`mt-1 text-base font-black ${plan.highlighted ? "text-yellow-300" : "text-primary"}`}>{plan.usdHint}</p>
-                <p className={`mt-1 text-sm font-bold uppercase tracking-widest ${plan.highlighted ? "text-white/45" : "text-muted-foreground"}`}>{plan.period}</p>
+                <p className="whitespace-nowrap text-5xl font-black">{plan.price}</p>
+                <p className={`mt-2 whitespace-nowrap text-sm font-black uppercase tracking-wide sm:text-base ${plan.highlighted ? "text-yellow-300" : "text-primary"}`}>
+                  {plan.usdHint} / {plan.period}
+                </p>
               </div>
             </div>
             <ul className="mt-8 grid gap-3">
@@ -224,7 +230,7 @@ function LicenseSection() {
 }
 
 export default function MikhmonV8Page() {
-  const url = "https://mikhmoai.com/mikhmonv8";
+  const url = "https://web.mikhmoai.com";
 
   return (
     <SeoLayout>
@@ -234,12 +240,12 @@ export default function MikhmonV8Page() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             name: "MikhmonV8",
-            alternateName: "Mikhmon Online",
+            alternateName: ["Mikhmon Online", "Mikhmon Pro", "MikhmonPro"],
             applicationCategory: "NetworkApplication",
             operatingSystem: "Web, iOS, Android, Windows, macOS, Linux",
             url,
             description:
-              "Application web Mikhmon Online avec TiketMOMO, VPN et fonctions avancées pour gérer les WiFi zones MikroTik depuis un navigateur.",
+              "Application web Mikhmon Online et Mikhmon Pro avec TiketMOMO, VPN et fonctions avancées pour gérer les WiFi zones MikroTik depuis un navigateur.",
             offers: plans.map((plan) => ({
               "@type": "Offer",
               name: plan.name,
