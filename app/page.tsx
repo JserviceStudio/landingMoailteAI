@@ -320,32 +320,62 @@ export default function Home() {
       </MotionSection>
 
       <MotionSection className="overflow-hidden px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="mobile-showcase-title">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="font-black uppercase tracking-[0.22em] text-orange-500">MikhmoAI Mobile</p>
-            <h2 id="mobile-showcase-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Votre infrastructure MikroTik dans votre poche.</h2>
-            <p className="mt-6 text-xl leading-relaxed text-muted-foreground">Supervisez les connexions, créez des vouchers, pilotez vos routeurs, analysez vos ventes et déployez un accès VPN sécurisé directement depuis Android.</p>
-          </div>
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6 lg:grid-cols-6 lg:gap-5">
-            {[
-              { src: "/mikhmoai-mobile-dashboard-hotspot-radius.jpeg", alt: "Dashboard mobile MikhmoAI avec sessions Hotspot, PPP, ventes et RADIUS", label: "Dashboard" },
-              { src: "/mikhmoai-mobile-sessions-hotspot-actives.jpeg", alt: "Utilisateurs et sessions Hotspot MikroTik actifs dans MikhmoAI Mobile", label: "Sessions" },
-              { src: "/mikhmoai-mobile-generateur-vouchers.jpeg", alt: "Générateur mobile de vouchers MikroTik par lots", label: "Vouchers" },
-              { src: "/mikhmoai-mobile-console-routeros.jpeg", alt: "Console RouterOS V7 sur l'application mobile MikhmoAI", label: "RouterOS" },
-              { src: "/mikhmoai-mobile-assistant-ia.jpeg", alt: "Assistant Moailte AI analysant le réseau et les ventes", label: "Assistant IA" },
-              { src: "/mikhmoai-mobile-wizard-vpn.jpeg", alt: "Assistant VPN Premium pour accès distant sécurisé à MikroTik", label: "VPN sécurisé" },
-            ].map((screen, index) => (
-              <figure key={screen.src} className={`group relative ${index > 3 ? "hidden sm:block" : ""}`}>
-                <div className="relative aspect-[9/19] overflow-hidden rounded-[1.75rem] bg-black shadow-[0_30px_70px_-30px_rgba(0,0,0,0.8)] transition duration-500 motion-safe:group-hover:-translate-y-3 motion-safe:group-hover:rotate-1">
-                  <Image src={screen.src} alt={screen.alt} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 16vw" className="object-cover" />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10" aria-hidden="true" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-18">
+          <div className="space-y-8 text-center lg:text-left">
+            <div>
+              <p className="font-black uppercase tracking-[0.22em] text-orange-500">MikhmoAI Mobile</p>
+              <h2 id="mobile-showcase-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Votre Mikhmon Online tient dans un iPhone.</h2>
+              <p className="mt-6 text-xl leading-relaxed text-muted-foreground">Dashboard, menu latéral, génération de vouchers et TiketMOMO restent lisibles et rapides sur mobile. L’interface web garde le style Mikhmon, mais se comporte comme une vraie app de terrain.</p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              {[
+                { title: "Dashboard live", text: "Hotspot, PPPoE, trafic, uptime et ventes visibles en quelques gestes." },
+                { title: "Menu terrain", text: "Navigation complète pour technicien, même sur écran étroit." },
+                { title: "Vouchers rapides", text: "Création, impression et stock TiketMOMO depuis le téléphone." },
+              ].map((item) => (
+                <div key={item.title} className="rounded-2xl border border-border/60 bg-card p-5 text-left">
+                  <h3 className="text-lg font-black tracking-tight">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.text}</p>
                 </div>
-                <figcaption className="mt-4 text-center text-xs font-black uppercase tracking-[0.16em] text-muted-foreground">{screen.label}</figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
+              ))}
+            </div>
+
             <Link href="/solutions/application-mikrotik-android" className="inline-flex items-center gap-3 rounded-full bg-orange-500 px-7 py-4 font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-orange-400">Explorer l’application mobile <ArrowRight className="h-5 w-5" /></Link>
+          </div>
+
+          <div className="relative mx-auto min-h-[650px] w-full max-w-[760px] sm:min-h-[760px] lg:min-h-[680px]" role="img" aria-label="Captures mobiles MikhmoAI Web App dans un mockup iPhone Pro">
+            <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-emerald-500/20 blur-[120px]" aria-hidden="true" />
+            <div className="absolute inset-x-8 bottom-8 top-10 rounded-[3rem] border border-white/10 bg-[#102017] shadow-[0_50px_130px_-60px_rgba(16,185,129,0.95)]" aria-hidden="true" />
+
+            <motion.figure initial={{ opacity: 0, y: 50, rotate: -5 }} whileInView={{ opacity: 1, y: 0, rotate: -7 }} viewport={{ once: true }} transition={{ duration: 0.8, type: "spring" }} className="absolute left-0 top-12 hidden w-[34%] sm:block lg:left-2 lg:top-20">
+              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[2.2rem] border-[7px] border-[#11151b] bg-black shadow-[0_35px_80px_-30px_rgba(0,0,0,0.8)]">
+                <Image src="/mikhmoai-webapp-mobile-menu.jpg" alt="Menu mobile MikhmoAI avec navigation Hotspot, PPPoE, vouchers et rapports" fill sizes="(max-width: 1024px) 28vw, 220px" className="object-cover" />
+                <div className="absolute inset-x-[34%] top-2 h-4 rounded-full bg-black" aria-hidden="true" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10" aria-hidden="true" />
+              </div>
+              <figcaption className="mt-3 text-center text-xs font-black uppercase tracking-[0.16em] text-muted-foreground">Menu complet</figcaption>
+            </motion.figure>
+
+            <motion.figure initial={{ opacity: 0, y: 60 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, type: "spring" }} className="absolute left-1/2 top-0 z-20 w-[74%] max-w-[360px] -translate-x-1/2 sm:w-[48%] lg:w-[44%]">
+              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[2.8rem] border-[10px] border-[#0d1117] bg-black p-1 shadow-[0_55px_115px_-35px_rgba(0,0,0,0.9)]">
+                <div className="relative h-full overflow-hidden rounded-[2.05rem] bg-[#1b2a21]">
+                  <Image src="/mikhmoai-webapp-mobile-dashboard.jpg" alt="Dashboard mobile MikhmoAI Web App avec cartes Hotspot, PPPoE et statistiques routeur" fill sizes="(max-width: 640px) 74vw, (max-width: 1024px) 48vw, 330px" className="object-cover" priority />
+                </div>
+                <div className="absolute left-1/2 top-2 h-5 w-[34%] -translate-x-1/2 rounded-full bg-black" aria-hidden="true" />
+                <div className="absolute inset-0 rounded-[2.35rem] ring-1 ring-inset ring-white/10" aria-hidden="true" />
+              </div>
+              <figcaption className="mt-4 text-center text-xs font-black uppercase tracking-[0.18em] text-orange-500">iPhone 15 Pro / 17 Pro</figcaption>
+            </motion.figure>
+
+            <motion.figure initial={{ opacity: 0, y: 50, rotate: 5 }} whileInView={{ opacity: 1, y: 0, rotate: 7 }} viewport={{ once: true }} transition={{ duration: 0.8, type: "spring" }} className="absolute bottom-4 right-0 z-10 hidden w-[34%] sm:block lg:right-2">
+              <div className="relative aspect-[9/19.5] overflow-hidden rounded-[2.2rem] border-[7px] border-[#11151b] bg-black shadow-[0_35px_80px_-30px_rgba(0,0,0,0.8)]">
+                <Image src="/mikhmoai-webapp-mobile-generate.jpg" alt="Formulaire mobile de génération de vouchers MikhmoAI avec TiketMOMO et derniers lots" fill sizes="(max-width: 1024px) 28vw, 220px" className="object-cover" />
+                <div className="absolute inset-x-[34%] top-2 h-4 rounded-full bg-black" aria-hidden="true" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10" aria-hidden="true" />
+              </div>
+              <figcaption className="mt-3 text-center text-xs font-black uppercase tracking-[0.16em] text-muted-foreground">Vouchers</figcaption>
+            </motion.figure>
           </div>
         </div>
       </MotionSection>

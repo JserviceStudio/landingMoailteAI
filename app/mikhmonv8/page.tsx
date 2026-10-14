@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -73,17 +74,24 @@ const captureSlots = [
     className: "lg:col-span-2",
   },
   {
-    title: "Capture mobile accueil",
-    file: "/mikhmonv8-mobile-home.png",
-    hint: "Accueil web sur iPhone",
+    title: "Dashboard mobile",
+    file: "/mikhmoai-webapp-mobile-dashboard.jpg",
+    hint: "Dashboard web sur iPhone",
     icon: Smartphone,
     className: "",
   },
   {
-    title: "Capture mobile TiketMOMO",
-    file: "/mikhmonv8-mobile-tiketmomo.png",
-    hint: "Vente tickets et Mobile Money",
+    title: "Génération vouchers",
+    file: "/mikhmoai-webapp-mobile-generate.jpg",
+    hint: "Création vouchers et stock TiketMOMO",
     icon: Ticket,
+    className: "",
+  },
+  {
+    title: "Menu mobile",
+    file: "/mikhmoai-webapp-mobile-menu.jpg",
+    hint: "Navigation Mikhmon Online complète",
+    icon: Wifi,
     className: "",
   },
 ];
@@ -192,16 +200,26 @@ export default function MikhmonV8Page() {
                     </div>
                     <Monitor className="h-10 w-10 text-yellow-500" aria-hidden="true" />
                   </div>
-                  <div className="mt-4 aspect-[16/10] rounded-2xl border-2 border-dashed border-black/18 bg-[linear-gradient(135deg,#f8fafc,#fef3c7)] p-5">
-                    <div className="flex h-full flex-col justify-between rounded-xl bg-black p-5 text-white">
-                      <div className="flex items-center justify-between">
-                        <span className="rounded-full bg-yellow-300 px-3 py-1 text-xs font-black text-black">app.mikhmo.tech</span>
-                        <span className="text-xs font-bold text-white/45">capture à importer</span>
-                      </div>
-                      <div>
-                        <p className="text-3xl font-black">Dashboard bureau</p>
-                        <p className="mt-2 text-sm text-white/55">Remplacer par la capture desktop MikhmonV8.</p>
-                      </div>
+                <div className="mt-4 aspect-[16/10] rounded-2xl border-2 border-dashed border-black/18 bg-[linear-gradient(135deg,#f8fafc,#fef3c7)] p-5">
+                  <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl bg-black p-5 text-white">
+                    <div className="absolute bottom-4 right-4 z-0 flex items-end gap-3 opacity-95" aria-hidden="true">
+                      {[
+                        "/mikhmoai-webapp-mobile-menu.jpg",
+                        "/mikhmoai-webapp-mobile-dashboard.jpg",
+                        "/mikhmoai-webapp-mobile-generate.jpg",
+                      ].map((src, index) => (
+                        <div key={src} className={`relative aspect-[9/19] w-20 overflow-hidden rounded-2xl border-4 border-black shadow-2xl ${index === 1 ? "w-28" : "hidden sm:block"}`}>
+                          <Image src={src} alt="" fill sizes="112px" className="object-cover" />
+                        </div>
+                      ))}
+                    </div>
+                    <div className="relative z-10">
+                      <span className="rounded-full bg-yellow-300 px-3 py-1 text-xs font-black text-black">app.mikhmo.tech</span>
+                    </div>
+                    <div className="relative z-10 max-w-sm">
+                      <p className="text-3xl font-black">Web app mobile prête</p>
+                      <p className="mt-2 text-sm text-white/55">Les captures mobiles sont intégrées. Il reste la capture desktop quand tu la fourniras.</p>
+                    </div>
                     </div>
                   </div>
                 </div>
@@ -213,9 +231,9 @@ export default function MikhmonV8Page() {
         <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
           <div className="max-w-4xl">
             <p className="font-black uppercase tracking-[0.22em] text-primary">Captures à accueillir</p>
-            <h2 id="captures-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Les emplacements sont prêts pour tes images mobile et bureau.</h2>
+              <h2 id="captures-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Les captures mobiles sont en place. Le bureau reste prêt à recevoir son image.</h2>
             <p className="mt-6 text-xl text-muted-foreground">
-              Pour l’instant, la page n’utilise aucune ancienne capture MikhmoAI. Les zones ci-dessous sont réservées aux nouvelles captures MikhmonV8.
+              La page utilise les nouvelles captures de l’application web. Aucun ancien visuel mobile MikhmoAI n’est repris pour MikhmonV8.
             </p>
           </div>
 
@@ -231,13 +249,23 @@ export default function MikhmonV8Page() {
                     </div>
                     <Icon className="h-8 w-8 text-yellow-500" aria-hidden="true" />
                   </div>
-                  <div className={`mt-6 rounded-[1.5rem] border-2 border-dashed border-yellow-500/35 bg-yellow-500/8 p-4 ${slot.title.includes("bureau") ? "aspect-[16/9]" : "mx-auto aspect-[9/19] max-w-[280px]"}`}>
-                    <div className="flex h-full flex-col items-center justify-center rounded-2xl bg-background/70 p-5 text-center">
-                      <Icon className="h-10 w-10 text-yellow-500" aria-hidden="true" />
-                      <p className="mt-4 text-xl font-black">{slot.hint}</p>
-                      <p className="mt-2 text-sm text-muted-foreground">Dépose la capture dans public avec ce nom, puis on remplacera le placeholder.</p>
+                  {slot.title === "Capture bureau" ? (
+                    <div className="mt-6 aspect-[16/9] rounded-[1.5rem] border-2 border-dashed border-yellow-500/35 bg-yellow-500/8 p-4">
+                      <div className="flex h-full flex-col items-center justify-center rounded-2xl bg-background/70 p-5 text-center">
+                        <Icon className="h-10 w-10 text-yellow-500" aria-hidden="true" />
+                        <p className="mt-4 text-xl font-black">{slot.hint}</p>
+                        <p className="mt-2 text-sm text-muted-foreground">Dépose la capture dans public avec ce nom, puis on remplacera le placeholder.</p>
+                      </div>
                     </div>
-                  </div>
+                  ) : (
+                    <div className="mx-auto mt-6 max-w-[300px] rounded-[2rem] border-[8px] border-[#0d1117] bg-black p-1 shadow-[0_35px_90px_-40px_rgba(0,0,0,0.9)]">
+                      <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.45rem] bg-[#1b2a21]">
+                        <Image src={slot.file} alt={slot.hint} fill sizes="300px" className="object-cover" />
+                        <div className="absolute left-1/2 top-2 h-4 w-[34%] -translate-x-1/2 rounded-full bg-black" aria-hidden="true" />
+                        <div className="absolute inset-0 ring-1 ring-inset ring-white/10" aria-hidden="true" />
+                      </div>
+                    </div>
+                  )}
                 </div>
               );
             })}
