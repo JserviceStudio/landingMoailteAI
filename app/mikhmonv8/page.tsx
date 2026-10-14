@@ -67,10 +67,24 @@ const plans = [
 
 const captureSlots = [
   {
-    title: "Capture bureau",
-    file: "/mikhmonv8-desktop-dashboard.png",
+    title: "Dashboard bureau",
+    file: "/mikhmonv8-desktop-dashboard.jpg",
     hint: "Dashboard MikhmonV8 sur ordinateur",
     icon: Monitor,
+    className: "lg:col-span-2",
+  },
+  {
+    title: "Vouchers bureau",
+    file: "/mikhmonv8-desktop-vouchers.jpg",
+    hint: "Génération de vouchers et stock TiketMOMO",
+    icon: Ticket,
+    className: "lg:col-span-2",
+  },
+  {
+    title: "Réglages bureau",
+    file: "/mikhmonv8-desktop-settings.jpg",
+    hint: "Administration, routeurs et session Mikhmon active",
+    icon: Router,
     className: "lg:col-span-2",
   },
   {
@@ -195,31 +209,20 @@ export default function MikhmonV8Page() {
                 <div className="rounded-[1.5rem] bg-white p-4 text-black">
                   <div className="flex items-center justify-between border-b border-black/10 pb-4">
                     <div>
-                      <p className="text-xs font-black uppercase tracking-[0.2em] text-black/45">Emplacement capture bureau</p>
+                      <p className="text-xs font-black uppercase tracking-[0.2em] text-black/45">Capture bureau intégrée</p>
                       <p className="mt-1 text-2xl font-black">MikhmonV8 Web</p>
                     </div>
                     <Monitor className="h-10 w-10 text-yellow-500" aria-hidden="true" />
                   </div>
-                <div className="mt-4 aspect-[16/10] rounded-2xl border-2 border-dashed border-black/18 bg-[linear-gradient(135deg,#f8fafc,#fef3c7)] p-5">
-                  <div className="relative flex h-full flex-col justify-between overflow-hidden rounded-xl bg-black p-5 text-white">
-                    <div className="absolute bottom-4 right-4 z-0 flex items-end gap-3 opacity-95" aria-hidden="true">
-                      {[
-                        "/mikhmoai-webapp-mobile-menu.jpg",
-                        "/mikhmoai-webapp-mobile-dashboard.jpg",
-                        "/mikhmoai-webapp-mobile-generate.jpg",
-                      ].map((src, index) => (
-                        <div key={src} className={`relative aspect-[9/19] w-20 overflow-hidden rounded-2xl border-4 border-black shadow-2xl ${index === 1 ? "w-28" : "hidden sm:block"}`}>
-                          <Image src={src} alt="" fill sizes="112px" className="object-cover" />
-                        </div>
-                      ))}
+                  <div className="mt-4 overflow-hidden rounded-2xl border border-black/10 bg-black shadow-2xl">
+                    <div className="flex h-8 items-center gap-1.5 bg-[#333c46] px-4" aria-hidden="true">
+                      <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+                      <span className="ml-3 text-[10px] font-black uppercase tracking-[0.18em] text-white/45">MikhmonV8 Desktop</span>
                     </div>
-                    <div className="relative z-10">
-                      <span className="rounded-full bg-yellow-300 px-3 py-1 text-xs font-black text-black">app.mikhmo.tech</span>
-                    </div>
-                    <div className="relative z-10 max-w-sm">
-                      <p className="text-3xl font-black">Web app mobile prête</p>
-                      <p className="mt-2 text-sm text-white/55">Les captures mobiles sont intégrées. Il reste la capture desktop quand tu la fourniras.</p>
-                    </div>
+                    <div className="relative aspect-[1.86]">
+                      <Image src="/mikhmonv8-desktop-dashboard.jpg" alt="Dashboard bureau MikhmonV8 avec Hotspot, PPPoE, TiketMOMO et logs" fill sizes="(max-width: 1024px) 90vw, 650px" className="object-cover" priority />
                     </div>
                   </div>
                 </div>
@@ -231,9 +234,9 @@ export default function MikhmonV8Page() {
         <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
           <div className="max-w-4xl">
             <p className="font-black uppercase tracking-[0.22em] text-primary">Captures à accueillir</p>
-              <h2 id="captures-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Les captures mobiles sont en place. Le bureau reste prêt à recevoir son image.</h2>
+              <h2 id="captures-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Les captures mobile et bureau sont maintenant en place.</h2>
             <p className="mt-6 text-xl text-muted-foreground">
-              La page utilise les nouvelles captures de l’application web. Aucun ancien visuel mobile MikhmoAI n’est repris pour MikhmonV8.
+              La page utilise les nouvelles captures de l’application web MikhmonV8 : dashboard, génération vouchers, réglages, menu mobile et écrans iPhone.
             </p>
           </div>
 
@@ -249,12 +252,16 @@ export default function MikhmonV8Page() {
                     </div>
                     <Icon className="h-8 w-8 text-yellow-500" aria-hidden="true" />
                   </div>
-                  {slot.title === "Capture bureau" ? (
-                    <div className="mt-6 aspect-[16/9] rounded-[1.5rem] border-2 border-dashed border-yellow-500/35 bg-yellow-500/8 p-4">
-                      <div className="flex h-full flex-col items-center justify-center rounded-2xl bg-background/70 p-5 text-center">
-                        <Icon className="h-10 w-10 text-yellow-500" aria-hidden="true" />
-                        <p className="mt-4 text-xl font-black">{slot.hint}</p>
-                        <p className="mt-2 text-sm text-muted-foreground">Dépose la capture dans public avec ce nom, puis on remplacera le placeholder.</p>
+                  {slot.title.includes("bureau") ? (
+                    <div className="mt-6 overflow-hidden rounded-[1.5rem] border border-border/60 bg-black shadow-[0_30px_80px_-45px_rgba(0,0,0,0.8)]">
+                      <div className="flex h-8 items-center gap-1.5 bg-[#333c46] px-4" aria-hidden="true">
+                        <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+                        <span className="ml-3 text-[10px] font-black uppercase tracking-[0.18em] text-white/45">Desktop</span>
+                      </div>
+                      <div className="relative aspect-[1.86]">
+                        <Image src={slot.file} alt={slot.hint} fill sizes="(max-width: 1024px) 100vw, 1000px" className="object-cover" />
                       </div>
                     </div>
                   ) : (
