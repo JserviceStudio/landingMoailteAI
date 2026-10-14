@@ -33,10 +33,10 @@ export const metadata: Metadata = {
     "VPN MikroTik",
     "MikhmonPro",
   ],
-  alternates: { canonical: "https://app.mikhmoai.com" },
+  alternates: { canonical: "https://web.mikhmoai.com" },
   openGraph: {
     type: "website",
-    url: "https://app.mikhmoai.com",
+    url: "https://web.mikhmoai.com",
     title: "MikhmonV8 — Mikhmon Online accessible partout",
     description:
       "Une application web simple pour retrouver Mikhmon Online, TiketMOMO et les fonctions avancées depuis app.mikhmo.tech.",
