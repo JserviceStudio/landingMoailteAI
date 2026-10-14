@@ -290,7 +290,14 @@ export default function MikhmonV8Page() {
 
             <div className="grid gap-8 pt-10 sm:gap-12 sm:pt-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div>
-                <div className="mb-8 grid gap-3 sm:mb-10 sm:flex sm:flex-wrap">
+                <div className="inline-flex items-center gap-3 rounded-full border border-yellow-300/35 bg-yellow-300/12 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-yellow-200">
+                  <Cloud className="h-4 w-4" aria-hidden="true" />
+                  Nouvelle application web
+                </div>
+                <h1 className="mt-7 text-5xl font-black leading-none tracking-tight sm:text-7xl lg:text-8xl">
+                  Mikhmon<span className="text-yellow-300">V8</span>
+                </h1>
+                <div className="mt-6 grid gap-3 sm:flex sm:flex-wrap">
                   <a
                     href={plans[1].quickCheckoutUrl}
                     target="_blank"
@@ -310,13 +317,6 @@ export default function MikhmonV8Page() {
                     <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </a>
                 </div>
-                <div className="inline-flex items-center gap-3 rounded-full border border-yellow-300/35 bg-yellow-300/12 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-yellow-200">
-                  <Cloud className="h-4 w-4" aria-hidden="true" />
-                  Nouvelle application web
-                </div>
-                <h1 className="mt-7 text-5xl font-black leading-none tracking-tight sm:text-7xl lg:text-8xl">
-                  Mikhmon<span className="text-yellow-300">V8</span>
-                </h1>
                 <p className="mt-6 max-w-3xl text-2xl font-black leading-tight text-white sm:text-4xl">
                   Mikhmon Online, TiketMOMO et vos fonctions avancées accessibles partout.
                 </p>
