@@ -166,40 +166,40 @@ const tutorials = [
 
 function LicenseSection() {
   return (
-    <section id="licences" className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24">
+    <section id="licences" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24">
       <div className="max-w-4xl">
         <p className="font-black uppercase tracking-[0.22em] text-primary">Activez votre licence</p>
-        <h2 className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Choisissez votre accès MikhmonV8.</h2>
-        <p className="mt-6 text-xl text-muted-foreground">
+        <h2 className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">Choisissez votre accès MikhmonV8.</h2>
+        <p className="mt-5 text-lg text-muted-foreground sm:mt-6 sm:text-xl">
           Achat rapide via Chariow pour activer vite. Pour un paiement multi-pays ou une demande de réduction, utilisez le hub MikhmoAI.
         </p>
       </div>
 
-      <div className="mt-12 grid gap-6 lg:grid-cols-2">
+      <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 lg:grid-cols-2">
         {plans.map((plan) => (
-          <div key={plan.name} className={`rounded-[2rem] border p-7 sm:p-9 ${plan.highlighted ? "border-yellow-400 bg-[#080808] text-white shadow-[0_45px_100px_-60px_rgba(250,204,21,0.8)]" : "border-border/60 bg-card"}`}>
-            <div className="flex flex-wrap items-start justify-between gap-4">
+          <div key={plan.name} className={`rounded-[1.5rem] border p-5 sm:rounded-[2rem] sm:p-9 ${plan.highlighted ? "border-yellow-400 bg-[#080808] text-white shadow-[0_45px_100px_-60px_rgba(250,204,21,0.8)]" : "border-border/60 bg-card"}`}>
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
               <div>
                 <p className={`inline-flex rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.16em] ${plan.highlighted ? "bg-yellow-300 text-black" : "bg-primary/10 text-primary"}`}>{plan.badge}</p>
-                <h3 className="mt-6 text-4xl font-black">{plan.name}</h3>
+                <h3 className="mt-5 text-3xl font-black sm:mt-6 sm:text-4xl">{plan.name}</h3>
                 <p className={`mt-3 text-base ${plan.highlighted ? "text-white/65" : "text-muted-foreground"}`}>{plan.description}</p>
               </div>
-              <div className="text-right">
-                <p className="whitespace-nowrap text-5xl font-black">{plan.price}</p>
+              <div className="text-left sm:text-right">
+                <p className="whitespace-nowrap text-4xl font-black sm:text-5xl">{plan.price}</p>
                 <p className={`mt-2 whitespace-nowrap text-sm font-black uppercase tracking-wide sm:text-base ${plan.highlighted ? "text-yellow-300" : "text-primary"}`}>
                   {plan.usdHint} / {plan.period}
                 </p>
               </div>
             </div>
-            <ul className="mt-8 grid gap-3">
+            <ul className="mt-6 grid gap-3 sm:mt-8">
               {plan.features.map((feature) => (
-                <li key={feature} className={`flex items-center gap-3 rounded-2xl p-4 font-bold ${plan.highlighted ? "bg-white/8 text-white/85" : "bg-muted/20"}`}>
+                <li key={feature} className={`flex items-start gap-3 rounded-2xl p-3.5 font-bold sm:p-4 ${plan.highlighted ? "bg-white/8 text-white/85" : "bg-muted/20"}`}>
                   <CheckCircle2 className={`h-5 w-5 shrink-0 ${plan.highlighted ? "text-yellow-300" : "text-primary"}`} aria-hidden="true" />
                   {feature}
                 </li>
               ))}
             </ul>
-            <div className="mt-8 grid gap-3">
+            <div className="mt-6 grid gap-3 sm:mt-8">
               <a
                 href={plan.quickCheckoutUrl}
                 target="_blank"
@@ -285,10 +285,10 @@ export default function MikhmonV8Page() {
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(250,204,21,0.16),transparent_38%,rgba(59,130,246,0.14))]" aria-hidden="true" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(250,204,21,0.18),transparent_32%),radial-gradient(circle_at_82%_18%,rgba(255,255,255,0.08),transparent_28%)]" aria-hidden="true" />
 
-          <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-10 lg:px-10 lg:pb-24 lg:pt-16">
+          <div className="relative mx-auto max-w-7xl px-4 pb-12 pt-6 sm:px-5 sm:pb-16 sm:pt-10 lg:px-10 lg:pb-24 lg:pt-16">
             <Breadcrumbs items={[{ label: "Accueil", href: "/" }, { label: "MikhmonV8" }]} />
 
-            <div className="grid gap-12 pt-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="grid gap-8 pt-10 sm:gap-12 sm:pt-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
               <div>
                 <div className="inline-flex items-center gap-3 rounded-full border border-yellow-300/35 bg-yellow-300/12 px-5 py-2 text-xs font-black uppercase tracking-[0.2em] text-yellow-200">
                   <Cloud className="h-4 w-4" aria-hidden="true" />
@@ -324,8 +324,8 @@ export default function MikhmonV8Page() {
                 </div>
               </div>
 
-              <div className="rounded-[2rem] border border-white/12 bg-white/[0.06] p-4 shadow-[0_45px_110px_-55px_rgba(250,204,21,0.85)] backdrop-blur">
-                <div className="rounded-[1.5rem] bg-white p-4 text-black">
+              <div className="rounded-[1.5rem] border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_45px_110px_-55px_rgba(250,204,21,0.85)] backdrop-blur sm:rounded-[2rem] sm:p-4">
+                <div className="rounded-[1.25rem] bg-white p-3 text-black sm:rounded-[1.5rem] sm:p-4">
                   <div className="flex items-center justify-between border-b border-black/10 pb-4">
                     <div>
                       <p className="text-xs font-black uppercase tracking-[0.2em] text-black/45">Capture bureau intégrée</p>
@@ -352,23 +352,23 @@ export default function MikhmonV8Page() {
 
         <LicenseSection />
 
-        <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
           <div className="max-w-4xl">
             <p className="font-black uppercase tracking-[0.22em] text-primary">Captures à accueillir</p>
-              <h2 id="captures-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Les captures mobile et bureau sont maintenant en place.</h2>
-            <p className="mt-6 text-xl text-muted-foreground">
+              <h2 id="captures-title" className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">Les captures mobile et bureau sont maintenant en place.</h2>
+            <p className="mt-5 text-lg text-muted-foreground sm:mt-6 sm:text-xl">
               La page utilise les nouvelles captures de l’application web MikhmonV8 : dashboard, génération vouchers, réglages, menu mobile et écrans iPhone.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-6 lg:grid-cols-2">
             {captureSlots.map((slot) => {
               const Icon = slot.icon;
               return (
-                <div key={slot.file} className={`rounded-[2rem] border border-border/60 bg-card p-6 ${slot.className}`}>
+                <div key={slot.file} className={`rounded-[1.5rem] border border-border/60 bg-card p-4 sm:rounded-[2rem] sm:p-6 ${slot.className}`}>
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <h3 className="text-2xl font-black">{slot.title}</h3>
+                      <h3 className="text-xl font-black sm:text-2xl">{slot.title}</h3>
                       <p className="mt-2 text-sm font-bold text-muted-foreground">{slot.file}</p>
                     </div>
                     <Icon className="h-8 w-8 text-yellow-500" aria-hidden="true" />
@@ -386,7 +386,7 @@ export default function MikhmonV8Page() {
                       </div>
                     </div>
                   ) : (
-                    <div className="mx-auto mt-6 max-w-[300px] rounded-[2rem] border-[8px] border-[#0d1117] bg-black p-1 shadow-[0_35px_90px_-40px_rgba(0,0,0,0.9)]">
+                    <div className="mx-auto mt-5 w-full max-w-[300px] rounded-[1.75rem] border-[7px] border-[#0d1117] bg-black p-1 shadow-[0_35px_90px_-40px_rgba(0,0,0,0.9)] sm:mt-6 sm:rounded-[2rem] sm:border-[8px]">
                       <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.45rem] bg-[#1b2a21]">
                         <Image src={slot.file} alt={slot.hint} fill sizes="300px" className="object-cover" />
                         <div className="absolute left-1/2 top-2 h-4 w-[34%] -translate-x-1/2 rounded-full bg-black" aria-hidden="true" />
@@ -400,13 +400,13 @@ export default function MikhmonV8Page() {
           </div>
         </section>
 
-        <section className="bg-muted/20 px-5 py-16 lg:px-10 lg:py-24">
+        <section className="bg-muted/20 px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24">
           <div className="mx-auto max-w-7xl">
             <div className="max-w-4xl">
               <p className="font-black uppercase tracking-[0.22em] text-primary">Pourquoi MikhmonV8</p>
-              <h2 className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Une application web simple pour continuer à utiliser Mikhmon en ligne.</h2>
+              <h2 className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">Une application web simple pour continuer à utiliser Mikhmon en ligne.</h2>
             </div>
-            <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-8 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-2 lg:grid-cols-4">
               {[
                 { title: "iPhone prêt", text: "Accès depuis Safari ou tout navigateur moderne, sans APK Android.", icon: Smartphone },
                 { title: "Mikhmon Online", text: "Gestion Hotspot en ligne avec une expérience familière et plus moderne.", icon: Router },
@@ -415,7 +415,7 @@ export default function MikhmonV8Page() {
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="rounded-[1.5rem] border border-border/60 bg-card p-6">
+                  <div key={item.title} className="rounded-[1.5rem] border border-border/60 bg-card p-5 sm:p-6">
                     <Icon className="h-8 w-8 text-primary" aria-hidden="true" />
                     <h3 className="mt-5 text-2xl font-black">{item.title}</h3>
                     <p className="mt-3 text-base text-muted-foreground">{item.text}</p>
@@ -426,12 +426,12 @@ export default function MikhmonV8Page() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-16 lg:px-10 lg:py-24" aria-labelledby="features-tour-title">
+        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24" aria-labelledby="features-tour-title">
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div className="lg:sticky lg:top-28">
               <p className="font-black uppercase tracking-[0.22em] text-primary">Fonctions visibles</p>
-              <h2 id="features-tour-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">On peut déjà transformer les captures en blocs et tutos.</h2>
-              <p className="mt-6 text-xl text-muted-foreground">
+              <h2 id="features-tour-title" className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">On peut déjà transformer les captures en blocs et tutos.</h2>
+              <p className="mt-5 text-lg text-muted-foreground sm:mt-6 sm:text-xl">
                 Les écrans fournis montrent assez d’éléments pour expliquer les parcours clés : consulter le réseau, générer les tickets, vendre avec TiketMOMO et gérer les routeurs.
               </p>
               <div className="mt-8 flex flex-col gap-3">
@@ -444,11 +444,11 @@ export default function MikhmonV8Page() {
               </div>
             </div>
 
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-4 sm:gap-5 sm:grid-cols-2">
               {featureTour.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div key={item.title} className="rounded-[1.75rem] border border-border/60 bg-card p-6">
+                  <div key={item.title} className="rounded-[1.5rem] border border-border/60 bg-card p-5 sm:rounded-[1.75rem] sm:p-6">
                     <Icon className="h-9 w-9 text-yellow-500" aria-hidden="true" />
                     <h3 className="mt-6 text-3xl font-black tracking-tight">{item.title}</h3>
                     <p className="mt-4 text-base leading-relaxed text-muted-foreground">{item.text}</p>
@@ -459,8 +459,8 @@ export default function MikhmonV8Page() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 pb-24 lg:px-10">
-          <div className="rounded-[2rem] bg-foreground p-8 text-background sm:p-12 lg:flex lg:items-center lg:justify-between">
+        <section className="mx-auto max-w-7xl px-4 pb-16 sm:px-5 sm:pb-24 lg:px-10">
+          <div className="rounded-[1.5rem] bg-foreground p-6 text-background sm:rounded-[2rem] sm:p-12 lg:flex lg:items-center lg:justify-between">
             <div className="max-w-3xl">
               <div className="flex flex-wrap gap-3">
                 {[ShieldCheck, BadgeCheck, Wifi, CreditCard, WalletCards].map((Icon, index) => (
