@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     url: "/mikhmonv8",
     title: "MikhmonV8 — Mikhmon Online accessible partout",
     description:
-      "Une application web simple pour retrouver Mikhmon Online, TiketMOMO et les fonctions avancées depuis app.mikhmoai.com.",
+      "Une application web simple pour retrouver Mikhmon Online, TiketMOMO et les fonctions avancées depuis app.mikhmo.tech.",
     images: ["/og-image.png"],
     locale: "fr_FR",
   },
@@ -67,7 +67,7 @@ const plans = [
     period: "1 an",
     badge: "Accès distant",
     description: "Pour gérer votre routeur à distance et garder un lien stable avec votre WiFi zone.",
-    features: ["VPN MikhmoAI", "Gestion routeur à distance", "Idéal pour les interventions", "Accès depuis app.mikhmoai.com"],
+    features: ["VPN MikhmoAI", "Gestion routeur à distance", "Idéal pour les interventions", "Accès depuis app.mikhmo.tech"],
     quickCheckoutUrl: "https://bbvovqmu.mychariow.shop/prd_lknr8i/checkout?locale=fr",
     multiCountryUrl: "https://live.mikhmoai.com/api/v1/payments/hub?productCode=mikhmoai&planCode=vpn",
   },
@@ -266,7 +266,7 @@ export default function MikhmonV8Page() {
                 name: "Quel est le lien direct de MikhmonV8 ?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "Le lien direct est https://app.mikhmoai.com.",
+                  text: "Le lien direct est https://app.mikhmo.tech.",
                 },
               },
             ],
@@ -300,13 +300,13 @@ export default function MikhmonV8Page() {
 
                 <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
-                    href="https://app.mikhmoai.com"
+                    href="https://app.mikhmo.tech"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-3 rounded-full bg-yellow-300 px-8 py-4 font-black text-black shadow-xl shadow-yellow-400/25 transition hover:-translate-y-1 hover:bg-yellow-200"
                   >
                     <Globe2 className="h-5 w-5" aria-hidden="true" />
-                    Ouvrir app.mikhmoai.com
+                    Ouvrir app.mikhmo.tech
                   </a>
                   <a
                     href="#licences"
