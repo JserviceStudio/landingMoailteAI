@@ -345,7 +345,14 @@ export default function MikhmonV8Page() {
               </div>
 
               <div className="rounded-[1.5rem] border border-white/12 bg-white/[0.06] p-2.5 shadow-[0_45px_110px_-55px_rgba(250,204,21,0.85)] backdrop-blur sm:rounded-[2rem] sm:p-4">
-                <div className="overflow-hidden rounded-[1.25rem] border border-black/10 bg-black shadow-2xl sm:rounded-[1.5rem]">
+                <div className="mx-auto w-full max-w-[270px] rounded-[2rem] border-[7px] border-[#0d1117] bg-black p-1 shadow-2xl sm:hidden">
+                  <div className="relative aspect-[9/19.5] overflow-hidden rounded-[1.5rem] bg-[#1b2a21]">
+                    <Image src="/mikhmoai-webapp-mobile-dashboard.jpg" alt="Interface mobile MikhmonV8 sur iPhone" fill sizes="270px" className="object-cover" priority />
+                    <div className="absolute left-1/2 top-2 h-4 w-[34%] -translate-x-1/2 rounded-full bg-black" aria-hidden="true" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10" aria-hidden="true" />
+                  </div>
+                </div>
+                <div className="hidden overflow-hidden rounded-[1.25rem] border border-black/10 bg-black shadow-2xl sm:block sm:rounded-[1.5rem]">
                     <div className="flex h-8 items-center gap-1.5 bg-[#333c46] px-4" aria-hidden="true">
                       <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
                       <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
