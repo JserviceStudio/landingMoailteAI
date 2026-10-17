@@ -1,5 +1,5 @@
 export function FloatingWhatsApp() {
-  const message = encodeURIComponent("Bonjour, je souhaite avoir des informations sur MikhmonV8 et les licences.");
+  const message = encodeURIComponent("Bonjour, je souhaite acheter MikhmonV8. Pouvez-vous me donner plus de détails et m'aider à le configurer ?");
 
   return (
     <a
