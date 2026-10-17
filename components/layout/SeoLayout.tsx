@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Check, Download, Menu } from "lucide-react";
 import type { ReactNode } from "react";
+import { FloatingWhatsApp } from "@/components/ui/FloatingWhatsApp";
 
 export function SeoLayout({ children }: { children: ReactNode }) {
   return (
@@ -27,6 +28,7 @@ export function SeoLayout({ children }: { children: ReactNode }) {
         </div>
       </header>
       {children}
+      <FloatingWhatsApp />
       <footer className="border-t border-border/50 bg-muted/10">
         <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-3 lg:px-10">
           <div>
