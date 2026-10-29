@@ -120,6 +120,15 @@ export default function Home() {
               Télécharger Bureau
             </button>
 
+            <Link
+              href="/mikhmonv8"
+              className="mobile-touch group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-yellow-300 px-8 py-4 text-center text-lg font-black text-black shadow-[0_24px_48px_-12px_rgba(250,204,21,0.4)] transition-[transform,background-color,box-shadow] hover:-translate-y-1 hover:bg-yellow-200 hover:shadow-yellow-400/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 focus-visible:ring-offset-2 sm:w-auto sm:px-10 sm:py-5 lg:px-12 lg:py-6 lg:text-2xl"
+              aria-label="Découvrir et acheter Mikhmon V8"
+            >
+              <Globe className="h-6 w-6 transition-transform group-hover:scale-110" aria-hidden="true" />
+              Mikhmon V8
+            </Link>
+
             {/* Bouton Boutique */}
             <a
               href="https://store.mikhmoai.com"
