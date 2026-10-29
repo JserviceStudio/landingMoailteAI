@@ -233,9 +233,9 @@ export default function Home() {
       </MotionSection>
 
       <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="tiketmomo-title">
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-yellow-400/35 bg-[#070707] text-white shadow-[0_50px_120px_-55px_rgba(250,204,21,0.85)]">
-          <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:p-14 xl:p-16">
-            <div className="flex flex-col justify-between gap-10">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-yellow-400/35 bg-[#070707] text-white shadow-[0_50px_120px_-55px_rgba(250,204,21,0.85)] sm:rounded-[2rem]">
+          <div className="grid items-start gap-8 p-5 sm:gap-10 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:p-14 xl:p-16">
+            <div className="flex min-w-0 flex-col gap-8 lg:gap-10">
               <div>
                 <div className="inline-flex items-center gap-2 rounded-full border border-yellow-300/40 bg-yellow-400/15 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
                   <Wallet className="h-4 w-4" aria-hidden="true" />
@@ -255,52 +255,47 @@ export default function Home() {
                   { title: "Code instantané", text: "Le ticket WiFi s’affiche après validation du paiement Mobile Money.", icon: Ticket },
                   { title: "Stock suivi", text: "Chaque vente est rattachée au bon routeur et visible dans les rapports.", icon: Coins },
                 ].map((item) => (
-                  <div key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-5">
+                  <div key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 sm:p-5">
                     <item.icon className="h-7 w-7 text-yellow-300" aria-hidden="true" />
-                    <h3 className="mt-4 text-xl font-black">{item.title}</h3>
+                    <h3 className="mt-4 text-lg font-black sm:text-xl">{item.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-white/65">{item.text}</p>
                   </div>
                 ))}
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-                <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-yellow-400 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/20 transition hover:-translate-y-1 hover:bg-yellow-300">
+                <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/20 transition hover:-translate-y-1 hover:bg-yellow-300 sm:w-auto">
                   <ShoppingBag className="h-5 w-5" aria-hidden="true" />
                   Acheter MikhmoAI Pro
                 </a>
-                <Link href="/solutions/vente-vouchers-mobile-money-mikrotik" className="inline-flex items-center justify-center gap-3 rounded-full border border-white/15 bg-white/10 px-7 py-4 font-black text-white transition hover:-translate-y-1 hover:bg-white/15">
+                <Link href="/solutions/vente-vouchers-mobile-money-mikrotik" className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-white/15 bg-white/10 px-7 py-4 font-black text-white transition hover:-translate-y-1 hover:bg-white/15 sm:w-auto">
                   Voir la page TiketMOMO
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
               </div>
             </div>
 
-            <div className="space-y-5">
+            <div className="min-w-0 space-y-4 sm:space-y-5">
               <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 sm:p-6">
-                <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow-200">Chiffres à valider avant publication</p>
-                <div className="mt-5 grid grid-cols-2 gap-3">
-                  {[
-                    ["8 000+", "tickets WiFi vendus"],
-                    ["1,3M+ FCFA", "encaissés pour les vendeurs"],
-                    ["30+", "WiFi zones ont déjà vendu"],
-                    ["x10", "ventes en 3 mois"],
-                  ].map(([value, label]) => (
-                    <div key={label} className="rounded-2xl bg-black/25 p-4">
-                      <p className="text-2xl font-black text-white sm:text-3xl">{value}</p>
-                      <p className="mt-1 text-xs font-bold uppercase leading-snug text-white/55">{label}</p>
+                <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow-200">Pensé pour vendre simplement</p>
+                <h3 className="mt-3 text-2xl font-black sm:text-3xl">Tout le parcours dans un seul espace.</h3>
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {["Paiement Mobile Money", "Code WiFi instantané", "Stock synchronisé", "Suivi des ventes"].map((label) => (
+                    <div key={label} className="rounded-2xl bg-black/25 p-4 text-sm font-bold text-white/80">
+                      <span className="mr-2 text-yellow-300" aria-hidden="true">✓</span>{label}
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.07] p-5 sm:p-6">
-                <div className="flex items-center gap-3">
+                <div className="flex items-start gap-3">
                   <ReceiptText className="h-6 w-6 text-yellow-300" aria-hidden="true" />
-                  <h3 className="text-2xl font-black">Parcours acheteur en 4 étapes</h3>
+                  <h3 className="text-xl font-black sm:text-2xl">Parcours acheteur en 4 étapes</h3>
                 </div>
                 <ol className="mt-5 space-y-3 text-white/72">
                   {["Il se connecte au WiFi et ouvre le portail captif.", "Il choisit un forfait, par exemple 100 F - 2 heures.", "Il paie par Mobile Money depuis son téléphone.", "Son code WiFi s’affiche et il se connecte."].map((step, index) => (
-                    <li key={step} className="flex gap-3 rounded-2xl bg-black/20 p-4">
+                    <li key={step} className="flex items-start gap-3 rounded-2xl bg-black/20 p-4">
                       <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-yellow-300 text-sm font-black text-black">{index + 1}</span>
                       <span>{step}</span>
                     </li>
@@ -309,8 +304,8 @@ export default function Home() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
-                <Link href="/blog/vendre-tickets-wifi-mobile-money" className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 font-black text-white transition hover:bg-white/10">Guide complet TiketMOMO</Link>
-                <Link href="/blog/retirer-argent-ventes-tiketmomo" className="rounded-2xl border border-white/10 bg-white/[0.06] p-5 font-black text-white transition hover:bg-white/10">Commissions et retraits</Link>
+                <Link href="/blog/vendre-tickets-wifi-mobile-money" className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 font-black text-white transition hover:bg-white/10 sm:p-5">Guide complet TiketMOMO</Link>
+                <Link href="/blog/retirer-argent-ventes-tiketmomo" className="rounded-2xl border border-white/10 bg-white/[0.06] p-4 font-black text-white transition hover:bg-white/10 sm:p-5">Commissions et retraits</Link>
               </div>
             </div>
           </div>
