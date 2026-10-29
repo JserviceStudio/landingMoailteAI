@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Apple, Download, FileArchive, MonitorDown, PackageOpen, Smartphone } from "lucide-react";
+import { Download, FileArchive, Globe2, MonitorDown, PackageOpen, Smartphone } from "lucide-react";
 import { Breadcrumbs, SeoLayout } from "@/components/layout/SeoLayout";
 import { GlobalImpact } from "@/components/analytics/GlobalImpact";
 
 export const metadata: Metadata = {
   title: "Télécharger MikhmoAI pour Windows, macOS, Linux et Android",
-  description: "Téléchargez MikhmoAI : Windows, macOS, Linux, versions portables, AppImage, DEB, RPM et application Android.",
+  description: "Téléchargez MikhmoAI pour Windows, Linux et Android, ou installez l’application web PWA sur Mac depuis app.mikhmo.tech.",
   alternates: { canonical: "/downloads" },
 };
 
@@ -19,11 +19,8 @@ const groups = [
     { label: "AppImage", href: "/api/download/latest?platform=linux&arch=x64&variant=installer&format=appimage", note: "Exécutable autonome compatible avec de nombreuses distributions." },
     { label: "Archive portable TAR.GZ", href: "/api/download/latest?platform=linux&arch=x64&variant=portable&format=tar.gz", note: "Pour installation manuelle ou environnement isolé." },
   ]},
-  { title: "macOS", icon: Apple, recommended: "Installateur recommandé", description: "Version native pour Mac Apple Silicon. Les formats avancés restent disponibles ci-dessous.", primary: "/api/download/latest?platform=macos&arch=arm64&variant=installer", options: [
-    { label: "Mac Intel x64", href: "/api/download/latest?platform=macos&arch=x64&variant=installer", note: "Pour les Mac équipés d'un processeur Intel." },
-    { label: "Image disque DMG", href: "/api/download/latest?platform=macos&arch=arm64&variant=installer&format=dmg", note: "Installation classique par glisser-déposer dans Applications." },
-    { label: "Paquet PKG", href: "/api/download/latest?platform=macos&arch=arm64&variant=installer&format=pkg", note: "Installation guidée et déploiement administré." },
-    { label: "Version portable ZIP", href: "/api/download/latest?platform=macos&arch=arm64&variant=portable&format=zip", note: "Application autonome à extraire manuellement." },
+  { title: "Mac / PWA", icon: Globe2, recommended: "Ouvrir l’application web", description: "MikhmoAI fonctionne comme une PWA sur Mac : ouvrez l’application dans votre navigateur, puis installez-la depuis le menu du navigateur.", primary: "https://app.mikhmo.tech", options: [
+    { label: "Installer MikhmoAI sur Mac", href: "https://app.mikhmo.tech", note: "Dans Safari ou Chrome, utilisez l’option Ajouter au Dock ou Installer l’application." },
   ]},
 ];
 

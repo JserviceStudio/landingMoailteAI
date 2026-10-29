@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
-import { Apple, MonitorDown, PackageOpen, X, ShieldCheck } from "lucide-react";
+import { Globe2, MonitorDown, PackageOpen, X, ShieldCheck } from "lucide-react";
 
 type DesktopDownloadModalProps = {
   isOpen: boolean;
@@ -54,11 +54,11 @@ export default function DesktopDownloadModal({ isOpen, onClose }: DesktopDownloa
             <p className="mt-1 text-sm font-semibold text-black/60">AppImage · DEB · RPM</p>
             <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Télécharger →</span>
           </a>
-          <a href="/api/download/latest?platform=macos&arch=arm64" onClick={onClose} className="group rounded-[1.7rem] bg-white p-6 text-black transition hover:-translate-y-1 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
-            <Apple className="h-9 w-9" />
-            <p className="mt-8 text-2xl font-black">macOS</p>
-            <p className="mt-1 text-sm font-semibold text-black/60">Apple Silicon · macOS</p>
-            <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Télécharger →</span>
+          <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" onClick={onClose} className="group rounded-[1.7rem] bg-white p-6 text-black transition hover:-translate-y-1 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+            <Globe2 className="h-9 w-9" />
+            <p className="mt-8 text-2xl font-black">Mac / PWA</p>
+            <p className="mt-1 text-sm font-semibold text-black/60">Application web installable</p>
+            <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Ouvrir →</span>
           </a>
         </div>
 
