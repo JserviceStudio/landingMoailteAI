@@ -360,5 +360,11 @@
 }
 
 .flag-ribbon {
-  animation: flag-ribbon-scroll 35s linear infinite;
+  animation: flag-ribbon-scroll 75s linear infinite;
+  will-change: transform;
+}
+
+.flag-ribbon:hover,
+.flag-ribbon:focus-within {
+  animation-play-state: paused;
 }
