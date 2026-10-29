@@ -220,9 +220,9 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" aria-hidden="true" />
                   <Icon className="absolute bottom-5 left-5 h-11 w-11 rounded-2xl bg-white/90 p-2.5 text-primary shadow-xl backdrop-blur" aria-hidden="true" />
                 </div>
-                <div className="p-8">
+                <div className="p-6 sm:p-8">
                   <p className="text-xs font-black uppercase tracking-[0.2em] text-primary">{item.label}</p>
-                  <h3 className="mt-3 text-3xl font-black tracking-tight">{item.title}</h3>
+                  <h3 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">{item.title}</h3>
                   <p className="mt-4 leading-relaxed text-muted-foreground">{item.text}</p>
                   <span className="mt-7 inline-flex items-center gap-2 font-black text-primary">Découvrir <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" /></span>
                 </div>
@@ -334,7 +334,7 @@ export default function Home() {
               ))}
             </div>
 
-            <Link href="/solutions/application-mikrotik-android" className="inline-flex items-center gap-3 rounded-full bg-orange-500 px-7 py-4 font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-orange-400">Explorer l’application mobile <ArrowRight className="h-5 w-5" /></Link>
+            <Link href="/solutions/application-mikrotik-android" className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-orange-500 px-7 py-4 font-black text-white shadow-lg transition hover:-translate-y-1 hover:bg-orange-400 sm:w-auto">Explorer l’application mobile <ArrowRight className="h-5 w-5" /></Link>
           </div>
 
           <div className="relative mx-auto min-h-[650px] w-full max-w-[760px] sm:min-h-[760px] lg:min-h-[680px]" role="img" aria-label="Captures mobiles MikhmoAI Web App dans un mockup iPhone Pro">
@@ -375,7 +375,7 @@ export default function Home() {
 
       <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="webapp-title">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-sky-400/20 bg-white text-slate-950 shadow-[0_45px_120px_-70px_rgba(14,165,233,0.7)] dark:bg-[#090d12] dark:text-white">
-          <div className="grid gap-10 p-6 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:p-14 xl:p-16">
+          <div className="grid gap-8 p-5 sm:gap-10 sm:p-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12 lg:p-14 xl:p-16">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-sky-600 dark:text-sky-200">
                 <Globe className="h-4 w-4" aria-hidden="true" />
@@ -388,15 +388,15 @@ export default function Home() {
                 Ouvrez <span className="font-black text-slate-950 dark:text-white">app.mikhmo.tech</span> depuis iPhone, Android, PC ou tablette. Retrouvez la stabilité et la confiance de Mikhmon en ligne, avec une expérience plus puissante et optimisée pour 2026.
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-slate-950 px-7 py-4 font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-sky-100">
+                <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-slate-950 px-7 py-4 font-black text-white shadow-xl transition hover:-translate-y-1 hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-sky-100 sm:w-auto">
                   <Globe className="h-5 w-5" aria-hidden="true" />
                   Ouvrir app.mikhmo.tech
                 </a>
-                <Link href="/solutions/mikhmon-online-application-web" className="inline-flex items-center justify-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-7 py-4 font-black text-slate-950 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/15">
+                <Link href="/solutions/mikhmon-online-application-web" className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-7 py-4 font-black text-slate-950 transition hover:-translate-y-1 hover:bg-slate-100 dark:border-white/15 dark:bg-white/10 dark:text-white dark:hover:bg-white/15 sm:w-auto">
                   Découvrir l’app web
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
-                <Link href="/mikhmonv8" className="inline-flex items-center justify-center gap-3 rounded-full border border-yellow-300/40 bg-yellow-300 px-7 py-4 font-black text-black transition hover:-translate-y-1 hover:bg-yellow-200">
+                <Link href="/mikhmonv8" className="inline-flex w-full items-center justify-center gap-3 rounded-full border border-yellow-300/40 bg-yellow-300 px-7 py-4 font-black text-black transition hover:-translate-y-1 hover:bg-yellow-200 sm:w-auto">
                   Landing MikhmonV8
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </Link>
@@ -433,7 +433,7 @@ export default function Home() {
       </MotionSection>
 
       {/* --- AI MOAILTE EXPERIENCE --- */}
-      <MotionSection id="ai" className="py-16 lg:py-24" aria-labelledby="ai-title">
+      <MotionSection id="ai" className="py-16 lg:py-24" aria-labelledby="ai-subtitle">
         <div className="relative glass p-6 sm:p-12 lg:p-20 xl:p-28 rounded-[3rem] sm:rounded-[4.5rem] lg:rounded-[5.5rem] border-border bg-gradient-to-br from-primary/5 via-transparent to-accent/5 overflow-hidden" role="region" aria-label="AI Section">
           <BrainCircuit className="absolute -right-20 -bottom-20 w-[30rem] h-[30rem] opacity-[0.03] text-primary rotate-12" aria-hidden="true" />
 
@@ -455,7 +455,7 @@ export default function Home() {
             <div className="space-y-10 text-center lg:text-left flex-1" role="group" aria-label="AI Description">
               <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-accent/10 text-accent text-xs font-black uppercase tracking-[0.3em] border border-accent/20 backdrop-blur-md" role="status" aria-live="polite">
                 <BrainCircuit className="w-4 h-4" aria-hidden="true" />
-                <span id="ai-title">{t("ai.badge")}</span>
+                <span>{t("ai.badge")}</span>
               </div>
               <h2 className="text-[clamp(2rem,6vw,5.5rem)] font-black text-foreground leading-[0.9] tracking-tighter uppercase italic font-heading text-balance" id="ai-subtitle">
                 {t("ai.title_prefix")} <br /> <span className="text-accent underline decoration-8 underline-offset-[8px] lg:underline-offset-[12px] decoration-accent/20">{t("ai.title_underline")}</span>{t("ai.title_suffix")}
@@ -490,7 +490,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 min-h-[900px]" role="region" aria-label="Specifications Bento Grid">
+        <div className="grid grid-cols-1 gap-8 lg:min-h-[900px] lg:grid-cols-12 lg:gap-10" role="region" aria-label="Specifications Bento Grid">
           {/* Bento Item 1: Large Content */}
           <div className="lg:col-span-8 m3-card m3-state p-0 relative overflow-hidden group min-h-[480px] lg:min-h-[600px] flex flex-col lg:flex-row" role="article" aria-label={t("features.bento_ssh_title")}>
             <div className="flex-1 p-6 sm:p-12 lg:p-20 flex flex-col justify-center relative z-10 space-y-6 sm:space-y-8" role="group" aria-label="SSH description">
@@ -538,12 +538,12 @@ export default function Home() {
       </MotionSection>
 
       {/* --- SECTION BUSINESS / PARTENAIRES --- */}
-      <MotionSection id="business" className="py-20 lg:py-32 space-y-16 lg:space-y-24" aria-labelledby="business-title">
+      <MotionSection id="business" className="py-20 lg:py-32 space-y-16 lg:space-y-24" aria-labelledby="business-subtitle">
         {/* Header */}
         <div className="text-center space-y-6" role="region" aria-label="Business Header">
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-black uppercase tracking-[0.25em] backdrop-blur-md" role="status" aria-live="polite">
             <Globe className="w-4 h-4" aria-hidden="true" />
-            <span id="business-title">{t("business.badge")}</span>
+            <span>{t("business.badge")}</span>
           </div>
           <h2 className="text-[clamp(2rem,6vw,5.5rem)] font-black tracking-tighter leading-[0.8] lg:leading-[0.8] uppercase font-heading italic text-balance" id="business-subtitle">
             {t("business.title_prefix")}<br />
