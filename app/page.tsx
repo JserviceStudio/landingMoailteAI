@@ -74,7 +74,7 @@ export default function Home() {
         },
       ]} />
       {/* --- ELITE HERO SECTION --- */}
-      <MotionSection className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 pt-12 pb-12 lg:pt-24 lg:pb-32 min-h-[90vh] relative px-4 sm:px-6 lg:px-8" aria-labelledby="hero-title">
+      <MotionSection className="flex min-h-0 flex-col items-center gap-10 px-4 pb-16 pt-8 relative sm:gap-12 sm:px-6 sm:pt-12 lg:min-h-[90vh] lg:flex-row lg:gap-20 lg:px-8 lg:pb-32 lg:pt-24" aria-labelledby="hero-title-main">
         <div className="flex-1 space-y-8 text-center lg:text-left z-10" role="region" aria-label="Hero section">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -84,11 +84,11 @@ export default function Home() {
             aria-live="polite"
           >
             <div className="w-2 h-2 bg-primary rounded-full animate-pulse" aria-hidden="true" />
-            <span id="hero-title">{t("hero.badge")}</span>
+            <span>{t("hero.badge")}</span>
           </motion.div>
 
           <div className="space-y-6" role="group" aria-label="Primary information">
-            <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-black tracking-tighter leading-[0.8] lg:leading-[0.8] text-foreground font-heading uppercase italic text-balance" id="hero-title-main">
+            <h1 className="text-[clamp(2.5rem,8vw,7.5rem)] font-black tracking-tighter leading-[0.9] text-foreground font-heading uppercase italic text-balance lg:leading-[0.8]" id="hero-title-main">
               {t("hero.title_prefix")} <br />
               <span className="text-gradient">{t("hero.title_suffix")}</span>
             </h1>

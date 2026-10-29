@@ -372,10 +372,10 @@ export default function MikhmonV8Page() {
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
           <div className="max-w-4xl">
-            <p className="font-black uppercase tracking-[0.22em] text-primary">Captures à accueillir</p>
-              <h2 id="captures-title" className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">Les captures mobile et bureau sont maintenant en place.</h2>
+            <p className="font-black uppercase tracking-[0.22em] text-primary">Une interface claire</p>
+              <h2 id="captures-title" className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">Votre réseau, lisible sur mobile et ordinateur.</h2>
             <p className="mt-5 text-lg text-muted-foreground sm:mt-6 sm:text-xl">
-              La page utilise les nouvelles captures de l’application web MikhmonV8 : dashboard, génération vouchers, réglages, menu mobile et écrans iPhone.
+              Retrouvez les écrans essentiels de MikhmonV8 : dashboard, génération de vouchers, réglages, menu mobile et suivi de votre activité.
             </p>
           </div>
 
@@ -448,9 +448,9 @@ export default function MikhmonV8Page() {
           <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start">
             <div className="lg:sticky lg:top-28">
               <p className="font-black uppercase tracking-[0.22em] text-primary">Fonctions visibles</p>
-              <h2 id="features-tour-title" className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">On peut déjà transformer les captures en blocs et tutos.</h2>
+              <h2 id="features-tour-title" className="mt-4 text-3xl font-black tracking-tight sm:mt-5 sm:text-6xl">Les fonctions essentielles, en un coup d’œil.</h2>
               <p className="mt-5 text-lg text-muted-foreground sm:mt-6 sm:text-xl">
-                Les écrans fournis montrent assez d’éléments pour expliquer les parcours clés : consulter le réseau, générer les tickets, vendre avec TiketMOMO et gérer les routeurs.
+                Consultez votre réseau, générez vos tickets, vendez avec TiketMOMO et gérez vos routeurs depuis un seul espace.
               </p>
               <div className="mt-8 flex flex-col gap-3">
                 {tutorials.map((tutorial) => (
@@ -487,8 +487,8 @@ export default function MikhmonV8Page() {
                   </span>
                 ))}
               </div>
-              <h2 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">MikhmonV8 est maintenant illustré par ses vrais écrans.</h2>
-              <p className="mt-4 text-lg opacity-70">Les captures mobile et bureau montrent déjà les parcours à vendre : dashboard, routeurs, vouchers, TiketMOMO, rapports et accès web.</p>
+              <h2 className="mt-8 text-4xl font-black tracking-tight sm:text-5xl">Gérez votre réseau depuis n’importe où.</h2>
+              <p className="mt-4 text-lg opacity-70">MikhmonV8 réunit dashboard, routeurs, vouchers, TiketMOMO, rapports et accès web dans une seule application.</p>
             </div>
             <Link href="/solutions/mikhmon-online-application-web" className="mt-8 inline-flex items-center gap-3 rounded-full bg-yellow-300 px-7 py-4 font-black text-black lg:mt-0">
               Voir aussi la page solution
