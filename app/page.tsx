@@ -208,38 +208,6 @@ export default function Home() {
         </motion.div>
       </MotionSection>
 
-      <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="audiences-title">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-4xl">
-            <p className="font-black uppercase tracking-[0.22em] text-primary">Une plateforme, trois parcours</p>
-            <h2 id="audiences-title" className="mt-5 text-4xl font-black tracking-tight sm:text-6xl">Bien plus qu’une application de gestion Hotspot.</h2>
-            <p className="mt-6 text-xl leading-relaxed text-muted-foreground">MikhmoAI — MikroTik Hotspot and Monitoring with AI — accompagne aussi bien le débutant que le technicien réseau et le provider qui déploie ses services à grande échelle.</p>
-          </div>
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {[
-              { href: "/pour-debutants", label: "Gestion simple", title: "Je veux exploiter mon Wi-Fi simplement", text: "Tickets, utilisateurs, portail captif et ventes, sans apprendre toutes les commandes RouterOS.", icon: Smartphone, image: "/audience-jeunes-entrepreneurs-wifi.png", alt: "Jeunes entrepreneurs souriants utilisant MikhmoAI" },
-              { href: "/pour-techniciens", label: "Outils techniques", title: "Je gère des réseaux MikroTik", text: "Topologie, carte terrain, terminal, diagnostics, VPN, SSH et exploitation multi-site.", icon: Layers, image: "/audience-techniciens-reseau-terrain.png", alt: "Techniciens réseau équipés sur un chantier télécom" },
-              { href: "/providers", label: "Entreprise & API", title: "Je déploie des services à l’échelle", text: "RADIUS multi-NAS, automatisation, API et distribution de services pour clients et partenaires.", icon: Globe, image: "/audience-dirigeants-provider.png", alt: "Dirigeants réunis pour un partenariat technologique" },
-            ].map((item) => {
-              const Icon = item.icon;
-              return <Link key={item.href} href={item.href} className="group overflow-hidden rounded-[2.25rem] border border-border/60 bg-card transition duration-500 motion-safe:hover:-translate-y-2 hover:border-primary/40 hover:shadow-2xl">
-                <div className="relative aspect-[3/2] overflow-hidden">
-                  <Image src={item.image} alt={item.alt} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover transition-transform duration-700 ease-out motion-safe:group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" aria-hidden="true" />
-                  <Icon className="absolute bottom-5 left-5 h-11 w-11 rounded-2xl bg-white/90 p-2.5 text-primary shadow-xl backdrop-blur" aria-hidden="true" />
-                </div>
-                <div className="p-6 sm:p-8">
-                  <p className="text-xs font-black uppercase tracking-[0.2em] text-primary">{item.label}</p>
-                  <h3 className="mt-3 text-2xl font-black tracking-tight sm:text-3xl">{item.title}</h3>
-                  <p className="mt-4 leading-relaxed text-muted-foreground">{item.text}</p>
-                  <span className="mt-7 inline-flex items-center gap-2 font-black text-primary">Découvrir <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" /></span>
-                </div>
-              </Link>;
-            })}
-          </div>
-        </div>
-      </MotionSection>
-
       <MotionSection className="px-4 py-16 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="tiketmomo-title">
         <div className="mx-auto max-w-7xl overflow-hidden rounded-[1.5rem] border border-yellow-400/35 bg-[#070707] text-white shadow-[0_50px_120px_-55px_rgba(250,204,21,0.85)] sm:rounded-[2rem]">
           <div className="grid items-start gap-8 p-5 sm:gap-10 sm:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:p-14 xl:p-16">
