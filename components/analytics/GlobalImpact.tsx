@@ -61,7 +61,7 @@ export function GlobalImpact() {
   }), [map, stats.visits.countries]);
 
   return (
-    <section className="max-w-full overflow-hidden border-y border-white/10 bg-black/20 py-16 sm:py-24" aria-labelledby="global-impact-title">
+    <section className="max-w-full overflow-hidden bg-transparent py-16 sm:py-24" aria-labelledby="global-impact-title">
       <div className="mx-auto min-w-0 max-w-7xl px-4 sm:px-6 lg:px-10">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end lg:gap-12">
           <div className="min-w-0">
