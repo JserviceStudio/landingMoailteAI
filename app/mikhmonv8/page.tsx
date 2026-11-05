@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Breadcrumbs, SeoLayout } from "@/components/layout/SeoLayout";
+import { formatApproxUsd, formatXof, getOfficialStorePrices, type OfficialStorePrices } from "@/lib/official-store-prices";
 
 export const metadata: Metadata = {
   title: "MikhmonV8 — Mikhmon Online Pro, TiketMOMO et VPN",
@@ -50,12 +51,13 @@ export const metadata: Metadata = {
   },
 };
 
-const plans = [
+function buildPlans(prices: OfficialStorePrices) {
+  return [
   {
     name: "MikhmonPro",
-    price: "13 920 F",
-    priceValue: "13920",
-    usdHint: "≈ 24 $",
+    price: formatXof(prices.pro),
+    priceValue: String(prices.pro),
+    usdHint: formatApproxUsd(prices.pro),
     period: "1 an",
     badge: "Offre recommandée",
     description: "Pour accéder à Mikhmon Online, Mikhmon Pro, TiketMOMO et aux fonctions avancées dans une seule expérience web.",
@@ -66,9 +68,9 @@ const plans = [
   },
   {
     name: "VPN",
-    price: "6 600 F",
-    priceValue: "6600",
-    usdHint: "≈ 11 $",
+    price: formatXof(prices.vpn),
+    priceValue: String(prices.vpn),
+    usdHint: formatApproxUsd(prices.vpn),
     period: "1 an",
     badge: "Accès distant",
     description: "Pour gérer votre routeur à distance et garder un lien stable avec votre WiFi zone.",
@@ -76,7 +78,8 @@ const plans = [
     quickCheckoutUrl: "https://bbvovqmu.mychariow.shop/prd_lknr8i/checkout?locale=fr",
     multiCountryUrl: "https://live.mikhmoai.com/api/v1/payments/hub?productCode=mikhmoai&planCode=vpn",
   },
-];
+  ];
+}
 
 const captureSlots = [
   {
@@ -164,7 +167,7 @@ const tutorials = [
   },
 ];
 
-function LicenseSection() {
+function LicenseSection({ plans }: { plans: ReturnType<typeof buildPlans> }) {
   return (
     <section id="licences" className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24">
       <div className="max-w-4xl">
@@ -229,7 +232,8 @@ function LicenseSection() {
   );
 }
 
-export default function MikhmonV8Page() {
+export default async function MikhmonV8Page() {
+  const plans = buildPlans(await getOfficialStorePrices());
   const url = "https://web.mikhmoai.com";
 
   return (
@@ -368,7 +372,7 @@ export default function MikhmonV8Page() {
           </div>
         </section>
 
-        <LicenseSection />
+          <LicenseSection plans={plans} />
 
         <section className="mx-auto max-w-7xl px-4 py-12 sm:px-5 sm:py-16 lg:px-10 lg:py-24" aria-labelledby="captures-title">
           <div className="max-w-4xl">
