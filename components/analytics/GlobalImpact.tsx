@@ -61,21 +61,27 @@ export function GlobalImpact() {
   }), [map, stats.visits.countries]);
 
   return (
-    <section className="max-w-full overflow-hidden border-y border-white/10 bg-black/20 py-14 sm:py-20" aria-labelledby="global-impact-title">
-      <div className="mx-auto min-w-0 max-w-7xl px-3 sm:px-5 lg:px-10">
-        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <p className="flex items-center gap-2 font-black uppercase tracking-[0.2em] text-primary"><Radio className="h-4 w-4" /> Activité réelle</p>
-            <h2 id="global-impact-title" className="mt-4 text-3xl font-black tracking-tight sm:text-6xl">MikhmoAI grandit à travers le monde.</h2>
-            <p className="mt-5 max-w-3xl text-lg text-muted-foreground">Compteurs agrégés et actualisés automatiquement, sans conserver l’adresse IP des visiteurs.</p>
+    <section className="max-w-full overflow-hidden border-y border-white/10 bg-black/20 py-16 sm:py-24" aria-labelledby="global-impact-title">
+      <div className="mx-auto min-w-0 max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(360px,0.72fr)] lg:items-end lg:gap-12">
+          <div className="min-w-0">
+            <p className="flex items-center gap-2 font-black uppercase tracking-[0.2em] text-primary"><Radio className="h-4 w-4" aria-hidden="true" /> Activité réelle</p>
+            <h2 id="global-impact-title" className="mt-4 max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-balance sm:text-5xl lg:text-6xl">MikhmoAI grandit à travers le monde.</h2>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">Compteurs agrégés et actualisés automatiquement, sans conserver l’adresse IP des visiteurs.</p>
           </div>
-          <div className="grid min-w-0 grid-cols-1 gap-3 min-[420px]:grid-cols-2">
-            <div className="min-w-0 rounded-3xl border border-border/60 bg-background p-4 sm:p-6"><Download className="h-6 w-6 text-primary" /><strong className="mt-3 block text-3xl font-black tabular-nums sm:text-4xl">{stats.downloads.total.toLocaleString("fr-FR")}</strong><span className="text-sm text-muted-foreground">téléchargements lancés</span></div>
-            <div className="min-w-0 rounded-3xl border border-border/60 bg-background p-4 sm:p-6"><Globe2 className="h-6 w-6 text-primary" /><strong className="mt-3 block text-3xl font-black tabular-nums sm:text-4xl">{stats.visits.countries.length}</strong><span className="text-sm text-muted-foreground">pays représentés</span></div>
+          <div className="grid min-w-0 grid-cols-2 gap-3 sm:gap-4">
+            <div className="flex min-h-[154px] min-w-0 flex-col justify-between rounded-3xl border border-border/60 bg-background p-4 sm:min-h-[176px] sm:p-6">
+              <Download className="h-6 w-6 text-primary" aria-hidden="true" />
+              <div><strong className="block text-3xl font-black tabular-nums sm:text-4xl">{stats.downloads.total.toLocaleString("fr-FR")}</strong><span className="mt-1 block text-sm leading-snug text-muted-foreground">téléchargements lancés</span></div>
+            </div>
+            <div className="flex min-h-[154px] min-w-0 flex-col justify-between rounded-3xl border border-border/60 bg-background p-4 sm:min-h-[176px] sm:p-6">
+              <Globe2 className="h-6 w-6 text-primary" aria-hidden="true" />
+              <div><strong className="block text-3xl font-black tabular-nums sm:text-4xl">{stats.visits.countries.length}</strong><span className="mt-1 block text-sm leading-snug text-muted-foreground">pays représentés</span></div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 overflow-hidden rounded-[2.5rem] border border-border/60 bg-background p-4 sm:p-8">
+        <div className="mt-8 overflow-hidden rounded-[2rem] border border-border/60 bg-background p-3 sm:mt-12 sm:rounded-[2.5rem] sm:p-8">
           <svg viewBox="0 0 960 470" role="img" aria-label="Carte mondiale des pays visiteurs" className="h-auto w-full">
             <path d={map.landPath} className="fill-muted stroke-border" strokeWidth="0.7" />
             {countryPoints.map((country) => <g key={country.code} transform={`translate(${country.x} ${country.y})`} aria-label={`${country.name}: ${country.count} visiteurs`}><circle r={Math.min(10 + Math.log2(country.count + 1) * 3, 22)} className="fill-background stroke-primary" strokeWidth="2" /><foreignObject x="-11" y="-10" width="22" height="20"><span title={`${country.name} — ${country.count} visiteurs`} className="block text-center text-base leading-5">{countryFlag(country.code)}</span></foreignObject></g>)}
