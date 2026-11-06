@@ -134,6 +134,8 @@ export default function Home() {
               href="https://store.mikhmoai.com"
               target="_blank"
               rel="noopener noreferrer"
+              data-meta-event="ViewContent"
+              data-meta-content-name="Boutique MikhmoAI"
               className="mobile-touch group relative flex items-center gap-3 px-8 py-4 sm:px-10 sm:py-5 lg:px-12 lg:py-6 bg-yellow-400 text-black rounded-full font-black text-lg sm:text-xl lg:text-2xl overflow-hidden shadow-[0_24px_48px_-12px_rgba(250,204,21,0.4)] transition-[transform,opacity,box-shadow] w-full sm:w-auto text-center justify-center hover:opacity-90 hover:shadow-yellow-400/30 focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 outline-none"
               aria-label={t("hero.btn_store_label")}
               role="button"

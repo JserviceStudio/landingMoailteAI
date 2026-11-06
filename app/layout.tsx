@@ -86,6 +86,7 @@ export const metadata: Metadata = {
 
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LanguageProvider } from "@/components/i18n/LanguageContext";
+import MetaPixel from "@/components/analytics/MetaPixel";
 
 export default function RootLayout({
   children,
@@ -102,6 +103,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <LanguageProvider>
+            <MetaPixel />
             {children}
           </LanguageProvider>
         </ThemeProvider>
