@@ -9,6 +9,8 @@ export function ThemeToggle() {
     const { theme, setTheme } = useTheme();
     const [mounted, setMounted] = React.useState(false);
 
+    // Hydrate the theme control only after the client is available.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     React.useEffect(() => setMounted(true), []);
 
     if (!mounted) return <div className="p-3 w-10 h-10 rounded-xl glass" />;
