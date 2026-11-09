@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const TRACKED_HOSTS = new Set(["store.jmoai.net", "shop.jmoai.net", "live.jmoai.net"]);
+const TRACKED_HOSTS = new Set(["store.jmoai.net", "shop.jmoai.net", "live.jmoai.net", "store.mikhmoai.com"]);
 const ATTRIBUTION_KEYS = [
   "fbclid",
   "utm_source",
