@@ -11,6 +11,7 @@ const ATTRIBUTION_KEYS = [
   "utm_content",
   "utm_term",
 ] as const;
+const META_ATTRIBUTION_KEYS = ["fbp", "fbc", "fbclid"] as const;
 
 function readCookie(name: string) {
   return document.cookie
@@ -21,7 +22,8 @@ function readCookie(name: string) {
 
 function decorateLinks() {
   const query = new URLSearchParams(window.location.search);
-  const consentAccepted = readCookie("mikhmoai_meta_consent") === "accepted";
+  const consent = readCookie("mikhmoai_meta_consent");
+  const metaConsent = consent === "accepted" || consent === "rejected" ? consent : "";
 
   document.querySelectorAll<HTMLAnchorElement>("a[href]").forEach((anchor) => {
     let url: URL;
@@ -33,13 +35,19 @@ function decorateLinks() {
 
     if (!TRACKED_HOSTS.has(url.hostname)) return;
 
+    if (metaConsent) url.searchParams.set("meta_consent", metaConsent);
+    else url.searchParams.delete("meta_consent");
+
     ATTRIBUTION_KEYS.forEach((key) => {
       const value = query.get(key);
       if (value) url.searchParams.set(key, value);
     });
 
-    // fbp/fbc are added only after Meta consent, matching the site's consent banner.
-    if (consentAccepted) {
+    // Le refus doit aussi effacer les identifiants déjà ajoutés avant le changement de consentement.
+    if (metaConsent === "rejected") {
+      META_ATTRIBUTION_KEYS.forEach((key) => url.searchParams.delete(key));
+    } else if (metaConsent === "accepted") {
+      // Ajouter fbp/fbc seulement après accord pour respecter le choix du visiteur.
       const fbp = readCookie("_fbp");
       const fbc = readCookie("_fbc");
       if (fbp) url.searchParams.set("fbp", decodeURIComponent(fbp));
