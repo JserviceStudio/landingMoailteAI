@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/pour-techniciens`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/providers`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/mikhmonv8`, lastModified: now, changeFrequency: "weekly", priority: 0.95 },
+    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/downloads`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/starlink`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     ...solutionPages.map((page) => ({ url: `${baseUrl}/solutions/${page.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.85 })),

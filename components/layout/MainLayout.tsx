@@ -202,6 +202,8 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
                     <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 text-[11px] font-black uppercase tracking-[0.2em] text-muted-foreground/80 dark:text-muted-foreground">
                         {([
+                            { label: "À propos", href: "/about", aria: "À propos de MikhmoAI" },
+                            { label: "Contact", href: "/support", aria: "Contacter MikhmoAI" },
                             { label: t("footer.privacy"), href: "/privacy", aria: t("footer.privacy_aria") },
                             { label: t("footer.terms"), href: "/terms", aria: t("footer.terms_aria") },
                             { label: t("footer.support"), href: "/support", aria: t("footer.support_aria") },

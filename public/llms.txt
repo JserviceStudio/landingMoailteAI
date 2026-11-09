@@ -1,0 +1,34 @@
+# MikhmoAI
+
+> MikhmoAI (MikroTik Hotspot and Monitoring with AI) helps network technicians, hotspot operators and WiFi providers manage MikroTik networks, vouchers, VPN access, monitoring and Mobile Money sales.
+
+## Official pages
+
+- Home: https://mikhmoai.com/
+- About: https://mikhmoai.com/about
+- Support and FAQ: https://mikhmoai.com/support
+- Downloads: https://mikhmoai.com/downloads
+- MikhmonV8 licences: https://mikhmoai.com/mikhmonv8
+- Starlink monitoring: https://mikhmoai.com/starlink
+- Solutions: https://mikhmoai.com/solutions
+- Guides: https://mikhmoai.com/blog
+- Privacy: https://mikhmoai.com/privacy
+- Terms: https://mikhmoai.com/terms
+
+## Products and services
+
+- MikhmoAI: Android, Windows, Linux and web tools for MikroTik Hotspot, RADIUS, VPN and monitoring.
+- MikhmonV8: web access to Mikhmon Online, TiketMOMO and advanced network functions.
+- TiketMOMO: Mobile Money sales of WiFi vouchers with stock and sales tracking.
+- Starlink monitoring: consumption visibility and MikroTik network regulation.
+
+## Agent access
+
+- WebMCP tools are registered in supported browsers on page load.
+- MCP Server Card: https://mikhmoai.com/.well-known/mcp/server-card.json
+- MCP endpoint: https://mikhmoai.com/mcp
+
+## Business contact
+
+- Email: justemoailtepro@gmail.com
+- WhatsApp: https://wa.me/22941438405

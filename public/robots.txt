@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Content-Signal: search=yes, ai-train=no
+Content-Signal: search=yes, ai-train=no
+
+Sitemap: https://mikhmoai.com/sitemap.xml
+Host: https://mikhmoai.com

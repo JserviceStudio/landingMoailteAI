@@ -94,6 +94,7 @@ export const metadata: Metadata = {
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { LanguageProvider } from "@/components/i18n/LanguageContext";
 import MetaPixel from "@/components/analytics/MetaPixel";
+import WebMcpTools from "@/components/agents/WebMcpTools";
 
 export default function RootLayout({
   children,
@@ -111,6 +112,7 @@ export default function RootLayout({
         >
           <LanguageProvider>
             <MetaPixel />
+            <WebMcpTools />
             {children}
           </LanguageProvider>
         </ThemeProvider>

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "com.mikhmoai/website",
+    "title": "MikhmoAI Website Agent Server",
+    "version": "1.0.0"
+  },
+  "description": "Read-only agent access to MikhmoAI products, downloads, support pages and business information.",
+  "iconUrl": "https://mikhmoai.com/icon.png",
+  "documentationUrl": "https://mikhmoai.com/about",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://mikhmoai.com/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "get_site_overview",
+      "title": "Get MikhmoAI site overview",
+      "description": "Return official MikhmoAI business, product and contact information.",
+      "inputSchema": { "type": "object", "properties": {} }
+    },
+    {
+      "name": "list_downloads",
+      "title": "List MikhmoAI downloads",
+      "description": "Return official download pages and platform links.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "platform": { "type": "string", "enum": ["android", "windows", "linux", "mac", "all"] }
+        }
+      }
+    }
+  ]
+}
