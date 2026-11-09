@@ -86,6 +86,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                             </div>
                             <Link
                                 href="#download"
+                                data-meta-event="DownloadClick"
+                                data-meta-placement="nav"
+                                data-meta-content-name="Téléchargement depuis la navigation"
                                 className="px-6 py-2.5 bg-primary text-primary-foreground rounded-full font-black text-xs uppercase tracking-wider hover:scale-105 active:scale-95 transition-all shadow-lg focus-visible:ring-2 focus-visible:ring-primary outline-none"
                                 aria-label={t("nav.download")}
                             >
@@ -160,6 +163,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
                                 <Link
                                     href="#download"
                                     onClick={() => setIsMenuOpen(false)}
+                                    data-meta-event="DownloadClick"
+                                    data-meta-placement="nav"
+                                    data-meta-content-name="Téléchargement depuis la navigation mobile"
                                     className="w-full py-6 bg-primary text-primary-foreground rounded-3xl font-black text-2xl text-center elevation-3 glow-primary m3-state transition-all"
                                     aria-label={t("nav.download")}
                                 >

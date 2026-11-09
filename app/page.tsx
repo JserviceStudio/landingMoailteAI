@@ -26,25 +26,13 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/components/i18n/LanguageContext";
 import { useState } from "react";
-import ApkInstallModal from "@/components/ui/ApkInstallModal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import DesktopDownloadModal from "@/components/ui/DesktopDownloadModal";
-import MobileDownloadModal from "@/components/ui/MobileDownloadModal";
 import { GlobalImpact } from "@/components/analytics/GlobalImpact";
-import { trackMetaEvent } from "@/components/analytics/MetaPixel";
 
 export default function Home() {
   const { t } = useTranslation();
-  const [isApkModalOpen, setIsApkModalOpen] = useState(false);
   const [isDesktopModalOpen, setIsDesktopModalOpen] = useState(false);
-  const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
-
-  const startMobileDownload = (arch: "arm64" | "arm32") => {
-    setIsMobileModalOpen(false);
-    setIsApkModalOpen(true);
-    trackMetaEvent("DownloadClick", { platform: "android", placement: "hero", content_name: `MikhmoAI Android ${arch.toUpperCase()}` });
-    window.location.href = `/api/download/latest?arch=${arch}`;
-  };
 
   return (
     <MainLayout>
@@ -101,20 +89,27 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center lg:justify-start gap-4 pt-6" role="group" aria-label="Primary actions">
             {/* Un seul point d’entrée Mobile, puis choix ARM64 / ARM32 */}
-            <button
-              type="button"
-              onClick={() => setIsMobileModalOpen(true)}
+            <a
+              href="/downloads#android"
+              data-meta-event="DownloadClick"
+              data-meta-platform="android"
+              data-meta-placement="hero"
+              data-meta-content-name="MikhmoAI Mobile Android"
               className="mobile-touch group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-foreground px-8 py-4 text-center text-lg font-black text-background shadow-[0_24px_48px_-12px_rgba(0,0,0,0.4)] transition-[transform,opacity,box-shadow] hover:-translate-y-1 hover:opacity-90 hover:shadow-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 sm:w-auto sm:px-10 sm:py-5 lg:px-12 lg:py-6 lg:text-2xl"
               aria-label="Télécharger MikhmoAI Mobile pour Android"
             >
               <Smartphone className="h-6 w-6 transition-transform group-hover:-translate-y-0.5" aria-hidden="true" />
               Télécharger Mobile
-            </button>
+            </a>
 
             {/* Un seul point d’entrée Desktop, puis choix Windows / Linux */}
             <button
               type="button"
               onClick={() => setIsDesktopModalOpen(true)}
+              data-meta-event="DownloadClick"
+              data-meta-platform="pc"
+              data-meta-placement="hero"
+              data-meta-content-name="MikhmoAI Desktop"
               className="mobile-touch group relative flex w-full items-center justify-center gap-3 overflow-hidden rounded-full bg-blue-600 px-8 py-4 text-center text-lg font-black text-white shadow-[0_24px_48px_-12px_rgba(37,99,235,0.55)] transition-[transform,background-color,box-shadow] hover:-translate-y-1 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 sm:w-auto sm:px-10 sm:py-5 lg:px-12 lg:py-6 lg:text-2xl"
               aria-label="Télécharger MikhmoAI Desktop pour Windows ou Linux"
             >
@@ -653,10 +648,10 @@ export default function Home() {
               ))}
             </div>
             <div className="flex flex-col justify-center gap-4 pt-2 sm:flex-row lg:justify-start">
-              <a href="/api/download/latest?platform=windows&arch=x64" data-meta-event="DownloadClick" data-meta-platform="pc" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Desktop Windows" className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0b62d6] px-7 py-4 font-black text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-600">
+              <a href="/api/download/latest?platform=windows&arch=x64" data-meta-event="DownloadClick" data-meta-platform="windows" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Desktop Windows" className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0b62d6] px-7 py-4 font-black text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-600">
                 <MonitorDown className="h-5 w-5" /> Télécharger pour Windows
               </a>
-              <a href="/api/download/latest?platform=linux&arch=x64" data-meta-event="DownloadClick" data-meta-platform="pc" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Desktop Linux" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-foreground px-7 py-4 font-black text-background transition hover:-translate-y-1">
+              <a href="/api/download/latest?platform=linux&arch=x64" data-meta-event="DownloadClick" data-meta-platform="linux" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Desktop Linux" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-foreground px-7 py-4 font-black text-background transition hover:-translate-y-1">
                 <PackageOpen className="h-5 w-5" /> Télécharger pour Linux
               </a>
               <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" data-meta-event="DownloadClick" data-meta-platform="ios" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Mac PWA" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background px-7 py-4 font-black text-foreground transition hover:-translate-y-1">
@@ -734,7 +729,7 @@ export default function Home() {
             <motion.a
               href="/api/download/latest?platform=windows&arch=x64"
               data-meta-event="DownloadClick"
-              data-meta-platform="pc"
+              data-meta-platform="windows"
               data-meta-placement="footer"
               data-meta-content-name="MikhmoAI Desktop Windows"
               whileHover={{ scale: 1.03, y: -4 }}
@@ -751,7 +746,7 @@ export default function Home() {
             <motion.a
               href="/api/download/latest?platform=linux&arch=x64"
               data-meta-event="DownloadClick"
-              data-meta-platform="pc"
+              data-meta-platform="linux"
               data-meta-placement="footer"
               data-meta-content-name="MikhmoAI Desktop Linux"
               whileHover={{ scale: 1.03, y: -4 }}
@@ -783,10 +778,13 @@ export default function Home() {
               <span className="mt-2 block text-[10px] font-bold uppercase leading-none tracking-wider opacity-50">Ouvrir puis installer depuis le navigateur</span>
             </motion.a>
 
-            {/* Android Mobile : le choix d’architecture se fait dans le popup. */}
-            <motion.button
-              type="button"
-              onClick={() => setIsMobileModalOpen(true)}
+            {/* Android Mobile : accès direct à la section de téléchargement. */}
+            <motion.a
+              href="/downloads#android"
+              data-meta-event="DownloadClick"
+              data-meta-platform="android"
+              data-meta-placement="footer"
+              data-meta-content-name="MikhmoAI Mobile Android"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch w-full cursor-pointer rounded-[2.5rem] bg-white px-8 py-6 font-black text-black shadow-[0_30px_60px_-15px_rgba(255,255,255,0.4)] transition-[transform,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:px-10 sm:py-8"
@@ -798,7 +796,7 @@ export default function Home() {
                 Télécharger
               </span>
               <span className="mt-2 block text-[10px] font-bold uppercase leading-none tracking-wider opacity-30">Choix ARM64 ou ARM32</span>
-            </motion.button>
+            </motion.a>
 
             {/* Boutique / Activation de licence */}
             <motion.a
@@ -858,9 +856,7 @@ export default function Home() {
           </div>
         </div>
       </MotionSection>
-      <ApkInstallModal isOpen={isApkModalOpen} onClose={() => setIsApkModalOpen(false)} />
       <DesktopDownloadModal isOpen={isDesktopModalOpen} onClose={() => setIsDesktopModalOpen(false)} />
-      <MobileDownloadModal isOpen={isMobileModalOpen} onClose={() => setIsMobileModalOpen(false)} onSelect={startMobileDownload} />
     </MainLayout>
   );
 }
