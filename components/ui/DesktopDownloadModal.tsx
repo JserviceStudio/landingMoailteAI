@@ -42,19 +42,19 @@ export default function DesktopDownloadModal({ isOpen, onClose }: DesktopDownloa
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-3">
-          <a href="/api/download/latest?platform=windows&arch=x64" onClick={onClose} className="group rounded-[1.7rem] bg-blue-600 p-6 transition hover:-translate-y-1 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
+          <a href="/api/download/latest?platform=windows&arch=x64" onClick={onClose} data-meta-event="DownloadClick" data-meta-platform="pc" data-meta-placement="hero" data-meta-content-name="MikhmoAI Desktop Windows" className="group rounded-[1.7rem] bg-blue-600 p-6 transition hover:-translate-y-1 hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-300">
             <MonitorDown className="h-9 w-9" />
             <p className="mt-8 text-2xl font-black">Windows</p>
             <p className="mt-1 text-sm font-semibold text-white/70">Windows 10 / 11 · x64</p>
             <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Télécharger →</span>
           </a>
-          <a href="/api/download/latest?platform=linux&arch=x64" onClick={onClose} className="group rounded-[1.7rem] bg-orange-500 p-6 text-black transition hover:-translate-y-1 hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-200">
+          <a href="/api/download/latest?platform=linux&arch=x64" onClick={onClose} data-meta-event="DownloadClick" data-meta-platform="pc" data-meta-placement="hero" data-meta-content-name="MikhmoAI Desktop Linux" className="group rounded-[1.7rem] bg-orange-500 p-6 text-black transition hover:-translate-y-1 hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-200">
             <PackageOpen className="h-9 w-9" />
             <p className="mt-8 text-2xl font-black">Linux</p>
             <p className="mt-1 text-sm font-semibold text-black/60">AppImage · DEB · RPM</p>
             <span className="mt-5 inline-block text-xs font-black uppercase tracking-widest">Télécharger →</span>
           </a>
-          <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" onClick={onClose} className="group rounded-[1.7rem] bg-white p-6 text-black transition hover:-translate-y-1 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+          <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" onClick={onClose} data-meta-event="DownloadClick" data-meta-platform="ios" data-meta-placement="hero" data-meta-content-name="MikhmoAI Mac PWA" className="group rounded-[1.7rem] bg-white p-6 text-black transition hover:-translate-y-1 hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
             <Globe2 className="h-9 w-9" />
             <p className="mt-8 text-2xl font-black">Mac / PWA</p>
             <p className="mt-1 text-sm font-semibold text-black/60">Application web installable</p>

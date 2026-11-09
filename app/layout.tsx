@@ -18,6 +18,8 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const META_DOMAIN_VERIFICATION = process.env.NEXT_PUBLIC_META_DOMAIN_VERIFICATION?.trim() || "cvz1dobzdtf56hvc71lb5vbv2t89m6";
+
 export const viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
@@ -81,6 +83,11 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.png",
     apple: "/icon.png",
+  },
+  verification: {
+    other: {
+      "facebook-domain-verification": META_DOMAIN_VERIFICATION,
+    },
   },
 };
 

@@ -31,6 +31,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import DesktopDownloadModal from "@/components/ui/DesktopDownloadModal";
 import MobileDownloadModal from "@/components/ui/MobileDownloadModal";
 import { GlobalImpact } from "@/components/analytics/GlobalImpact";
+import { trackMetaEvent } from "@/components/analytics/MetaPixel";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -41,6 +42,7 @@ export default function Home() {
   const startMobileDownload = (arch: "arm64" | "arm32") => {
     setIsMobileModalOpen(false);
     setIsApkModalOpen(true);
+    trackMetaEvent("DownloadClick", { platform: "android", placement: "hero", content_name: `MikhmoAI Android ${arch.toUpperCase()}` });
     window.location.href = `/api/download/latest?arch=${arch}`;
   };
 
@@ -242,7 +244,7 @@ export default function Home() {
               </div>
 
               <div className="flex flex-col gap-3 sm:flex-row">
-                <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/20 transition hover:-translate-y-1 hover:bg-yellow-300 sm:w-auto">
+                <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" data-meta-event="InitiateCheckout" data-meta-value="17400" data-meta-currency="XOF" data-meta-content-name="MikhmoAI Pro" className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-yellow-400 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/20 transition hover:-translate-y-1 hover:bg-yellow-300 sm:w-auto">
                   <ShoppingBag className="h-5 w-5" aria-hidden="true" />
                   Acheter MikhmoAI Pro
                 </a>
@@ -651,13 +653,13 @@ export default function Home() {
               ))}
             </div>
             <div className="flex flex-col justify-center gap-4 pt-2 sm:flex-row lg:justify-start">
-              <a href="/api/download/latest?platform=windows&arch=x64" className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0b62d6] px-7 py-4 font-black text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-600">
+              <a href="/api/download/latest?platform=windows&arch=x64" data-meta-event="DownloadClick" data-meta-platform="pc" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Desktop Windows" className="group inline-flex items-center justify-center gap-3 rounded-full bg-[#0b62d6] px-7 py-4 font-black text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-1 hover:bg-blue-600">
                 <MonitorDown className="h-5 w-5" /> Télécharger pour Windows
               </a>
-              <a href="/api/download/latest?platform=linux&arch=x64" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-foreground px-7 py-4 font-black text-background transition hover:-translate-y-1">
+              <a href="/api/download/latest?platform=linux&arch=x64" data-meta-event="DownloadClick" data-meta-platform="pc" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Desktop Linux" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-foreground px-7 py-4 font-black text-background transition hover:-translate-y-1">
                 <PackageOpen className="h-5 w-5" /> Télécharger pour Linux
               </a>
-              <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background px-7 py-4 font-black text-foreground transition hover:-translate-y-1">
+              <a href="https://app.mikhmo.tech" target="_blank" rel="noopener noreferrer" data-meta-event="DownloadClick" data-meta-platform="ios" data-meta-placement="desktop" data-meta-content-name="MikhmoAI Mac PWA" className="group inline-flex items-center justify-center gap-3 rounded-full border border-border bg-background px-7 py-4 font-black text-foreground transition hover:-translate-y-1">
                 <Globe className="h-5 w-5" /> Ouvrir sur Mac
               </a>
             </div>
@@ -731,6 +733,10 @@ export default function Home() {
             {/* Windows Desktop */}
             <motion.a
               href="/api/download/latest?platform=windows&arch=x64"
+              data-meta-event="DownloadClick"
+              data-meta-platform="pc"
+              data-meta-placement="footer"
+              data-meta-content-name="MikhmoAI Desktop Windows"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-8 py-6 sm:px-10 sm:py-8 bg-[#0b62d6] text-white rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(37,99,235,0.55)] transition-[transform,box-shadow] w-full focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 outline-none"
@@ -744,6 +750,10 @@ export default function Home() {
             {/* Linux Desktop */}
             <motion.a
               href="/api/download/latest?platform=linux&arch=x64"
+              data-meta-event="DownloadClick"
+              data-meta-platform="pc"
+              data-meta-placement="footer"
+              data-meta-content-name="MikhmoAI Desktop Linux"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch px-8 py-6 sm:px-10 sm:py-8 bg-orange-500 text-black rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(249,115,22,0.5)] transition-[transform,box-shadow] w-full focus-visible:ring-2 focus-visible:ring-orange-300 focus-visible:ring-offset-2 outline-none"
@@ -759,6 +769,10 @@ export default function Home() {
               href="https://app.mikhmo.tech"
               target="_blank"
               rel="noopener noreferrer"
+              data-meta-event="DownloadClick"
+              data-meta-platform="ios"
+              data-meta-placement="footer"
+              data-meta-content-name="MikhmoAI Mac PWA"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch w-full rounded-[2.5rem] bg-zinc-100 px-8 py-6 font-black text-black shadow-[0_30px_60px_-15px_rgba(255,255,255,0.35)] transition-[transform,box-shadow] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 sm:px-10 sm:py-8"
@@ -791,6 +805,10 @@ export default function Home() {
               href="https://store.mikhmoai.com"
               target="_blank"
               rel="noopener noreferrer"
+              data-meta-event="InitiateCheckout"
+              data-meta-value="17400"
+              data-meta-currency="XOF"
+              data-meta-content-name="MikhmoAI Pro"
               whileHover={{ scale: 1.03, y: -4 }}
               whileTap={{ scale: 0.98 }}
               className="mobile-touch relative group px-8 py-6 sm:px-10 sm:py-8 bg-yellow-400 text-black rounded-[2.5rem] font-black flex flex-col items-center justify-center gap-2 cursor-pointer shadow-[0_30px_60px_-15px_rgba(250,204,21,0.4)] transition-[transform,box-shadow] w-full focus-visible:ring-2 focus-visible:ring-yellow-400 focus-visible:ring-offset-2 outline-none"

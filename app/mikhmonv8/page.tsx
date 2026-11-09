@@ -209,6 +209,8 @@ function LicenseSection({ plans }: { plans: ReturnType<typeof buildPlans> }) {
                 rel="noopener noreferrer"
                 data-meta-event="InitiateCheckout"
                 data-meta-content-name={plan.name}
+                data-meta-value={plan.priceValue}
+                data-meta-currency="XOF"
                 className={`inline-flex w-full items-center justify-center gap-3 rounded-full px-7 py-4 font-black transition hover:-translate-y-1 ${plan.highlighted ? "bg-yellow-300 text-black hover:bg-yellow-200" : "bg-foreground text-background hover:opacity-90"}`}
               >
                 Achat rapide {plan.name}
@@ -220,6 +222,8 @@ function LicenseSection({ plans }: { plans: ReturnType<typeof buildPlans> }) {
                 rel="noopener noreferrer"
                 data-meta-event="InitiateCheckout"
                 data-meta-content-name={`${plan.name} multi-pays`}
+                data-meta-value={plan.priceValue}
+                data-meta-currency="XOF"
                 className={`inline-flex w-full items-center justify-center gap-3 rounded-full border px-7 py-4 font-black transition hover:-translate-y-1 ${plan.highlighted ? "border-white/15 bg-white/10 text-white hover:bg-white/15" : "border-border bg-background text-foreground hover:bg-muted/40"}`}
               >
                 Multi-pays / réduction

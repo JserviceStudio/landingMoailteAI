@@ -57,7 +57,7 @@ export default async function SolutionPage({ params }: Props) {
                   </h1>
                   <p className="mt-8 max-w-4xl text-xl leading-relaxed text-white/72 sm:text-2xl">{page.intro}</p>
                   <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                    <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-3 rounded-full bg-yellow-300 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/25 transition hover:-translate-y-1 hover:bg-yellow-200">
+                    <a href="https://store.mikhmoai.com" target="_blank" rel="noopener noreferrer" data-meta-event="InitiateCheckout" data-meta-value="17400" data-meta-currency="XOF" data-meta-content-name="MikhmoAI Pro" className="inline-flex items-center justify-center gap-3 rounded-full bg-yellow-300 px-7 py-4 font-black text-black shadow-xl shadow-yellow-400/25 transition hover:-translate-y-1 hover:bg-yellow-200">
                       <Wallet className="h-5 w-5" aria-hidden="true" />
                       Acheter MikhmoAI Pro
                     </a>
