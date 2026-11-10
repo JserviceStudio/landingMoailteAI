@@ -1,6 +1,7 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+// On évite TypeScript ici car le serveur Hostinger ne dispose pas de GLIBC_2.29 ;
+// le chargement de la configuration TypeScript échoue avec le compilateur SWC WebAssembly.
+const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   async rewrites() {
